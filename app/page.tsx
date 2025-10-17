@@ -4,6 +4,7 @@ import { useState } from "react";
 import { HeroSection } from "@/components/hero-section";
 import { Sidebar } from "@/components/sidebar";
 import { useDictionary } from "@/data/use-dictionary";
+import { BottomNav } from "@/components/bottom-nav";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -36,12 +37,13 @@ export default function Home() {
         onToggleExpand={setIsSidebarExpanded}
       />
       <main
-        className={`flex-1 transition-all duration-300 ml-20 ${
+        className={`flex-1 transition-all duration-300 pb-20 md:pb-0 md:ml-20 ${
           isSidebarExpanded ? "md:ml-64" : "md:ml-20"
         }`}
       >
         {renderActiveSection()}
       </main>
+      <BottomNav activeSection={activeSection} onSectionChange={setActiveSection} />
     </div>
   );
 }

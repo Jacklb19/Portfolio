@@ -45,19 +45,19 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
   ]
 
   const externalLinks = [
-    { icon: Github, label: "GitHub", href: "https://github.com" },
-    { icon: Linkedin, label: "LinkedIn", href: "https://linkedin.com" },
+    { icon: Github, label: "GitHub", href: "https://github.com/Jacklb19" },
+    { icon: Linkedin, label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
   ]
 
   return (
     <>
       <aside
         className={cn(
-          "fixed left-0 top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out",
-          isExpanded ? "w-full md:w-64" : "w-20",
+          "hidden md:flex fixed left-0 top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out",
+          isExpanded ? "w-64" : "w-20",
         )}
       >
-        <div className="flex h-full flex-col">
+        <div className="flex h-full flex-col w-full">
           <button
             onClick={() => onToggleExpand(!isExpanded)}
             className="absolute -right-3 top-8 z-10 h-6 w-6 rounded-full bg-primary text-primary-foreground shadow-lg hover:bg-primary/90 transition-all flex items-center justify-center"
@@ -65,7 +65,6 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
             {isExpanded ? <ChevronLeft className="h-4 w-4" /> : <ChevronRight className="h-4 w-4" />}
           </button>
 
-          {/* Profile Section */}
           <div className="border-b border-border p-4">
             <div className="flex items-center gap-3">
               <div className="h-12 w-12 flex-shrink-0 rounded-full bg-gradient-to-br from-primary to-accent overflow-hidden">
@@ -74,7 +73,7 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
               {isExpanded && (
                 <div className="overflow-hidden">
                   <h3 className="font-semibold text-sm text-foreground truncate">Jose Burbano</h3>
-                  <p className="text-xs text-muted-foreground truncate">Software Engineer</p>
+                  <p className="text-xs text-muted-foreground truncate">{t("profession")}</p>
                 </div>
               )}
             </div>
@@ -113,7 +112,6 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
             </div>
           </nav>
 
-          {/* Bottom Section */}
           <div className="border-t border-border p-2 space-y-1">
             <button
               className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group"

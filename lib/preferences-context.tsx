@@ -133,6 +133,7 @@ export const useTranslation = () => {
 
   const translations: Record<Language, Record<string, string>> = {
     en: {
+      profession: "Software Engineer",
       home: "Home",
       about: "About Me",
       experience: "Experience",
@@ -155,6 +156,7 @@ export const useTranslation = () => {
       large: "Large",
     },
     es: {
+      profession: "Ingeniero de Software",
       home: "Inicio",
       about: "Sobre mí",
       experience: "Experiencia",

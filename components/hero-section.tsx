@@ -30,23 +30,21 @@ export function HeroSection({ content }: HeroSectionProps) {
                 { icon: Github, href: "https://github.com/Jacklb19", label: "GitHub" },
                 { icon: Mail, href: "mail", label: "Email" },
                 { icon: FileText, href: "#", label: "Portfolio" },
-              ].map((social) => {
-                const Icon = social.icon
-                return (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-secondary text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label={social.label}
-                  >
-                    <Icon className="h-4 w-4 sm:h-5 sm:w-5" />
-                  </a>
-                )
-              })}
+              ].map((social) => (
+                <a
+                  key={social.label}
+                  href={social.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-secondary text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                  aria-label={social.label}
+                >
+                  <social.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                </a>
+              ))}
             </div>
           </div>
+
           <div className="flex-shrink-0">
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl sm:rounded-3xl blur-2xl opacity-20"></div>
