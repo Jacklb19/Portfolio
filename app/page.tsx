@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { HeroSection } from "@/components/hero-section";
+import { AboutSection } from "@/components/about-section";
 import { Sidebar } from "@/components/sidebar";
 import { useDictionary } from "@/data/use-dictionary";
 import { BottomNav } from "@/components/bottom-nav";
@@ -22,7 +23,9 @@ export default function Home() {
   const renderActiveSection = () => {
     switch (activeSection) {
       case "home":
-        return <HeroSection content={dictionary.hero} />; 
+        return <HeroSection content={dictionary.hero} />;
+      case "about":
+        return <AboutSection/> 
       default:
         return <HeroSection content={dictionary.hero} />;
     }
