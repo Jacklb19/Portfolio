@@ -31,10 +31,26 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
   const { t } = useTranslation()
 
   useEffect(() => {
-    if (preferences.sidebarAutoExpand && !isExpanded) {
-      onToggleExpand(true)
-    }
-  }, [preferences.sidebarAutoExpand])
+  if (!preferences.sidebarAutoExpand) return;
+
+  const sidebarElement = document.getElementById("sidebar-auto");
+
+  if (!sidebarElement) return;
+
+  // Al pasar el mouse, expandir
+  const handleMouseEnter = () => onToggleExpand(true);
+  // Al quitar el mouse, cerrar
+  const handleMouseLeave = () => onToggleExpand(false);
+
+  sidebarElement.addEventListener("mouseenter", handleMouseEnter);
+  sidebarElement.addEventListener("mouseleave", handleMouseLeave);
+
+  // Limpieza al desmontar
+  return () => {
+    sidebarElement.removeEventListener("mouseenter", handleMouseEnter);
+    sidebarElement.removeEventListener("mouseleave", handleMouseLeave);
+  };
+}, [preferences.sidebarAutoExpand, onToggleExpand]);
 
   const navItems = [
     { icon: Home, label: t("home"), id: "home" },
@@ -52,6 +68,7 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
   return (
     <>
       <aside
+      id="sidebar-auto"
         className={cn(
           "hidden md:flex fixed left-0 top-0 z-50 h-screen bg-card border-r border-border transition-all duration-300 ease-in-out",
           isExpanded ? "w-64" : "w-20",
