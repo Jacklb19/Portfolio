@@ -25,7 +25,7 @@ export default function Home() {
       case "home":
         return <HeroSection content={dictionary.hero} />;
       case "about":
-        return <AboutSection/> 
+        return <AboutSection content={dictionary.about}/> 
       default:
         return <HeroSection content={dictionary.hero} />;
     }

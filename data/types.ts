@@ -16,5 +16,30 @@ export type HeroSection = {
 
 export type Dictionary = {
   hero: HeroSection;
+  about: AboutSection
   switcher: { label: string; es: string; en: string };
 };
+
+export type AboutSection = {
+  title: string;
+  description: string;
+  hobbies: {
+    title: string;
+    text: string;
+  };
+  interests: {
+    title: string;
+    text: string;
+  };
+  stack: {
+    title: string;
+    description: string;
+    button: string;
+  };
+  projects: {
+    title: string;
+    description: string;
+    button: string;
+  };
+};
+
