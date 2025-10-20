@@ -96,13 +96,13 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
             </div>
           </div>
 
-          <nav className="flex-1 space-y-1 p-2">
+          <nav className="flex-1 space-y-1 p-4">
             {navItems.map((item) => (
               <button
                 key={item.id}
                 onClick={() => onSectionChange(item.id)}
                 className={cn(
-                  "flex w-full items-center gap-3 rounded-xl px-3 py-3 transition-all group",
+                  "flex w-full items-center gap-3 rounded-xl px-3.5  py-3 transition-all group",
                   activeSection === item.id
                     ? "bg-primary text-primary-foreground"
                     : "text-muted-foreground hover:bg-secondary hover:text-foreground",
@@ -120,7 +120,7 @@ export function Sidebar({ activeSection, onSectionChange, isExpanded, onToggleEx
                   href={item.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-xl px-3 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group"
+                  className="flex items-center gap-3 rounded-xl px-3.5 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group"
                 >
                   <item.icon className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
                   {isExpanded && <span className="text-sm font-medium">{item.label}</span>}

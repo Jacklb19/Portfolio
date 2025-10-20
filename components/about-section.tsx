@@ -3,6 +3,7 @@ import { Button } from "@/components/ui/button";
 import { AboutSection as AboutSectionType } from "@/data/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { SiPostgresql, SiTailwindcss, SiMongodb } from "react-icons/si";
+import Image from "next/image";
 
 interface AboutSectionProps {
   content: AboutSectionType;
@@ -27,13 +28,29 @@ export function AboutSection({ content }: AboutSectionProps) {
           </span>
         </div>
 
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
-          {content.title}
-        </h2>
+        <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-12 mb-8 sm:mb-12">
+          {/* Text Content */}
+          <div className="flex-1">
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">{content.title}</h2>
 
-        <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-8 sm:mb-12 max-w-3xl">
-          {content.description}
-        </p>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+{content.description}
+            </p>
+          </div>
+
+          {/* Profile Image - Circular with responsive positioning */}
+          <div className="flex justify-center lg:justify-end lg:flex-shrink-0">
+            <div className="relative w-48 h-48 sm:w-56 sm:h-56 lg:w-64 lg:h-64">
+              <Image
+                src="/images/profile.jpg"
+                alt="Jose Burbano Profile Photo"
+                fill
+                className="rounded-full object-cover shadow-2xl shadow-primary/20 ring-4 ring-primary/10 transition-transform hover:scale-105"
+                priority
+              />
+            </div>
+          </div>
+        </div>
 
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
             {/* Hobbies Card */}
@@ -85,7 +102,7 @@ export function AboutSection({ content }: AboutSectionProps) {
             </div>
         
 
-            <Button className="rounded-xl w-full sm:w-auto">
+            <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
               {content.stack.button}
             </Button>
         </div>
@@ -97,7 +114,7 @@ export function AboutSection({ content }: AboutSectionProps) {
             <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
               {content.projects.description}
             </p>
-            <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto">
+            <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
               {content.projects.button}
             </Button>
         </div>
