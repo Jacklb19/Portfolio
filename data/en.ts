@@ -39,6 +39,53 @@ export const contentEn: Dictionary = {
       button: "View Projects",
     },
   },
+  experience: {
+    title: "Experience",
+    experiences: [
+      {
+        id: 1,
+        category: "Automation",
+        title: "Travel Agency",
+        period: "Aug 2025 - Sep 2025",
+        technologies: ["React", "Node.js", "Tailwind", "WhatsApp API"],
+        description: [
+          "Designed and implemented an automated WhatsApp lead capture flow using n8n, integrating Meta’s Business Cloud API with Google Sheets and CRM.",
+          "Built a dynamic landing page using React, Tailwind, and Node.js, improving user acquisition and visibility.",
+          "Applied clean code and scalable architecture principles, ensuring maintainability and adaptability for future integrations.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+      {
+        id: 2,
+        category: "Career Path",
+        title: "Software Engineer Career - UCC",
+        period: "Aug 2021 - Jan 2025",
+        technologies: ["Python", "PostgreSQL", "MongoDB", "Java"],
+        description: [
+          "Gained strong foundations in software development, algorithms, and data structures.",
+          "Learned Agile and applied design patterns (Decorator, Singleton, MVC, etc.) in academic projects.",
+          "Built and deployed systems with Node.js, PostgreSQL, and MongoDB, practicing containerization and database management.",
+          "Applied Clean Architecture and modular structures for scalable solutions.",
+          "Created academic projects like a claims management system and an AI-powered tourism app.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+      {
+        id: 3,
+        category: "System",
+        title: "Claims Management System",
+        period: "Mar 2024 - Jun 2024",
+        technologies: ["Node.js", "PostgreSQL", "Docker", "Express"],
+        description: [
+          "Developed a full-stack claims and complaints management system for a university project.",
+          "Implemented RESTful APIs with Node.js and Express, managing user authentication and roles.",
+          "Designed and normalized a PostgreSQL schema for efficient data handling.",
+          "Containerized the app with Docker for consistent deployment across environments.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+    ],
+  },
   switcher: {
     label: "Language",
     es: "Spanish",

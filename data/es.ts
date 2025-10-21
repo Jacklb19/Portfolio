@@ -39,6 +39,53 @@ export const contentEs: Dictionary = {
       button: "Ver Proyectos",
     },
   },
+  experience: {
+    title: "Experiencia",
+    experiences: [
+      {
+        id: 1,
+        category: "Automatización",
+        title: "Agencia de Viajes",
+        period: "Ago 2025 - Sep 2025",
+        technologies: ["React", "Node.js", "Tailwind", "WhatsApp API"],
+        description: [
+          "Diseñé e implementé un flujo automatizado de captura de leads en WhatsApp usando n8n, integrando la API de Meta Business Cloud con Google Sheets y CRM.",
+          "Construí una landing page dinámica con React, Tailwind y Node.js, mejorando la adquisición de usuarios y la visibilidad del servicio.",
+          "Apliqué principios de código limpio y arquitectura escalable, asegurando mantenibilidad y adaptabilidad para futuras integraciones.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+      {
+        id: 2,
+        category: "Trayectoria",
+        title: "Ingeniería de Software - UCC",
+        period: "Ago 2021 - Ene 2025",
+        technologies: ["Python", "PostgreSQL", "MongoDB", "Java"],
+        description: [
+          "Obtuve bases sólidas en desarrollo de software, algoritmos y estructuras de datos.",
+          "Aprendí metodologías ágiles y patrones de diseño como Decorator, Singleton y MVC.",
+          "Desarrollé y desplegué sistemas con Node.js, PostgreSQL y MongoDB, aplicando contenedorización y gestión de bases de datos.",
+          "Apliqué principios de Clean Architecture y estructuras modulares para soluciones escalables.",
+          "Creé proyectos académicos como un sistema de gestión de reclamos y una app de turismo con IA.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+      {
+        id: 3,
+        category: "Sistema",
+        title: "Sistema de Gestión de Reclamos",
+        period: "Mar 2024 - Jun 2024",
+        technologies: ["Node.js", "PostgreSQL", "Docker", "Express"],
+        description: [
+          "Desarrollé un sistema full-stack de gestión de reclamos y quejas para un proyecto universitario.",
+          "Implementé APIs RESTful con Node.js y Express, manejando autenticación y roles de usuario.",
+          "Diseñé y normalicé la base de datos en PostgreSQL para un almacenamiento eficiente.",
+          "Contenericé la aplicación con Docker para despliegues consistentes entre entornos.",
+        ],
+        image: "/placeholder.svg?height=400&width=600",
+      },
+    ],
+  },
   switcher: {
     label: "Idioma",
     es: "Español",

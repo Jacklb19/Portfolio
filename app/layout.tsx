@@ -11,7 +11,7 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: "Jose Burbano - Software Engineer Portfolio",
-  description: "Portafolio personal de José Luis",
+  description: "Portafolio personal de Jose Luis",
 }
 
 

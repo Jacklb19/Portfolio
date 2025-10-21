@@ -14,12 +14,6 @@ export type HeroSection = {
   socials: SocialLink[];
 };
 
-export type Dictionary = {
-  hero: HeroSection;
-  about: AboutSection
-  switcher: { label: string; es: string; en: string };
-};
-
 export type AboutSection = {
   title: string;
   description: string;
@@ -43,3 +37,24 @@ export type AboutSection = {
   };
 };
 
+export type ExperienceItem = {
+  id: number;
+  category: string;
+  title: string;
+  period: string;
+  technologies: string[];
+  description: string[];
+  image: string;
+};
+
+export type ExperienceSection = {
+  title: string;
+  experiences: ExperienceItem[];
+};
+
+export type Dictionary = {
+  hero: HeroSection;
+  about: AboutSection;
+  experience: ExperienceSection;
+  switcher: { label: string; es: string; en: string };
+};

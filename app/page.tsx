@@ -6,6 +6,7 @@ import { AboutSection } from "@/components/about-section";
 import { Sidebar } from "@/components/sidebar";
 import { useDictionary } from "@/data/use-dictionary";
 import { BottomNav } from "@/components/bottom-nav";
+import { ExperienceSection } from "@/components/experience-section";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -26,6 +27,8 @@ export default function Home() {
         return <HeroSection content={dictionary.hero} />;
       case "about":
         return <AboutSection content={dictionary.about}/> 
+      case "experience":
+        return <ExperienceSection content = {dictionary.experience}/>
       default:
         return <HeroSection content={dictionary.hero} />;
     }

@@ -31,10 +31,12 @@ export function AboutSection({ content }: AboutSectionProps) {
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-12 mb-8 sm:mb-12">
           {/* Text Content */}
           <div className="flex-1">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">{content.title}</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 sm:mb-8">
+              {content.title}
+            </h2>
 
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-{content.description}
+              {content.description}
             </p>
           </div>
 
@@ -53,7 +55,7 @@ export function AboutSection({ content }: AboutSectionProps) {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-4 sm:gap-6 mb-8 sm:mb-12">
-            {/* Hobbies Card */}
+          {/* Hobbies Card */}
           <div className="group rounded-2xl sm:rounded-3xl bg-card border border-border p-6 sm:p-8 transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
             <div className="flex items-center gap-3 mb-4">
               <Heart className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
@@ -80,43 +82,42 @@ export function AboutSection({ content }: AboutSectionProps) {
         </div>
 
         <div className="rounded-2xl sm:rounded-3xl bg-card border border-border p-6 sm:p-8 mb-6 sm:mb-8">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
-              {content.stack.title}
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
-              {content.stack.description}
-            </p>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-4 sm:mb-6">
+            {content.stack.title}
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
+            {content.stack.description}
+          </p>
 
-            <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
-              {techStack.map((tech) => (
-                <div
-                  key={tech.name}
-                  className="flex items-center gap-4 rounded-lg sm:rounded-xl bg-secondary px-3 py-2 sm:px-4 sm:py-3 transition-all hover:bg-secondary/80 hover:scale-105"
-                >
-                  <span className="text-xl sm:text-2xl">{tech.icon}</span>
-                  <span className="font-medium text-xs sm:text-sm">
-                    {tech.name}
-                  </span>
-                </div>
-              ))}
-            </div>
-        
+          <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
+            {techStack.map((tech) => (
+              <div
+                key={tech.name}
+                className="flex items-center gap-4 rounded-lg sm:rounded-xl bg-secondary px-3 py-2 sm:px-4 sm:py-3 transition-all hover:bg-secondary/80 hover:scale-105"
+              >
+                <span className="text-xl sm:text-2xl">{tech.icon}</span>
+                <span className="font-medium text-xs sm:text-sm">
+                  {tech.name}
+                </span>
+              </div>
+            ))}
+          </div>
 
-            <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
-              {content.stack.button}
-            </Button>
+          <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
+            {content.stack.button}
+          </Button>
         </div>
 
         <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 p-6 sm:p-8 mb-8 sm:mb-12">
-            <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
-              {content.projects.title}
-            </h3>
-            <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
-              {content.projects.description}
-            </p>
-            <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
-              {content.projects.button}
-            </Button>
+          <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
+            {content.projects.title}
+          </h3>
+          <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
+            {content.projects.description}
+          </p>
+          <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
+            {content.projects.button}
+          </Button>
         </div>
       </div>
     </section>
