@@ -1,8 +1,30 @@
 "use client"
 
-import { useState, useEffect, useRef } from "react"
+import { useState, useEffect, useRef, JSX } from "react"
 import { Calendar } from "lucide-react"
 import { ExperienceSection as ExperienceSectionType } from "@/data/types"
+import {
+  FaDocker,
+  FaNodeJs,
+  FaReact,
+  FaPython,
+  FaWhatsapp,
+  FaHtml5,
+  FaCss3Alt,
+  FaJava,
+  FaGitAlt,
+} from "react-icons/fa"
+import {
+  SiPostgresql,
+  SiTailwindcss,
+  SiMongodb,
+  SiTypescript,
+  SiJavascript,
+  SiNextdotjs,
+  SiExpress,
+  SiSpringboot,
+  SiFirebase,
+} from "react-icons/si"
 
 interface ExperienceSectionProps {
   content: ExperienceSectionType
@@ -14,33 +36,78 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const itemRefs = useRef<(HTMLDivElement | null)[]>([])
 
+  const techIcons: Record<string, JSX.Element> = {
+    Docker: <FaDocker className="text-blue-500" />,
+    "Node.js": <FaNodeJs className="text-green-500" />,
+    PostgreSQL: <SiPostgresql className="text-sky-700" />,
+    React: <FaReact className="text-cyan-400" />,
+    Tailwind: <SiTailwindcss className="text-sky-400" />,
+    MongoDB: <SiMongodb className="text-green-600" />,
+    Python: <FaPython className="text-yellow-500" />,
+    "WhatsApp API": <FaWhatsapp className="text-green-500" />,
+    Java: <FaJava className="text-red-600" />,
+    HTML5: <FaHtml5 className="text-orange-500" />,
+    CSS3: <FaCss3Alt className="text-blue-600" />,
+    Git: <FaGitAlt className="text-orange-600" />,
+    TypeScript: <SiTypescript className="text-blue-500" />,
+    JavaScript: <SiJavascript className="text-yellow-400" />,
+    NextJS: <SiNextdotjs className="text-black dark:text-white" />,
+    Express: <SiExpress className="text-gray-500" />,
+    SpringBoot: <SiSpringboot className="text-green-700" />,
+    Firebase: <SiFirebase className="text-amber-500" />,
+  }
+
   useEffect(() => {
     const handleScroll = () => {
       if (!sectionRef.current) return
 
-      const sectionTop = sectionRef.current.offsetTop
-      const scrollPosition = window.scrollY + window.innerHeight / 2
+      const viewportMiddle = window.innerHeight / 2
+
+      let closestIndex = 0
+      let closestDistance = Infinity
 
       itemRefs.current.forEach((ref, index) => {
         if (ref) {
-          const itemTop = ref.offsetTop + sectionTop
-          const itemBottom = itemTop + ref.offsetHeight
+          const rect = ref.getBoundingClientRect()
+          const itemMiddle = rect.top + rect.height / 2
+          const distance = Math.abs(itemMiddle - viewportMiddle)
 
-          if (scrollPosition >= itemTop && scrollPosition < itemBottom) {
-            setActiveIndex(index)
+          if (distance < closestDistance) {
+            closestDistance = distance
+            closestIndex = index
           }
         }
       })
+
+      setActiveIndex(closestIndex)
     }
 
-    window.addEventListener("scroll", handleScroll)
+    let ticking = false
+    const scrollListener = () => {
+      if (!ticking) {
+        window.requestAnimationFrame(() => {
+          handleScroll()
+          ticking = false
+        })
+        ticking = true
+      }
+    }
+
+    window.addEventListener("scroll", scrollListener, { passive: true })
+    window.addEventListener("resize", handleScroll, { passive: true })
     handleScroll()
 
-    return () => window.removeEventListener("scroll", handleScroll)
+    return () => {
+      window.removeEventListener("scroll", scrollListener)
+      window.removeEventListener("resize", handleScroll)
+    }
   }, [])
 
   return (
-    <section ref={sectionRef} className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section
+      ref={sectionRef}
+      className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16">
           {content.title}
@@ -79,21 +146,28 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                     <span className="text-xs text-primary font-semibold uppercase tracking-wider">
                       {exp.category}
                     </span>
-                    <h3 className="text-xl sm:text-2xl font-bold mt-1 mb-2">{exp.title}</h3>
+                    <h3 className="text-xl sm:text-2xl font-bold mt-1 mb-2">
+                      {exp.title}
+                    </h3>
                     <div className="flex items-center gap-2 text-muted-foreground mb-3 sm:mb-4">
                       <Calendar className="h-3 w-3 sm:h-4 sm:w-4" />
                       <span className="text-xs sm:text-sm">{exp.period}</span>
                     </div>
 
-                    {/* Tecnologías */}
-                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                    {/* Tecnologías con íconos */}
+                    <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
                       {exp.technologies.map((tech) => (
-                        <span
+                        <div
                           key={tech}
-                          className="rounded-md sm:rounded-lg bg-secondary px-2 py-0.5 sm:px-3 sm:py-1 text-xs font-medium text-foreground"
+                          className="flex items-center gap-2 bg-secondary rounded-lg sm:rounded-xl px-3 py-1 sm:px-4 sm:py-2 transition-all hover:bg-secondary/80 hover:scale-105"
                         >
-                          {tech}
-                        </span>
+                          <span className="text-lg sm:text-xl">
+                            {techIcons[tech]}
+                          </span>
+                          <span className="text-xs sm:text-sm font-medium text-foreground">
+                            {tech}
+                          </span>
+                        </div>
                       ))}
                     </div>
 
@@ -106,7 +180,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       }`}
                     >
                       {exp.description.map((item, i) => (
-                        <li key={i} className="flex gap-2 text-xs sm:text-sm leading-relaxed">
+                        <li
+                          key={i}
+                          className="flex gap-2 text-xs sm:text-sm leading-relaxed"
+                        >
                           <span className="text-primary mt-1">•</span>
                           <span>{item}</span>
                         </li>
@@ -122,7 +199,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
           <div className="hidden lg:block lg:sticky lg:top-24">
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl transition-all duration-500">
               <img
-                src={experiences[activeIndex].image || "/placeholder.svg"}
+                src={experiences[activeIndex].image}
                 alt={experiences[activeIndex].title}
                 className="w-full h-auto object-cover transition-opacity duration-500"
                 key={activeIndex}

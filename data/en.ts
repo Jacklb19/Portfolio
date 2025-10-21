@@ -53,7 +53,7 @@ export const contentEn: Dictionary = {
           "Built a dynamic landing page using React, Tailwind, and Node.js, improving user acquisition and visibility.",
           "Applied clean code and scalable architecture principles, ensuring maintainability and adaptability for future integrations.",
         ],
-        image: "/placeholder.svg?height=400&width=600",
+        image: "images/agencia.jpg?height=400&width=600",
       },
       {
         id: 2,
@@ -68,7 +68,7 @@ export const contentEn: Dictionary = {
           "Applied Clean Architecture and modular structures for scalable solutions.",
           "Created academic projects like a claims management system and an AI-powered tourism app.",
         ],
-        image: "/placeholder.svg?height=400&width=600",
+        image: "images/software.png?height=400&width=600",
       },
       {
         id: 3,
