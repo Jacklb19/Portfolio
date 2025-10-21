@@ -9,6 +9,7 @@ import { ExperienceSection } from "@/components/experience-section"
 import { Footer } from "@/components/footer"
 import { useDictionary } from "@/data/use-dictionary"
 import { ProjectsSection } from "@/components/projects-section"
+import { ContactSection } from "@/components/contact-section"
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home")
@@ -33,6 +34,8 @@ export default function Home() {
         return <ExperienceSection content={dictionary.experience} />
       case "projects":
         return <ProjectsSection content={dictionary.projects}/>
+      case "contact":
+        return <ContactSection content={dictionary.contact}/>
       default:
         return <HeroSection content={dictionary.hero} />
     }

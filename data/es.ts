@@ -142,6 +142,36 @@ export const contentEs: Dictionary = {
     },
   ],
 },
+  contact: {
+    title: "CONTACTO",
+    subtitle: "Trabajemos juntos",
+    form: {
+      labels: {
+        name: "NOMBRE",
+        email: "CORREO",
+        message: "MENSAJE",
+      },
+      placeholders: {
+        name: "Tu nombre completo",
+        email: "tu.email@gmail.com",
+        message: "Cuéntame sobre tu proyecto...",
+      },
+      submit: "Enviar Mensaje",
+    },
+    info: {
+      location: { label: "UBICACIÓN", value: "Colombia" },
+      phone: { label: "TELÉFONO", value: "+57 3224263201" },
+      email: { label: "CORREO", value: "joseburbano1995@gmail.com" },
+    },
+    socials: {
+      title: "CONECTA CONMIGO",
+      items: [
+        { label: "GitHub", href: "https://github.com/Jacklb19" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+        { label: "Email", href: "mailto:joseburbano1995@gmail.com" },
+      ],
+    },
+  },
   switcher: {
     label: "Idioma",
     es: "Español",

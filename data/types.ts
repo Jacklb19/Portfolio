@@ -79,6 +79,36 @@ export type ProjectsSection = {
   projects: ProjectItem[];
 };
 
+export type ContactSection = {
+  title: string
+  subtitle: string
+  form: {
+    labels: {
+      name: string
+      email: string
+      message: string
+    }
+    placeholders: {
+      name: string
+      email: string
+      message: string
+    }
+    submit: string
+  }
+  info: {
+    location: { label: string; value: string }
+    phone: { label: string; value: string }
+    email: { label: string; value: string }
+  }
+  socials: {
+    title: string
+    items: Array<{
+      label: string
+      href: string
+      ariaLabel?: string
+    }>
+  }
+}
 
 
 export type Dictionary = {
@@ -86,6 +116,7 @@ export type Dictionary = {
   about: AboutSection;
   experience: ExperienceSection;
   projects: ProjectsSection;
+  contact: ContactSection;
   footer: Footer;
   switcher: { label: string; es: string; en: string };
 };
