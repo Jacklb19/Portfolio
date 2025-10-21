@@ -91,6 +91,54 @@ export const contentEn: Dictionary = {
     made: "Made with",
     by: "by Jose Burbano"
   },
+  projects: {
+  title: "Projects",
+  description: "Explore some of my featured works and experiments.",
+  button: "View More",
+  projects: [
+    {
+      id: 1,
+      name: "Pharmasync",
+      description:
+        "Pharmasync is a virtual pharmaceutical assistant designed to streamline medication for students, pharmacies, and healthcare professionals.",
+      status: "offline",
+      technologies: ["React", "Node.js", "PostgreSQL", "AI"],
+      image: "/placeholder.svg?height=300&width=400",
+      link: "#",
+    },
+    {
+      id: 2,
+      name: "Claim Management",
+      description:
+        "ClaimHub is a robust claims management system designed to simplify complaint handling, track resolution efficiently.",
+      status: "online",
+      technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
+      image: "/placeholder.svg?height=300&width=400",
+      link: "#",
+    },
+    {
+      id: 3,
+      name: "Mino Music Player",
+      description:
+        "A sleek music player built to organize playlists, stream audio, and deliver a seamless listening experience.",
+      status: "online",
+      technologies: ["React", "Tailwind", "Web Audio API"],
+      image: "/placeholder.svg?height=300&width=400",
+      link: "#",
+    },
+    {
+      id: 4,
+      name: "Clock",
+      description:
+        "A minimalist time-tracking tool designed to help users stay focused with simple, clean interface and productivity features.",
+      status: "online",
+      technologies: ["React", "TypeScript", "Tailwind"],
+      image: "/placeholder.svg?height=300&width=400",
+      link: "#",
+    },
+  ],
+},
+
   switcher: {
     label: "Language",
     es: "Spanish",

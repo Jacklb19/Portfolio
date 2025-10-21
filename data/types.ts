@@ -58,10 +58,28 @@ export type Footer ={
   by: string
 }
 
+export type ProjectItem = {
+  id: number;
+  name: string;
+  description: string;
+  status: "online" | "offline";
+  technologies: string[];
+  image: string;
+  link: string;
+};
+
+export type ProjectsSection = {
+  title: string;
+  description: string;
+  button: string;
+  projects: ProjectItem[];
+};
+
 export type Dictionary = {
   hero: HeroSection;
   about: AboutSection;
   experience: ExperienceSection;
+  projects: ProjectsSection;
   footer: Footer;
   switcher: { label: string; es: string; en: string };
 };
