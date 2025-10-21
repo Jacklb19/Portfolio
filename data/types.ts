@@ -52,9 +52,16 @@ export type ExperienceSection = {
   experiences: ExperienceItem[];
 };
 
+export type Footer ={
+  title: string;
+  made: string;
+  by: string
+}
+
 export type Dictionary = {
   hero: HeroSection;
   about: AboutSection;
   experience: ExperienceSection;
+  footer: Footer;
   switcher: { label: string; es: string; en: string };
 };

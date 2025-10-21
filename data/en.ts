@@ -86,6 +86,11 @@ export const contentEn: Dictionary = {
       },
     ],
   },
+  footer: {
+    title: "Portfolio. All rights reserved.",
+    made: "Made with",
+    by: "by Jose Burbano"
+  },
   switcher: {
     label: "Language",
     es: "Spanish",
