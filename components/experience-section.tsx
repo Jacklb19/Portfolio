@@ -1,8 +1,9 @@
-"use client"
+"use client";
 
-import { useState, useEffect, useRef, JSX } from "react"
-import { Calendar } from "lucide-react"
-import { ExperienceSection as ExperienceSectionType } from "@/data/types"
+import { useState, useEffect, useRef, JSX } from "react";
+import Image from "next/image"
+import { Calendar } from "lucide-react";
+import { ExperienceSection as ExperienceSectionType } from "@/data/types";
 import {
   FaDocker,
   FaNodeJs,
@@ -13,7 +14,7 @@ import {
   FaCss3Alt,
   FaJava,
   FaGitAlt,
-} from "react-icons/fa"
+} from "react-icons/fa";
 import {
   SiPostgresql,
   SiTailwindcss,
@@ -24,17 +25,17 @@ import {
   SiExpress,
   SiSpringboot,
   SiFirebase,
-} from "react-icons/si"
+} from "react-icons/si";
 
 interface ExperienceSectionProps {
-  content: ExperienceSectionType
+  content: ExperienceSectionType;
 }
 
 export function ExperienceSection({ content }: ExperienceSectionProps) {
-  const experiences = content.experiences
-  const [activeIndex, setActiveIndex] = useState(0)
-  const sectionRef = useRef<HTMLDivElement>(null)
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([])
+  const experiences = content.experiences;
+  const [activeIndex, setActiveIndex] = useState(0);
+  const sectionRef = useRef<HTMLDivElement>(null);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   const techIcons: Record<string, JSX.Element> = {
     Docker: <FaDocker className="text-blue-500" />,
@@ -55,53 +56,53 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
     Express: <SiExpress className="text-gray-500" />,
     SpringBoot: <SiSpringboot className="text-green-700" />,
     Firebase: <SiFirebase className="text-amber-500" />,
-  }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      if (!sectionRef.current) return
+      if (!sectionRef.current) return;
 
-      const viewportMiddle = window.innerHeight / 2
+      const viewportMiddle = window.innerHeight / 2;
 
-      let closestIndex = 0
-      let closestDistance = Infinity
+      let closestIndex = 0;
+      let closestDistance = Infinity;
 
       itemRefs.current.forEach((ref, index) => {
         if (ref) {
-          const rect = ref.getBoundingClientRect()
-          const itemMiddle = rect.top + rect.height / 2
-          const distance = Math.abs(itemMiddle - viewportMiddle)
+          const rect = ref.getBoundingClientRect();
+          const itemMiddle = rect.top + rect.height / 2;
+          const distance = Math.abs(itemMiddle - viewportMiddle);
 
           if (distance < closestDistance) {
-            closestDistance = distance
-            closestIndex = index
+            closestDistance = distance;
+            closestIndex = index;
           }
         }
-      })
+      });
 
-      setActiveIndex(closestIndex)
-    }
+      setActiveIndex(closestIndex);
+    };
 
-    let ticking = false
+    let ticking = false;
     const scrollListener = () => {
       if (!ticking) {
         window.requestAnimationFrame(() => {
-          handleScroll()
-          ticking = false
-        })
-        ticking = true
+          handleScroll();
+          ticking = false;
+        });
+        ticking = true;
       }
-    }
+    };
 
-    window.addEventListener("scroll", scrollListener, { passive: true })
-    window.addEventListener("resize", handleScroll, { passive: true })
-    handleScroll()
+    window.addEventListener("scroll", scrollListener, { passive: true });
+    window.addEventListener("resize", handleScroll, { passive: true });
+    handleScroll();
 
     return () => {
-      window.removeEventListener("scroll", scrollListener)
-      window.removeEventListener("resize", handleScroll)
-    }
-  }, [])
+      window.removeEventListener("scroll", scrollListener);
+      window.removeEventListener("resize", handleScroll);
+    };
+  }, []);
 
   return (
     <section
@@ -120,7 +121,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               <div
                 key={exp.id}
                 ref={(el) => {
-                  itemRefs.current[index] = el
+                  itemRefs.current[index] = el;
                 }}
                 className={`transition-all duration-500 ${
                   activeIndex === index ? "opacity-100" : "opacity-40"
@@ -198,16 +199,19 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
           {/* Imagen lateral */}
           <div className="hidden lg:block lg:sticky lg:top-24">
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl transition-all duration-500">
-              <img
+              <Image
                 src={experiences[activeIndex].image}
                 alt={experiences[activeIndex].title}
                 className="w-full h-auto object-cover transition-opacity duration-500"
+                width={600} 
+                height={400} 
                 key={activeIndex}
+                priority={true} 
               />
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }

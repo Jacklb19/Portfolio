@@ -1,3 +1,6 @@
+"use client"
+
+import Image from "next/image"
 import { Github, Linkedin, Mail, FileText } from "lucide-react"
 import { HeroSection as HeroSectionType } from "@/data/types"
 
@@ -49,10 +52,12 @@ export function HeroSection({ content }: HeroSectionProps) {
             <div className="relative">
               <div className="absolute inset-0 bg-gradient-to-br from-primary to-accent rounded-2xl sm:rounded-3xl blur-2xl opacity-20"></div>
               <div className="relative h-64 w-64 sm:h-80 sm:w-80 lg:h-96 lg:w-96 rounded-2xl sm:rounded-3xl overflow-hidden border-2 border-primary/20 shadow-2xl">
-                <img
+                <Image
                   src="/images/profile.jpg"
                   alt="Jose Burbano"
-                  className="h-full w-full object-cover"
+                  fill
+                  className="object-cover"
+                  priority
                 />
               </div>
             </div>

@@ -1,35 +1,39 @@
-"use client"
-
-import { JSX, useState } from "react"
-import { ExternalLink, ChevronDown } from "lucide-react"
-import { ProjectsSection as ProjectSectionType } from "@/data/types"
+"use client";
+import Image from "next/image";
+import { JSX, useState } from "react";
+import { ExternalLink, ChevronDown } from "lucide-react";
+import { ProjectsSection as ProjectSectionType } from "@/data/types";
+import { FaDocker, FaNodeJs, FaReact, FaPython, FaJava } from "react-icons/fa";
 import {
-  FaDocker,
-  FaNodeJs,
-  FaReact,
-  FaPython,
-  FaJava,
-} from "react-icons/fa"
-import { SiPostgresql, SiTailwindcss, SiMongodb, SiTypescript, SiNextdotjs, SiExpress, SiSpringboot } from "react-icons/si"
+  SiPostgresql,
+  SiTailwindcss,
+  SiMongodb,
+  SiTypescript,
+  SiNextdotjs,
+  SiExpress,
+  SiSpringboot,
+} from "react-icons/si";
 
 interface ProjectSectionProps {
-  content: ProjectSectionType
+  content: ProjectSectionType;
 }
 
 export function ProjectsSection({ content }: ProjectSectionProps) {
-  const [selectedFilter, setSelectedFilter] = useState<"all" | "online" | "offline">("all")
-  const [isFilterOpen, setIsFilterOpen] = useState(false)
+  const [selectedFilter, setSelectedFilter] = useState<
+    "all" | "online" | "offline"
+  >("all");
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
 
   const filteredProjects = content.projects.filter((project) => {
-    if (selectedFilter === "all") return true
-    return project.status === selectedFilter
-  })
+    if (selectedFilter === "all") return true;
+    return project.status === selectedFilter;
+  });
 
   const filterOptions = [
     { value: "all" as const, label: content.filter.option },
     { value: "online" as const, label: "Online" },
     { value: "offline" as const, label: "Offline" },
-  ]
+  ];
 
   const techIcons: Record<string, JSX.Element> = {
     Docker: <FaDocker className="text-blue-500" />,
@@ -44,14 +48,19 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
     NextJS: <SiNextdotjs className="text-black dark:text-white" />,
     Express: <SiExpress className="text-gray-500" />,
     SpringBoot: <SiSpringboot className="text-green-700" />,
-  }
+  };
 
   return (
-    <section id="projects" className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section
+      id="projects"
+      className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="flex flex-col items-start justify-between mb-8 sm:mb-12">
           <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between w-full gap-4 sm:gap-0">
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">{content.title}</h2>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold">
+              {content.title}
+            </h2>
 
             {/* Botón de filtrado */}
             <div className="relative">
@@ -60,7 +69,11 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
                 className="rounded-full bg-secondary px-3 py-1.5 sm:px-4 sm:py-2 flex items-center gap-2 hover:bg-secondary/80 transition-colors"
               >
                 <span className="text-xs sm:text-sm text-muted-foreground">
-                  {content.filter.name}: {filterOptions.find((opt) => opt.value === selectedFilter)?.label}
+                  {content.filter.name}:{" "}
+                  {
+                    filterOptions.find((opt) => opt.value === selectedFilter)
+                      ?.label
+                  }
                 </span>
                 <ChevronDown
                   className={`h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground transition-transform ${
@@ -71,14 +84,17 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
 
               {isFilterOpen && (
                 <>
-                  <div className="fixed inset-0 z-10" onClick={() => setIsFilterOpen(false)} />
+                  <div
+                    className="fixed inset-0 z-10"
+                    onClick={() => setIsFilterOpen(false)}
+                  />
                   <div className="absolute right-0 mt-2 w-40 sm:w-48 rounded-lg bg-card border border-border shadow-lg z-20 overflow-hidden">
                     {filterOptions.map((option) => (
                       <button
                         key={option.value}
                         onClick={() => {
-                          setSelectedFilter(option.value)
-                          setIsFilterOpen(false)
+                          setSelectedFilter(option.value);
+                          setIsFilterOpen(false);
                         }}
                         className={`w-full px-4 py-2.5 text-left text-sm transition-colors hover:bg-secondary ${
                           selectedFilter === option.value
@@ -89,7 +105,13 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
                         {option.label}
                         {option.value !== "all" && (
                           <span className="ml-2 text-xs text-muted-foreground">
-                            ({content.projects.filter((p) => p.status === option.value).length})
+                            (
+                            {
+                              content.projects.filter(
+                                (p) => p.status === option.value
+                              ).length
+                            }
+                            )
                           </span>
                         )}
                       </button>
@@ -100,7 +122,9 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
             </div>
           </div>
 
-          <p className="text-muted-foreground text-sm sm:text-base mt-4 max-w-3xl">{content.description}</p>
+          <p className="text-muted-foreground text-sm sm:text-base mt-4 max-w-3xl">
+            {content.description}
+          </p>
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
@@ -110,11 +134,13 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
               href={project.link}
               className="group rounded-2xl sm:rounded-3xl bg-card border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
             >
-              <div className="aspect-video overflow-hidden bg-secondary">
-                <img
+              <div className="aspect-video overflow-hidden bg-secondary relative">
+                <Image
                   src={project.image || "/placeholder.svg"}
                   alt={project.name}
-                  className="w-full h-full object-cover transition-transform group-hover:scale-110"
+                  fill
+                  className="object-cover transition-transform group-hover:scale-110"
+                  sizes="(max-width: 768px) 100vw, 50vw"
                 />
               </div>
 
@@ -159,5 +185,5 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }

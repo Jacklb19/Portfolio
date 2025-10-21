@@ -1,56 +1,63 @@
-"use client"
+"use client";
 
-import { useState, useEffect } from "react"
-import { X, Palette, Type, Layout, Moon, Globe } from "lucide-react"
-import { Button } from "@/components/ui/button"
+import { useState, useEffect } from "react";
+import { X, Palette, Type, Layout, Moon, Globe } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import {
   usePreferences,
   useTranslation,
   type Preferences,
   type AccentColor,
   type FontSize,
-} from "@/lib/preferences-context"
+} from "@/lib/preferences-context";
 
 interface SettingsModalProps {
-  isOpen: boolean
-  onClose: () => void
+  isOpen: boolean;
+  onClose: () => void;
 }
 
 export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
-  const { preferences, updatePreferences } = usePreferences()
-  const { t } = useTranslation()
+  const { preferences, updatePreferences } = usePreferences();
+  const { t } = useTranslation();
 
-  const [localPreferences, setLocalPreferences] = useState<Preferences>(preferences)
+  const [localPreferences, setLocalPreferences] =
+    useState<Preferences>(preferences);
 
   useEffect(() => {
     if (isOpen) {
-      setLocalPreferences(preferences)
+      setLocalPreferences(preferences);
     }
-  }, [isOpen, preferences])
+  }, [isOpen, preferences]);
 
-  if (!isOpen) return null
+  if (!isOpen) return null;
 
   const handleSave = () => {
-    updatePreferences(localPreferences)
-    onClose()
-  }
+    updatePreferences(localPreferences);
+    onClose();
+  };
 
   const handleCancel = () => {
-    setLocalPreferences(preferences)
-    onClose()
-  }
+    setLocalPreferences(preferences);
+    onClose();
+  };
 
-  const updateLocal = (key: keyof Preferences, value: any) => {
-    setLocalPreferences((prev) => ({ ...prev, [key]: value }))
-  }
-
-  const accentColors: Array<{ name: string; value: AccentColor; color: string }> = [
+  const updateLocal = <K extends keyof Preferences>(
+    key: K,
+    value: Preferences[K]
+  ) => {
+    setLocalPreferences((prev) => ({ ...prev, [key]: value }));
+  };
+  const accentColors: Array<{
+    name: string;
+    value: AccentColor;
+    color: string;
+  }> = [
     { name: "Red", value: "red", color: "bg-red-500" },
     { name: "Blue", value: "blue", color: "bg-blue-500" },
     { name: "Green", value: "green", color: "bg-green-500" },
     { name: "Purple", value: "purple", color: "bg-purple-500" },
     { name: "Orange", value: "orange", color: "bg-orange-500" },
-  ]
+  ];
 
   return (
     <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
@@ -72,7 +79,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Moon className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <h3 className="text-base sm:text-lg font-semibold">{t("theme")}</h3>
+              <h3 className="text-base sm:text-lg font-semibold">
+                {t("theme")}
+              </h3>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <button
@@ -83,8 +92,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     : "border-border hover:border-primary/50"
                 }`}
               >
-                <div className="font-medium text-sm sm:text-base">{t("darkMode")}</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Dark theme</div>
+                <div className="font-medium text-sm sm:text-base">
+                  {t("darkMode")}
+                </div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Dark theme
+                </div>
               </button>
               <button
                 onClick={() => updateLocal("theme", "light")}
@@ -94,8 +107,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     : "border-border hover:border-primary/50"
                 }`}
               >
-                <div className="font-medium text-sm sm:text-base">{t("lightMode")}</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">Light theme</div>
+                <div className="font-medium text-sm sm:text-base">
+                  {t("lightMode")}
+                </div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  Light theme
+                </div>
               </button>
             </div>
           </div>
@@ -104,7 +121,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Palette className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <h3 className="text-base sm:text-lg font-semibold">{t("accentColor")}</h3>
+              <h3 className="text-base sm:text-lg font-semibold">
+                {t("accentColor")}
+              </h3>
             </div>
             <div className="flex flex-wrap gap-2 sm:gap-3">
               {accentColors.map((color) => (
@@ -117,8 +136,12 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                       : "border-border hover:border-primary/50"
                   }`}
                 >
-                  <div className={`h-5 w-5 sm:h-6 sm:w-6 rounded-full ${color.color}`} />
-                  <span className="font-medium text-sm sm:text-base">{color.name}</span>
+                  <div
+                    className={`h-5 w-5 sm:h-6 sm:w-6 rounded-full ${color.color}`}
+                  />
+                  <span className="font-medium text-sm sm:text-base">
+                    {color.name}
+                  </span>
                 </button>
               ))}
             </div>
@@ -128,7 +151,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Type className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <h3 className="text-base sm:text-lg font-semibold">{t("fontSize")}</h3>
+              <h3 className="text-base sm:text-lg font-semibold">
+                {t("fontSize")}
+              </h3>
             </div>
             <div className="grid grid-cols-3 gap-2 sm:gap-3">
               {(["small", "medium", "large"] as FontSize[]).map((size) => (
@@ -151,7 +176,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Globe className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <h3 className="text-base sm:text-lg font-semibold">{t("language")}</h3>
+              <h3 className="text-base sm:text-lg font-semibold">
+                {t("language")}
+              </h3>
             </div>
             <div className="grid grid-cols-2 gap-2 sm:gap-3">
               <button
@@ -163,7 +190,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 }`}
               >
                 <div className="font-medium text-sm sm:text-base">English</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">EN</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  EN
+                </div>
               </button>
               <button
                 onClick={() => updateLocal("language", "es")}
@@ -174,7 +203,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                 }`}
               >
                 <div className="font-medium text-sm sm:text-base">Español</div>
-                <div className="text-xs sm:text-sm text-muted-foreground">ES</div>
+                <div className="text-xs sm:text-sm text-muted-foreground">
+                  ES
+                </div>
               </button>
             </div>
           </div>
@@ -183,33 +214,53 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           <div>
             <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
               <Layout className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-              <h3 className="text-base sm:text-lg font-semibold">{t("layoutPreferences")}</h3>
+              <h3 className="text-base sm:text-lg font-semibold">
+                {t("layoutPreferences")}
+              </h3>
             </div>
             <div className="space-y-2 sm:space-y-3">
               <div className="flex items-center justify-between rounded-lg sm:rounded-xl border border-border p-3 sm:p-4">
-                <span className="font-medium text-sm sm:text-base">{t("animations")}</span>
+                <span className="font-medium text-sm sm:text-base">
+                  {t("animations")}
+                </span>
                 <button
-                  onClick={() => updateLocal("animationsEnabled", !localPreferences.animationsEnabled)}
+                  onClick={() =>
+                    updateLocal(
+                      "animationsEnabled",
+                      !localPreferences.animationsEnabled
+                    )
+                  }
                   className={`rounded-md sm:rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm transition-colors ${
                     localPreferences.animationsEnabled
                       ? "bg-primary text-primary-foreground"
                       : "bg-secondary text-secondary-foreground"
                   }`}
                 >
-                  {localPreferences.animationsEnabled ? t("enabled") : t("disabled")}
+                  {localPreferences.animationsEnabled
+                    ? t("enabled")
+                    : t("disabled")}
                 </button>
               </div>
               <div className="flex items-center justify-between rounded-lg sm:rounded-xl border border-border p-3 sm:p-4">
-                <span className="font-medium text-sm sm:text-base">{t("sidebarAutoExpand")}</span>
+                <span className="font-medium text-sm sm:text-base">
+                  {t("sidebarAutoExpand")}
+                </span>
                 <button
-                  onClick={() => updateLocal("sidebarAutoExpand", !localPreferences.sidebarAutoExpand)}
+                  onClick={() =>
+                    updateLocal(
+                      "sidebarAutoExpand",
+                      !localPreferences.sidebarAutoExpand
+                    )
+                  }
                   className={`rounded-md sm:rounded-lg px-3 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm transition-colors ${
                     localPreferences.sidebarAutoExpand
                       ? "bg-primary text-primary-foreground"
                       : "bg-secondary text-secondary-foreground"
                   }`}
                 >
-                  {localPreferences.sidebarAutoExpand ? t("enabled") : t("disabled")}
+                  {localPreferences.sidebarAutoExpand
+                    ? t("enabled")
+                    : t("disabled")}
                 </button>
               </div>
             </div>
@@ -225,11 +276,14 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
           >
             {t("cancel")}
           </Button>
-          <Button onClick={handleSave} className="rounded-lg sm:rounded-xl text-sm sm:text-base">
+          <Button
+            onClick={handleSave}
+            className="rounded-lg sm:rounded-xl text-sm sm:text-base"
+          >
             {t("saveChanges")}
           </Button>
         </div>
       </div>
     </div>
-  )
+  );
 }
