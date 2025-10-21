@@ -1,8 +1,16 @@
 "use client"
 
-import { useState } from "react"
+import { JSX, useState } from "react"
 import { ExternalLink, ChevronDown } from "lucide-react"
 import { ProjectsSection as ProjectSectionType } from "@/data/types"
+import {
+  FaDocker,
+  FaNodeJs,
+  FaReact,
+  FaPython,
+  FaJava,
+} from "react-icons/fa"
+import { SiPostgresql, SiTailwindcss, SiMongodb, SiTypescript, SiNextdotjs, SiExpress, SiSpringboot } from "react-icons/si"
 
 interface ProjectSectionProps {
   content: ProjectSectionType
@@ -22,6 +30,21 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
     { value: "online" as const, label: "Online" },
     { value: "offline" as const, label: "Offline" },
   ]
+
+  const techIcons: Record<string, JSX.Element> = {
+    Docker: <FaDocker className="text-blue-500" />,
+    "Node.js": <FaNodeJs className="text-green-500" />,
+    PostgreSQL: <SiPostgresql className="text-sky-700" />,
+    React: <FaReact className="text-cyan-400" />,
+    Tailwind: <SiTailwindcss className="text-sky-400" />,
+    MongoDB: <SiMongodb className="text-green-600" />,
+    Python: <FaPython className="text-yellow-500" />,
+    Java: <FaJava className="text-red-600" />,
+    TypeScript: <SiTypescript className="text-blue-500" />,
+    NextJS: <SiNextdotjs className="text-black dark:text-white" />,
+    Express: <SiExpress className="text-gray-500" />,
+    SpringBoot: <SiSpringboot className="text-green-700" />,
+  }
 
   return (
     <section id="projects" className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -112,8 +135,9 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
                     {project.technologies.map((tech) => (
                       <span
                         key={tech}
-                        className="rounded-md sm:rounded-lg bg-secondary px-2 py-0.5 sm:px-2 sm:py-1 text-xs font-medium"
+                        className="flex items-center gap-1 rounded-md sm:rounded-lg bg-secondary px-2 py-0.5 sm:px-2 sm:py-1 text-xs font-medium"
                       >
+                        {techIcons[tech] || null}
                         {tech}
                       </span>
                     ))}
