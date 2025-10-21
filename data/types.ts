@@ -70,10 +70,16 @@ export type ProjectItem = {
 
 export type ProjectsSection = {
   title: string;
+  filter:{
+    name: string;
+    option: string;
+  };
   description: string;
   button: string;
   projects: ProjectItem[];
 };
+
+
 
 export type Dictionary = {
   hero: HeroSection;

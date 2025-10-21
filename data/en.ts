@@ -94,6 +94,10 @@ export const contentEn: Dictionary = {
   projects: {
   title: "Projects",
   description: "Explore some of my featured works and experiments.",
+  filter: {
+    name: "Filter",
+    option: "All Projects",
+  },
   button: "View More",
   projects: [
     {

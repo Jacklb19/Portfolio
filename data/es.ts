@@ -93,6 +93,10 @@ export const contentEs: Dictionary = {
   },
   projects: {
   title: "Proyectos",
+  filter: {
+    name: "Filtro",
+    option: "Todos los proyectos",
+  },
   description: "Explora algunos de mis trabajos y experimentos destacados.",
   button: "Ver Más",
   projects: [
