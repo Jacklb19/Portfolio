@@ -40,7 +40,7 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
     onClose()
   }
 
-  const updateLocal = (key: keyof Preferences, value: any) => {
+  const updateLocal = <K extends keyof Preferences>(key: K, value: Preferences[K]) => {
     setLocalPreferences((prev) => ({ ...prev, [key]: value }))
   }
 
