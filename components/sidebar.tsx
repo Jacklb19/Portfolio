@@ -158,9 +158,9 @@ export function Sidebar({
             </div>
           </nav>
 
-          <div className="border-t border-border p-2 space-y-1">
+          <div className="border-t border-border p-4 space-y-1">
             <button
-              className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group"
+              className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group"
               onClick={() => setShowSettings(true)}
             >
               <Settings className="h-5 w-5 flex-shrink-0 transition-transform group-hover:rotate-90" />
@@ -169,7 +169,7 @@ export function Sidebar({
               )}
             </button>
 
-            <button className="flex w-full items-center gap-3 rounded-xl px-3 py-3 text-destructive transition-all hover:bg-destructive/10 group">
+            <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-destructive transition-all hover:bg-destructive/10 group">
               <AlertTriangle className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
               {isExpanded && (
                 <span className="text-sm font-medium">Don&apos;t Click</span>
