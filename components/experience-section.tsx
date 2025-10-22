@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useRef, JSX } from "react";
-import Image from "next/image"
+import Image from "next/image";
 import { Calendar } from "lucide-react";
 import { ExperienceSection as ExperienceSectionType } from "@/data/types";
 import {
@@ -62,6 +62,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
     const handleScroll = () => {
       if (!sectionRef.current) return;
 
+      // Punto de referencia: centro del viewport
       const viewportMiddle = window.innerHeight / 2;
 
       let closestIndex = 0;
@@ -107,7 +108,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
   return (
     <section
       ref={sectionRef}
-      className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+      className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
     >
       <div className="max-w-6xl mx-auto">
         <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16">
@@ -115,21 +116,31 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
         </h2>
 
         <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Lista de experiencias */}
-          <div className="space-y-6 sm:space-y-8">
+          {/* Lista de experiencias con altura garantizada */}
+          <div className="relative">
+            {/* Texto introductorio en lugar del espaciador */}
+            <div className="mb-16 sm:mb-20 lg:mb-24">
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
+                A lo largo de mi trayectoria profesional, he tenido la oportunidad de trabajar en proyectos diversos y desafiantes que han fortalecido mis habilidades técnicas y mi capacidad para resolver problemas complejos.
+              </p>
+              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+                Desde el desarrollo full-stack hasta la implementación de soluciones innovadoras, cada experiencia ha contribuido a mi crecimiento como desarrollador. A continuación, te presento un recorrido por los proyectos y roles que han definido mi carrera profesional.
+              </p>
+            </div>
+
             {experiences.map((exp, index) => (
               <div
                 key={exp.id}
                 ref={(el) => {
                   itemRefs.current[index] = el;
                 }}
-                className={`transition-all duration-500 ${
+                className={`min-h-[60vh] sm:min-h-[70vh] flex items-center transition-all duration-700 ${
                   activeIndex === index ? "opacity-100" : "opacity-40"
                 }`}
               >
-                <div className="flex gap-3 sm:gap-4">
+                <div className="flex gap-3 sm:gap-4 w-full">
                   {/* Línea y punto indicador */}
-                  <div className="flex flex-col items-center">
+                  <div className="flex flex-col items-center pt-2">
                     <div
                       className={`h-3 w-3 sm:h-4 sm:w-4 rounded-full border-2 transition-all duration-500 ${
                         activeIndex === index
@@ -138,7 +149,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       }`}
                     />
                     {index < experiences.length - 1 && (
-                      <div className="w-0.5 h-full bg-border mt-2 flex-1 min-h-[60px] sm:min-h-[80px]" />
+                      <div className="w-0.5 bg-border mt-2 mb-2 flex-1 min-h-[200px]" />
                     )}
                   </div>
 
@@ -172,18 +183,22 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       ))}
                     </div>
 
-                    {/* Descripción */}
+                    {/* Descripción con transición suave */}
                     <ul
-                      className={`mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-muted-foreground transition-all duration-500 ${
+                      className={`mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-muted-foreground transition-all duration-700 ${
                         activeIndex === index
-                          ? "opacity-100 max-h-[500px]"
-                          : "opacity-0 max-h-0 overflow-hidden"
+                          ? "opacity-100 translate-y-0"
+                          : "opacity-0 translate-y-4"
                       }`}
                     >
                       {exp.description.map((item, i) => (
                         <li
                           key={i}
                           className="flex gap-2 text-xs sm:text-sm leading-relaxed"
+                          style={{
+                            transitionDelay:
+                              activeIndex === index ? `${i * 50}ms` : "0ms",
+                          }}
                         >
                           <span className="text-primary mt-1">•</span>
                           <span>{item}</span>
@@ -194,20 +209,31 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                 </div>
               </div>
             ))}
+
+            {/* Espaciador inferior para permitir scroll de la última experiencia */}
+            <div className="h-[40vh]" />
           </div>
 
-          {/* Imagen lateral */}
-          <div className="hidden lg:block lg:sticky lg:top-24">
-            <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl transition-all duration-500">
-              <Image
-                src={experiences[activeIndex].image}
-                alt={experiences[activeIndex].title}
-                className="w-full h-auto object-cover transition-opacity duration-500"
-                width={600} 
-                height={400} 
-                key={activeIndex}
-                priority={true} 
-              />
+          {/* Imagen lateral sticky con transición */}
+          <div className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
+            <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl">
+              <div className="relative w-full aspect-[4/3]">
+                {experiences.map((exp, index) => (
+                  <Image
+                    key={exp.id}
+                    src={exp.image}
+                    alt={exp.title}
+                    className={`absolute inset-0 w-full h-full object-cover transition-all duration-700 ${
+                      activeIndex === index
+                        ? "opacity-100 scale-100"
+                        : "opacity-0 scale-95"
+                    }`}
+                    width={600}
+                    height={450}
+                    priority={index === 0}
+                  />
+                ))}
+              </div>
             </div>
           </div>
         </div>
