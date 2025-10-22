@@ -38,6 +38,36 @@ export const contentEs: Dictionary = {
       description: "Explora mis proyectos",
       button: "Ver Proyectos",
     },
+    testimonials: {
+      title: "Testimonios",
+      subtitle: "Lo que dicen de mí",
+      testimonials: [
+        {
+          id: 1,
+          name: "SARAH CHEN",
+          title: "Desarrolladora Senior @ TechCorp",
+          content:
+            "Jose es un aspirante a ingeniero de software altamente motivado con una curiosidad natural y pasión por el aprendizaje. Destaca por su capacidad para comprender rápidamente nuevos conceptos y aplicarlos en proyectos reales. Su dedicación al código limpio y la arquitectura escalable es impresionante para alguien en las primeras etapas de su trayectoria.",
+          image: "/images/testimonial-1.jpg",
+        },
+        {
+          id: 2,
+          name: "MARCUS JOHNSON",
+          title: "Product Manager @ InnovateLab",
+          content:
+            "Trabajar con Jose ha sido inspirador. Su pasión por la programación va más allá de solo escribir código: realmente le importa entender el problema y entregar soluciones reflexivas. Su creatividad y compromiso con cada proyecto lo convierten en un valioso miembro del equipo.",
+          image: "/images/testimonial-2.jpg",
+        },
+        {
+          id: 3,
+          name: "ELENA RODRIGUEZ",
+          title: "Tech Lead @ StartupHub",
+          content:
+            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que se convertirá en un excelente ingeniero de software.",
+          image: "/images/testimonial-3.jpg",
+        },
+      ],
+    },
   },
   experience: {
     title: "Experiencia",
@@ -86,62 +116,62 @@ export const contentEs: Dictionary = {
       },
     ],
   },
-    footer: {
+  footer: {
     title: "Portafolio. Todos los derechos reservados.",
     made: "Hecho con",
-    by: "Por Jose Burbano"
+    by: "Por Jose Burbano",
   },
   projects: {
-  title: "Proyectos",
-  filter: {
-    name: "Filtro",
-    option: "Todos los proyectos",
+    title: "Proyectos",
+    filter: {
+      name: "Filtro",
+      option: "Todos los proyectos",
+    },
+    description: "Explora algunos de mis trabajos y experimentos destacados.",
+    button: "Ver Más",
+    projects: [
+      {
+        id: 1,
+        name: "Pharmasync",
+        description:
+          "Pharmasync es un asistente farmacéutico virtual diseñado para optimizar la gestión de medicamentos para estudiantes, farmacias y profesionales de la salud.",
+        status: "offline",
+        technologies: ["React", "Node.js", "PostgreSQL", "IA"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 2,
+        name: "Gestión de Reclamos",
+        description:
+          "ClaimHub es un sistema robusto de gestión de reclamos diseñado para simplificar la atención de quejas y el seguimiento eficiente de su resolución.",
+        status: "online",
+        technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 3,
+        name: "Mino Reproductor de Música",
+        description:
+          "Un reproductor de música elegante creado para organizar listas, transmitir audio y ofrecer una experiencia fluida.",
+        status: "online",
+        technologies: ["React", "Tailwind", "Web Audio API"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 4,
+        name: "Reloj",
+        description:
+          "Una herramienta minimalista de seguimiento del tiempo diseñada para ayudar a mantener el enfoque con una interfaz simple y limpia.",
+        status: "online",
+        technologies: ["React", "TypeScript", "Tailwind"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+    ],
   },
-  description: "Explora algunos de mis trabajos y experimentos destacados.",
-  button: "Ver Más",
-  projects: [
-    {
-      id: 1,
-      name: "Pharmasync",
-      description:
-        "Pharmasync es un asistente farmacéutico virtual diseñado para optimizar la gestión de medicamentos para estudiantes, farmacias y profesionales de la salud.",
-      status: "offline",
-      technologies: ["React", "Node.js", "PostgreSQL", "IA"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 2,
-      name: "Gestión de Reclamos",
-      description:
-        "ClaimHub es un sistema robusto de gestión de reclamos diseñado para simplificar la atención de quejas y el seguimiento eficiente de su resolución.",
-      status: "online",
-      technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 3,
-      name: "Mino Reproductor de Música",
-      description:
-        "Un reproductor de música elegante creado para organizar listas, transmitir audio y ofrecer una experiencia fluida.",
-      status: "online",
-      technologies: ["React", "Tailwind", "Web Audio API"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 4,
-      name: "Reloj",
-      description:
-        "Una herramienta minimalista de seguimiento del tiempo diseñada para ayudar a mantener el enfoque con una interfaz simple y limpia.",
-      status: "online",
-      technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-  ],
-},
   contact: {
     title: "CONTACTO",
     subtitle: "Trabajemos juntos",

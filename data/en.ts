@@ -38,6 +38,36 @@ export const contentEn: Dictionary = {
       description: "Dive into My Projects",
       button: "View Projects",
     },
+    testimonials: {
+      title: "Testimonials",
+      subtitle: "What people say about me",
+      testimonials: [
+        {
+          id: 1,
+          name: "SARAH CHEN",
+          title: "Senior Developer @ TechCorp",
+          content:
+            "Jose is a highly motivated aspiring software engineer with a natural curiosity and passion for learning. He stands out for his ability to quickly grasp new concepts and apply them in real projects. His dedication to clean code and scalable architecture is impressive for someone early in their development journey.",
+          image: "/images/testimonial-1.jpg",
+        },
+        {
+          id: 2,
+          name: "MARCUS JOHNSON",
+          title: "Product Manager @ InnovateLab",
+          content:
+            "Working with Jose has been inspiring. His passion for programming goes beyond just writing code — he genuinely cares about understanding the problem and delivering thoughtful solutions. His creativity and commitment to every project make him a valuable team member.",
+          image: "/images/testimonial-2.jpg",
+        },
+        {
+          id: 3,
+          name: "ELENA RODRIGUEZ",
+          title: "Tech Lead @ StartupHub",
+          content:
+            "Jose demonstrates exceptional problem-solving skills and a strong foundation in software engineering principles. His enthusiasm for learning new technologies and his dedication to best practices make him stand out. I have no doubt he will become an excellent software engineer.",
+          image: "/images/testimonial-3.jpg",
+        },
+      ],
+    },
   },
   experience: {
     title: "Experience",
@@ -49,7 +79,7 @@ export const contentEn: Dictionary = {
         period: "Aug 2025 - Sep 2025",
         technologies: ["React", "Node.js", "Tailwind", "WhatsApp API"],
         description: [
-          "Designed and implemented an automated WhatsApp lead capture flow using n8n, integrating Meta’s Business Cloud API with Google Sheets and CRM.",
+          "Designed and implemented an automated WhatsApp lead capture flow using n8n, integrating Meta's Business Cloud API with Google Sheets and CRM.",
           "Built a dynamic landing page using React, Tailwind, and Node.js, improving user acquisition and visibility.",
           "Applied clean code and scalable architecture principles, ensuring maintainability and adaptability for future integrations.",
         ],
@@ -89,60 +119,59 @@ export const contentEn: Dictionary = {
   footer: {
     title: "Portfolio. All rights reserved.",
     made: "Made with",
-    by: "by Jose Burbano"
+    by: "by Jose Burbano",
   },
   projects: {
-  title: "Projects",
-  description: "Explore some of my featured works and experiments.",
-  filter: {
-    name: "Filter",
-    option: "All Projects",
+    title: "Projects",
+    description: "Explore some of my featured works and experiments.",
+    filter: {
+      name: "Filter",
+      option: "All Projects",
+    },
+    button: "View More",
+    projects: [
+      {
+        id: 1,
+        name: "Pharmasync",
+        description:
+          "Pharmasync is a virtual pharmaceutical assistant designed to streamline medication for students, pharmacies, and healthcare professionals.",
+        status: "offline",
+        technologies: ["React", "Node.js", "PostgreSQL", "AI"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 2,
+        name: "Claim Management",
+        description:
+          "ClaimHub is a robust claims management system designed to simplify complaint handling, track resolution efficiently.",
+        status: "online",
+        technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 3,
+        name: "Mino Music Player",
+        description:
+          "A sleek music player built to organize playlists, stream audio, and deliver a seamless listening experience.",
+        status: "online",
+        technologies: ["React", "Tailwind", "Web Audio API"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+      {
+        id: 4,
+        name: "Clock",
+        description:
+          "A minimalist time-tracking tool designed to help users stay focused with simple, clean interface and productivity features.",
+        status: "online",
+        technologies: ["React", "TypeScript", "Tailwind"],
+        image: "/placeholder.svg?height=300&width=400",
+        link: "#",
+      },
+    ],
   },
-  button: "View More",
-  projects: [
-    {
-      id: 1,
-      name: "Pharmasync",
-      description:
-        "Pharmasync is a virtual pharmaceutical assistant designed to streamline medication for students, pharmacies, and healthcare professionals.",
-      status: "offline",
-      technologies: ["React", "Node.js", "PostgreSQL", "AI"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 2,
-      name: "Claim Management",
-      description:
-        "ClaimHub is a robust claims management system designed to simplify complaint handling, track resolution efficiently.",
-      status: "online",
-      technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 3,
-      name: "Mino Music Player",
-      description:
-        "A sleek music player built to organize playlists, stream audio, and deliver a seamless listening experience.",
-      status: "online",
-      technologies: ["React", "Tailwind", "Web Audio API"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-    {
-      id: 4,
-      name: "Clock",
-      description:
-        "A minimalist time-tracking tool designed to help users stay focused with simple, clean interface and productivity features.",
-      status: "online",
-      technologies: ["React", "TypeScript", "Tailwind"],
-      image: "/placeholder.svg?height=300&width=400",
-      link: "#",
-    },
-  ],
-  
-},
   contact: {
     title: "CONTACT",
     subtitle: "Let's work together",
@@ -173,7 +202,6 @@ export const contentEn: Dictionary = {
       ],
     },
   },
-
   switcher: {
     label: "Language",
     es: "Spanish",

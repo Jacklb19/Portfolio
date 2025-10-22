@@ -14,6 +14,20 @@ export type HeroSection = {
   socials: SocialLink[];
 };
 
+export type Testimonial = {
+  id: number;
+  name: string;
+  title: string;
+  content: string;
+  image: string;
+};
+
+export type TestimonialsSection = {
+  title: string;
+  subtitle: string;
+  testimonials: Testimonial[];
+};
+
 export type AboutSection = {
   title: string;
   description: string;
@@ -35,6 +49,7 @@ export type AboutSection = {
     description: string;
     button: string;
   };
+  testimonials: TestimonialsSection;
 };
 
 export type ExperienceItem = {
