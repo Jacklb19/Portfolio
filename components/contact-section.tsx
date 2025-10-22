@@ -1,15 +1,21 @@
-"use client"
+"use client";
 
-import type React from "react"
-import { useState } from "react"
-import { MapPin, Phone, MailIcon, Github, Linkedin, Send } from "lucide-react"
-import { Button } from "@/components/ui/button"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import type { ContactSection as ContactSectionType } from "@/data/types"
+import type React from "react";
+import { useState } from "react";
+import { MapPin, Phone, MailIcon, Github, Linkedin, Send } from "lucide-react";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
+import type { ContactSection as ContactSectionType } from "@/data/types";
 
 interface ContactSectionProps {
-  content: ContactSectionType
+  content: ContactSectionType;
 }
 
 export function ContactSection({ content }: ContactSectionProps) {
@@ -17,15 +23,18 @@ export function ContactSection({ content }: ContactSectionProps) {
     name: "",
     email: "",
     message: "",
-  })
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault()
-    console.log("Form submitted:", formData)
-  }
+    e.preventDefault();
+    console.log("Form submitted:", formData);
+  };
 
   return (
-    <section id="contact" className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
+    <section
+      id="contact"
+      className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
+    >
       <div className="max-w-6xl mx-auto">
         <div className="text-center mb-8 sm:mb-12">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-3 sm:mb-4">
@@ -41,7 +50,10 @@ export function ContactSection({ content }: ContactSectionProps) {
           <div className="rounded-2xl sm:rounded-3xl bg-card border border-border p-6 sm:p-8">
             <form onSubmit={handleSubmit} className="space-y-4 sm:space-y-6">
               <div>
-                <label htmlFor="name" className="block text-xs sm:text-sm font-medium mb-2">
+                <label
+                  htmlFor="name"
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                >
                   {content.form.labels.name}
                 </label>
                 <Input
@@ -49,13 +61,18 @@ export function ContactSection({ content }: ContactSectionProps) {
                   type="text"
                   placeholder={content.form.placeholders.name}
                   value={formData.name}
-                  onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, name: e.target.value })
+                  }
                   className="rounded-xl bg-secondary border-border"
                 />
               </div>
 
               <div>
-                <label htmlFor="email" className="block text-xs sm:text-sm font-medium mb-2">
+                <label
+                  htmlFor="email"
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                >
                   {content.form.labels.email}
                 </label>
                 <Input
@@ -63,20 +80,27 @@ export function ContactSection({ content }: ContactSectionProps) {
                   type="email"
                   placeholder={content.form.placeholders.email}
                   value={formData.email}
-                  onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, email: e.target.value })
+                  }
                   className="rounded-xl bg-secondary border-border"
                 />
               </div>
 
               <div>
-                <label htmlFor="message" className="block text-xs sm:text-sm font-medium mb-2">
+                <label
+                  htmlFor="message"
+                  className="block text-xs sm:text-sm font-medium mb-2"
+                >
                   {content.form.labels.message}
                 </label>
                 <Textarea
                   id="message"
                   placeholder={content.form.placeholders.message}
                   value={formData.message}
-                  onChange={(e) => setFormData({ ...formData, message: e.target.value })}
+                  onChange={(e) =>
+                    setFormData({ ...formData, message: e.target.value })
+                  }
                   className="rounded-xl bg-secondary border-border min-h-[120px] sm:min-h-[150px]"
                 />
               </div>
@@ -142,31 +166,38 @@ export function ContactSection({ content }: ContactSectionProps) {
               <h3 className="font-semibold mb-3 sm:mb-4 text-sm sm:text-base">
                 {content.socials.title}
               </h3>
-              <div className="flex gap-3 sm:gap-4">
-                {content.socials.items.map((social) => (
-                  <a
-                    key={social.label}
-                    href={social.href}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-card border border-border text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
-                    aria-label={social.label}
-                  >
-                    {/* El icono se decide fuera por label o se inyecta desde props si quieres */}
-                    {social.label === "GitHub" || social.label === "GitHub" ? (
-                      <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-                    ) : social.label.toLowerCase().includes("link") ? (
-                      <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-                    ) : (
-                      <MailIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                    )}
-                  </a>
-                ))}
-              </div>
+              <TooltipProvider>
+                <div className="flex gap-3 sm:gap-4">
+                  {content.socials.items.map((social) => (
+                    <Tooltip key={social.label}>
+                      <TooltipTrigger asChild>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-card border border-border text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
+                          aria-label={social.label}
+                        >
+                          {social.label === "GitHub" ? (
+                            <Github className="h-4 w-4 sm:h-5 sm:w-5" />
+                          ) : social.label.toLowerCase().includes("link") ? (
+                            <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
+                          ) : (
+                            <MailIcon className="h-4 w-4 sm:h-5 sm:w-5" />
+                          )}
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{social.label}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  ))}
+                </div>
+              </TooltipProvider>
             </div>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 }
