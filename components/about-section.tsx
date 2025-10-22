@@ -1,3 +1,5 @@
+"use client";
+
 import { MapPin, Code2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
@@ -8,9 +10,13 @@ import Image from "next/image";
 
 interface AboutSectionProps {
   content: AboutSectionType;
+  onNavigateToProjects?: () => void;
 }
 
-export function AboutSection({ content }: AboutSectionProps) {
+export function AboutSection({
+  content,
+  onNavigateToProjects,
+}: AboutSectionProps) {
   const techStack = [
     { name: "Docker", icon: <FaDocker className="text-blue-500" /> },
     { name: "Node.js", icon: <FaNodeJs className="text-green-500" /> },
@@ -19,6 +25,12 @@ export function AboutSection({ content }: AboutSectionProps) {
     { name: "Tailwind", icon: <SiTailwindcss className="text-sky-400" /> },
     { name: "MongoDB", icon: <SiMongodb className="text-green-600" /> },
   ];
+
+  const handleNavigateToProjects = () => {
+    if (onNavigateToProjects) {
+      onNavigateToProjects();
+    }
+  };
 
   return (
     <section className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -101,7 +113,7 @@ export function AboutSection({ content }: AboutSectionProps) {
             ))}
           </div>
         </div>
-            
+
         <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 p-6 sm:p-8 mb-8 sm:mb-12">
           <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
             {content.projects.title}
@@ -109,7 +121,10 @@ export function AboutSection({ content }: AboutSectionProps) {
           <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             {content.projects.description}
           </p>
-          <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
+          <Button
+            onClick={handleNavigateToProjects}
+            className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105"
+          >
             {content.projects.button}
           </Button>
         </div>

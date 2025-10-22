@@ -211,7 +211,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
             ))}
 
             {/* Espaciador inferior para permitir scroll de la última experiencia */}
-            <div className="h-[40vh]" />
+            <div className="h-[20vh]" />
           </div>
 
           {/* Imagen lateral sticky con transición */}
