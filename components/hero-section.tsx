@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Image from "next/image"
-import { Github, Linkedin, Mail, FileText } from "lucide-react"
-import { HeroSection as HeroSectionType } from "@/data/types"
+import Image from "next/image";
+import { Github, Linkedin, Mail, FileText } from "lucide-react";
+import { HeroSection as HeroSectionType } from "@/data/types";
 
 interface HeroSectionProps {
-  content: HeroSectionType
+  content: HeroSectionType;
 }
 
 export function HeroSection({ content }: HeroSectionProps) {
@@ -13,9 +13,10 @@ export function HeroSection({ content }: HeroSectionProps) {
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto w-full">
         <div className="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12">
-
           <div className="flex-1 space-y-4 sm:space-y-6 text-center lg:text-left">
-            <p className="text-muted-foreground text-base sm:text-lg">{content.intro}</p>
+            <p className="text-muted-foreground text-base sm:text-lg">
+              {content.intro}
+            </p>
 
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-foreground leading-tight text-balance">
               {content.title.start}{" "}
@@ -25,14 +26,32 @@ export function HeroSection({ content }: HeroSectionProps) {
               {content.title.end}
             </h1>
 
-            <p className="text-lg sm:text-xl text-muted-foreground">{content.subtitle}</p>
+            <p className="text-lg sm:text-xl text-muted-foreground">
+              {content.subtitle}
+            </p>
 
             <div className="flex gap-3 sm:gap-4 pt-4 justify-center lg:justify-start">
               {[
-                { icon: Linkedin, href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/", label: "LinkedIn" },
-                { icon: Github, href: "https://github.com/Jacklb19", label: "GitHub" },
-                { icon: Mail, href: "mail", label: "Email" },
-                { icon: FileText, href: "#", label: "Portfolio" },
+                {
+                  icon: Linkedin,
+                  href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/",
+                  label: "LinkedIn",
+                },
+                {
+                  icon: Github,
+                  href: "https://github.com/Jacklb19",
+                  label: "GitHub",
+                },
+                {
+                  icon: Mail,
+                  href: "mailto:joseluisburbano19105@gmail.com",
+                  label: "Email",
+                },
+                {
+                  icon: FileText,
+                  href: "/docs/CV_Burbano.pdf",
+                  label: "CV",
+                },
               ].map((social) => (
                 <a
                   key={social.label}
@@ -65,5 +84,5 @@ export function HeroSection({ content }: HeroSectionProps) {
         </div>
       </div>
     </section>
-  )
+  );
 }
