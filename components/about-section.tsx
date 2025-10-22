@@ -1,6 +1,6 @@
 import { MapPin, Code2, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { AboutSection as AboutSectionType } from "@/data/types";
+import type { AboutSection as AboutSectionType } from "@/data/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { SiPostgresql, SiTailwindcss, SiMongodb } from "react-icons/si";
 import Image from "next/image";
@@ -89,7 +89,7 @@ export function AboutSection({ content }: AboutSectionProps) {
             {content.stack.description}
           </p>
 
-          <div className="flex flex-wrap gap-2 sm:gap-4 mb-4 sm:mb-6">
+          <div className="flex flex-wrap gap-2 sm:gap-4">
             {techStack.map((tech) => (
               <div
                 key={tech.name}
@@ -102,10 +102,6 @@ export function AboutSection({ content }: AboutSectionProps) {
               </div>
             ))}
           </div>
-
-          <Button className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105">
-            {content.stack.button}
-          </Button>
         </div>
 
         <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 p-6 sm:p-8 mb-8 sm:mb-12">
