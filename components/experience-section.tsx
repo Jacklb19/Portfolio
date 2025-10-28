@@ -14,6 +14,7 @@ import {
   FaCss3Alt,
   FaJava,
   FaGitAlt,
+  FaLock,
 } from "react-icons/fa";
 import {
   SiPostgresql,
@@ -56,6 +57,7 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
     Express: <SiExpress className="text-gray-500" />,
     SpringBoot: <SiSpringboot className="text-green-700" />,
     Firebase: <SiFirebase className="text-amber-500" />,
+    JWT: <FaLock className="text-black dark:text:white" />
   };
 
   useEffect(() => {
