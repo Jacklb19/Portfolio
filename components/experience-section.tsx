@@ -62,7 +62,6 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
     const handleScroll = () => {
       if (!sectionRef.current) return;
 
-      // Punto de referencia: centro del viewport
       const viewportMiddle = window.innerHeight / 2;
 
       let closestIndex = 0;
@@ -111,23 +110,28 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
       className="px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20"
     >
       <div className="max-w-6xl mx-auto">
-        <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-12 sm:mb-16">
-          {content.title}
-        </h2>
+        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold leading-none lg:col-span-2 -mb-2">
+            {content.title}
+          </h2>
 
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-          {/* Lista de experiencias con altura garantizada */}
+          <div className="lg:col-span-2">
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
+              A lo largo de mi trayectoria profesional, he tenido la oportunidad
+              de trabajar en proyectos diversos y desafiantes que han
+              fortalecido mis habilidades técnicas y mi capacidad para resolver
+              problemas complejos.
+            </p>
+            <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
+              Desde el desarrollo full-stack hasta la implementación de
+              soluciones innovadoras, cada experiencia ha contribuido a mi
+              crecimiento como desarrollador. A continuación, te presento un
+              recorrido por los proyectos y roles que han definido mi carrera
+              profesional.
+            </p>
+          </div>
+
           <div className="relative">
-            {/* Texto introductorio en lugar del espaciador */}
-            <div className="mb-16 sm:mb-20 lg:mb-24">
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
-                A lo largo de mi trayectoria profesional, he tenido la oportunidad de trabajar en proyectos diversos y desafiantes que han fortalecido mis habilidades técnicas y mi capacidad para resolver problemas complejos.
-              </p>
-              <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-                Desde el desarrollo full-stack hasta la implementación de soluciones innovadoras, cada experiencia ha contribuido a mi crecimiento como desarrollador. A continuación, te presento un recorrido por los proyectos y roles que han definido mi carrera profesional.
-              </p>
-            </div>
-
             {experiences.map((exp, index) => (
               <div
                 key={exp.id}
@@ -139,7 +143,6 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                 }`}
               >
                 <div className="flex gap-3 sm:gap-4 w-full">
-                  {/* Línea y punto indicador */}
                   <div className="flex flex-col items-center pt-2">
                     <div
                       className={`h-3 w-3 sm:h-4 sm:w-4 rounded-full border-2 transition-all duration-500 ${
@@ -153,7 +156,6 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                     )}
                   </div>
 
-                  {/* Contenido */}
                   <div className="flex-1 pb-6 sm:pb-8">
                     <span className="text-xs text-primary font-semibold uppercase tracking-wider">
                       {exp.category}
@@ -166,7 +168,6 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       <span className="text-xs sm:text-sm">{exp.period}</span>
                     </div>
 
-                    {/* Tecnologías con íconos */}
                     <div className="flex flex-wrap gap-2 sm:gap-3 mb-3 sm:mb-4">
                       {exp.technologies.map((tech) => (
                         <div
@@ -183,7 +184,6 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
                       ))}
                     </div>
 
-                    {/* Descripción con transición suave */}
                     <ul
                       className={`mt-3 sm:mt-4 space-y-1.5 sm:space-y-2 text-muted-foreground transition-all duration-700 ${
                         activeIndex === index
@@ -210,12 +210,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
               </div>
             ))}
 
-            {/* Espaciador inferior para permitir scroll de la última experiencia */}
             <div className="h-[20vh]" />
           </div>
 
-          {/* Imagen lateral sticky con transición */}
-          <div className="hidden lg:block lg:sticky lg:top-24 lg:self-start">
+          <div className="hidden lg:block lg:sticky lg:top-30 mt-14 lg:self-start">
             <div className="rounded-2xl sm:rounded-3xl overflow-hidden border border-border bg-card shadow-2xl">
               <div className="relative w-full aspect-[4/3]">
                 {experiences.map((exp, index) => (
