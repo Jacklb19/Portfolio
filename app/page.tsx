@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Sidebar } from "@/components/sidebar";
 import { BottomNav } from "@/components/bottom-nav";
@@ -24,6 +24,13 @@ export default function Home() {
     if (!dictionary?.projects?.projects) return [];
     return dictionary.projects.projects.slice(0, 6);
   }, [dictionary]);
+
+  /* Resetear pagina cada q se cambia 
+  useEffect(() => {
+    requestAnimationFrame(() => {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+  }, [activeSection]);*/
 
   if (loading || !dictionary) {
     return (

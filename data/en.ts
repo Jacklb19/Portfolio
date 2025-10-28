@@ -10,10 +10,10 @@ export const contentEn: Dictionary = {
     },
     subtitle: "Software Engineer",
     socials: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/"},
       { label: "GitHub", href: "https://github.com/Jacklb19" },
-      { label: "Email", href: "mail" },
-      { label: "Portfolio", href: "#" },
+      { label: "Email", href: "mailto:joseluisburbano19105@gmail.com" },
+      { label: "CV", href: "/docs/CV_Burbano.pdf" },
     ],
   },
   about: {
@@ -93,14 +93,17 @@ export const contentEn: Dictionary = {
         id: 2,
         category: "Career Path",
         title: "Software Engineer Career - UCC",
-        period: "Aug 2021 - Jan 2025",
+        period: "Aug 2021 - Jan 2027",
         technologies: ["Python", "PostgreSQL", "MongoDB", "Java"],
         description: [
-          "Gained strong foundations in software development, algorithms, and data structures.",
-          "Learned Agile and applied design patterns (Decorator, Singleton, MVC, etc.) in academic projects.",
-          "Built and deployed systems with Node.js, PostgreSQL, and MongoDB, practicing containerization and database management.",
-          "Applied Clean Architecture and modular structures for scalable solutions.",
-          "Created academic projects like a claims management system and an AI-powered tourism app.",
+          "I combined computing fundamentals and engineering practices to design, build, and operate reliable, scalable software that solves real problems.",
+          "I mastered algorithms, data structures, complexity, discrete math, and databases to reason about performance and correctness in my projects.",
+          "I applied requirements engineering, domain modeling, and documentation to align each solution with stakeholder needs.",
+          "I designed using layered architectures, SOA, and distributed systems, optimizing cohesion, coupling, and scalability.",
+          "I implemented software testing (unit and integration), clean code practices, and version control to ensure delivery quality.",
+          "I incorporated DevOps principles and cloud computing to automate integration and deployment and improve operational reliability.",
+          "I embedded security from design by following OWASP guidelines and performing systematic code reviews.",
+          "I collaborated in teams with Agile/Scrum, communicating effectively and delivering iteratively."
         ],
         image: "/images/software.png",
       },
@@ -135,14 +138,24 @@ export const contentEn: Dictionary = {
     button: "View More",
     projects: [
       {
-        id: 1,
-        name: "Pharmasync",
-        description:
-          "Pharmasync is a virtual pharmaceutical assistant designed to streamline medication for students, pharmacies, and healthcare professionals.",
-        status: "offline",
-        technologies: ["React", "Node.js", "PostgreSQL", "AI"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+      id: 1,
+      name: "PharmaSync",
+      description:
+        "AI-powered pharmaceutical assistance platform: Java 21+ Spring Boot backend with JWT security, PostgreSQL and MongoDB; React 18+ TypeScript frontend with Vite and Tailwind. Features AI-assisted chat, role-based protected routing, session history, and agent orchestration using Strategy, Facade, Decorator, and Observer patterns.",
+      status: "offline",
+      technologies: [
+        "SpringBoot",
+        "Java",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "MongoDB",
+        "JWT",
+        "Tailwind",
+        "Vite",
+      ],
+      image: "/images/PharmaSync.png",
+      link: "https://github.com/SantiagoArTyrs/PharmaSync"
       },
       {
         id: 2,
@@ -158,21 +171,25 @@ export const contentEn: Dictionary = {
         id: 3,
         name: "Mino Music Player",
         description:
-          "A sleek music player built to organize playlists, stream audio, and deliver a seamless listening experience.",
-        status: "online",
-        technologies: ["React", "Tailwind", "Web Audio API"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+          "A music player to organize playlists and stream audio. It allows adding songs from the device, reordering them by drag-and-drop, repeating the playlist, and controlling volume and playback.",
+        status: "offline",
+        technologies: ["Node.js", "React", "Tailwind", "TypeScript"],
+        image: "/images/mino.png",
+        link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-        id: 4,
-        name: "Clock",
-        description:
-          "A minimalist time-tracking tool designed to help users stay focused with simple, clean interface and productivity features.",
-        status: "online",
-        technologies: ["React", "TypeScript", "Tailwind"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+      id: 2,
+      name: "Last Stand: Outbreak",
+      description:
+        "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
+      status: "offline",
+      technologies: [
+        "Unity",
+        "C#",
+
+      ],
+      image: "/images/resident.png",
+      link: "https://github.com/Jacklb19/FPS_Resident_Outbreak"
       },
     ],
   },

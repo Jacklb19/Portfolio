@@ -15,32 +15,20 @@ interface HeroSectionProps {
 }
 
 export function HeroSection({ content }: HeroSectionProps) {
-  const socialLinks = [
-    {
-      icon: Linkedin,
-      href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/",
-      label: "LinkedIn",
-      tooltip: "LinkedIn",
-    },
-    {
-      icon: Github,
-      href: "https://github.com/Jacklb19",
-      label: "GitHub",
-      tooltip: "GitHub",
-    },
-    {
-      icon: Mail,
-      href: "mailto:joseluisburbano19105@gmail.com",
-      label: "Email",
-      tooltip: "Email",
-    },
-    {
-      icon: Download,
-      href: "/docs/CV_Burbano.pdf",
-      label: "CV",
-      tooltip: "CV",
-    },
-  ];
+  const iconMap: Record<string, typeof Linkedin> = {
+    LinkedIn: Linkedin,
+    GitHub: Github,
+    Correo: Mail,
+    Email: Mail,
+    CV: Download,
+  };
+
+  const socialLinks = content.socials.map((social) => ({
+    icon: iconMap[social.label] || Mail, 
+    href: social.href,
+    label: social.label,
+    tooltip: social.label,
+  }));
 
   return (
     <section className="min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
@@ -65,35 +53,38 @@ export function HeroSection({ content }: HeroSectionProps) {
 
             <TooltipProvider delayDuration={0}>
               <div className="flex gap-3 sm:gap-4 pt-4 justify-center lg:justify-start">
-                {socialLinks.map((social) => (
-                  <Tooltip key={social.label}>
-                    <TooltipTrigger asChild>
-                      <a
-                        href={social.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        aria-label={social.label}
-                        className="
-              flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center
-              rounded-xl bg-secondary text-muted-foreground transition-all
-              hover:bg-primary hover:text-primary-foreground hover:scale-110
-              hover:shadow-md hover:shadow-primary/20
-              shadow-sm shadow-black/20 dark:shadow-none
-            "
-                      >
-                        <social.icon
+                {socialLinks.map((social) => {
+                  const IconComponent = social.icon;
+                  return (
+                    <Tooltip key={social.label}>
+                      <TooltipTrigger asChild>
+                        <a
+                          href={social.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label={social.label}
                           className="
-                h-4 w-4 sm:h-5 sm:w-5
-                drop-shadow-md dark:drop-shadow-none
-              "
-                        />
-                      </a>
-                    </TooltipTrigger>
-                    <TooltipContent>
-                      <p>{social.tooltip}</p>
-                    </TooltipContent>
-                  </Tooltip>
-                ))}
+                            flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center
+                            rounded-xl bg-secondary text-muted-foreground transition-all
+                            hover:bg-primary hover:text-primary-foreground hover:scale-110
+                            hover:shadow-md hover:shadow-primary/20
+                            shadow-sm shadow-black/20 dark:shadow-none
+                          "
+                        >
+                          <IconComponent
+                            className="
+                              h-4 w-4 sm:h-5 sm:w-5
+                              drop-shadow-md dark:drop-shadow-none
+                            "
+                          />
+                        </a>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{social.tooltip}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                })}
               </div>
             </TooltipProvider>
           </div>
@@ -106,7 +97,7 @@ export function HeroSection({ content }: HeroSectionProps) {
                   src="/images/profile.jpg"
                   alt="Jose Burbano"
                   fill
-                  className="object-cover"
+                  className="object-cover shadow-2xl shadow-primary/20 ring-4 ring-primary/10 transition-transform hover:scale-105 "
                   priority
                 />
               </div>

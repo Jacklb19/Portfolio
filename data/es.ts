@@ -2,7 +2,7 @@ import { Dictionary } from "./types";
 
 export const contentEs: Dictionary = {
   hero: {
-    intro: "Soy Jose Burbano, y disfruto",
+    intro: "Soy Jose Burbano, y disfruto de",
     title: {
       start: "Construir",
       highlight: "Sistemas",
@@ -12,8 +12,8 @@ export const contentEs: Dictionary = {
     socials: [
       { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
       { label: "GitHub", href: "https://github.com/Jacklb19" },
-      { label: "Correo", href: "mail" },
-      { label: "Portafolio", href: "#" },
+      { label: "Correo", href: "mailto:joseluisburbano19105@gmail.com" },
+      { label: "CV", href: "/docs/CV_Burbano.pdf" },
     ],
   },
   about: {
@@ -48,7 +48,7 @@ export const contentEs: Dictionary = {
           title: "Desarrolladora Senior @ TechCorp",
           content:
             "Jose es un aspirante a ingeniero de software altamente motivado con una curiosidad natural y pasión por el aprendizaje. Destaca por su capacidad para comprender rápidamente nuevos conceptos y aplicarlos en proyectos reales. Su dedicación al código limpio y la arquitectura escalable es impresionante para alguien en las primeras etapas de su trayectoria.",
-          image: "/images/testimonial-1.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 2,
@@ -56,7 +56,7 @@ export const contentEs: Dictionary = {
           title: "Product Manager @ InnovateLab",
           content:
             "Trabajar con Jose ha sido inspirador. Su pasión por la programación va más allá de solo escribir código: realmente le importa entender el problema y entregar soluciones reflexivas. Su creatividad y compromiso con cada proyecto lo convierten en un valioso miembro del equipo.",
-          image: "/images/testimonial-2.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 3,
@@ -64,7 +64,7 @@ export const contentEs: Dictionary = {
           title: "Tech Lead @ StartupHub",
           content:
             "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que que se convertirá en un excelente ingeniero de software.",
-          image: "/images/testimonial-3.jpg",
+          image: "/placeholder.svg",
         },
       ],
     },
@@ -93,14 +93,17 @@ export const contentEs: Dictionary = {
         id: 2,
         category: "Trayectoria",
         title: "Ingeniería de Software - UCC",
-        period: "Ago 2021 - Ene 2025",
+        period: "Ago 2021 - Ene 2027",
         technologies: ["Python", "PostgreSQL", "MongoDB", "Java"],
         description: [
-          "Obtuve bases sólidas en desarrollo de software, algoritmos y estructuras de datos.",
-          "Aprendí metodologías ágiles y patrones de diseño como Decorator, Singleton y MVC.",
-          "Desarrollé y desplegué sistemas con Node.js, PostgreSQL y MongoDB, aplicando contenedorización y gestión de bases de datos.",
-          "Apliqué principios de Clean Architecture y estructuras modulares para soluciones escalables.",
-          "Creé proyectos académicos como un sistema de gestión de reclamos y una app de turismo con IA.",
+        "Integré fundamentos de computación y prácticas de ingeniería para diseñar, construir y operar software confiable y escalable que resolviera problemas reales.",
+        "Dominé algoritmos, estructuras de datos, complejidad, matemática discreta y bases de datos para razonar sobre rendimiento y corrección en mis proyectos.",
+        "Apliqué ingeniería de requisitos, modelado de dominio y documentación para alinear cada solución con las necesidades de los interesados.",
+        "Diseñé con patrones y arquitecturas en capas, SOA y sistemas distribuidos, cuidando cohesión, acoplamiento y escalabilidad.",
+        "Implementé pruebas de software (unitarias e integración), prácticas de código limpio y control de versiones para asegurar calidad en la entrega.",
+        "Incorporé principios de DevOps y computación en la nube para automatizar integración y despliegue y mejorar la confiabilidad operativa.",
+        "Fortalecí la seguridad desde el diseño siguiendo guías OWASP y realizando revisiones de código sistemáticas.",
+        "Trabajé en equipo con metodologías ágiles como Scrum, comunicándome de forma efectiva y entregando de manera iterativa."
         ],
         image: "/images/software.png",
       },
@@ -135,14 +138,24 @@ export const contentEs: Dictionary = {
     button: "Ver Más",
     projects: [
       {
-        id: 1,
-        name: "Pharmasync",
-        description:
-          "Pharmasync es un asistente farmacéutico virtual diseñado para optimizar la gestión de medicamentos para estudiantes, farmacias y profesionales de la salud.",
-        status: "offline",
-        technologies: ["React", "Node.js", "PostgreSQL", "IA"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+      id: 1,
+      name: "PharmaSync",
+      description:
+        "Plataforma de asistencia farmacéutica con IA: backend en Java 21+ (Spring Boot) con seguridad JWT, PostgreSQL y MongoDB; frontend en React 18+ con TypeScript, Vite y Tailwind. Incluye chat asistido por IA, rutas protegidas por roles, historial de sesiones y orquestación de agentes con patrones Strategy, Facade, Decorator y Observer.",
+      status: "offline",
+      technologies: [
+        "SpringBoot",
+        "Java",
+        "React",
+        "TypeScript",
+        "PostgreSQL",
+        "MongoDB",
+        "JWT",
+        "Tailwind",
+        "Vite",
+      ],
+      image: "/images/PharmaSync.png",
+      link: "https://github.com/SantiagoArTyrs/PharmaSync"
       },
       {
         id: 2,
@@ -158,21 +171,24 @@ export const contentEs: Dictionary = {
         id: 3,
         name: "Mino Reproductor de Música",
         description:
-          "Un reproductor de música elegante creado para organizar listas, transmitir audio y ofrecer una experiencia fluida.",
-        status: "online",
-        technologies: ["React", "Tailwind", "Web Audio API"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+          "Reproductor de música para organizar listas y reproducir audio. Permite agregar canciones desde tu dispositivo (no carpetas completas), reordenarlas por arrastrar y soltar, repetir la lista, y controlar el volumen y la reproducción.",
+        status: "offline",
+        technologies: ["Node.js", "React", "Tailwind", "TypeScript"],
+        image: "/images/mino.png",
+        link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-        id: 4,
-        name: "Reloj",
-        description:
-          "Una herramienta minimalista de seguimiento del tiempo diseñada para ayudar a mantener el enfoque con una interfaz simple y limpia.",
-        status: "online",
-        technologies: ["React", "TypeScript", "Tailwind"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+      id: 4,
+      name: "Last Stand: Outbreak",
+      description:
+        "Juego FPS de supervivencia contra zombis, donde debes atravesar tres niveles únicos — hospital, calle y cementerio — enfrentando oleadas de enemigos, gestionando recursos y derrotando un jefe final para escapar de la ciudad infestada.",
+      status: "offline",
+      technologies: [
+        "Unity",
+        "C#",
+      ],
+      image: "/images/resident.png",
+      link: "https://github.com/Jacklb19/FPS_Resident_Outbreak"
       },
     ],
   },

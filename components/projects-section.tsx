@@ -3,7 +3,7 @@ import Image from "next/image";
 import { JSX, useState } from "react";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { ProjectsSection as ProjectSectionType } from "@/data/types";
-import { FaDocker, FaNodeJs, FaReact, FaPython, FaJava, FaLock } from "react-icons/fa";
+import { FaDocker, FaNodeJs, FaReact, FaPython, FaJava, FaLock, FaUnity } from "react-icons/fa";
 import {
   SiPostgresql,
   SiTailwindcss,
@@ -48,7 +48,8 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
     NextJS: <SiNextdotjs className="text-black dark:text-white" />,
     Express: <SiExpress className="text-gray-500" />,
     SpringBoot: <SiSpringboot className="text-green-700" />,
-    JWT: <FaLock className="text-black dark:text:white" />
+    JWT: <FaLock className="text-black dark:text:white" />,
+    Unity: <FaUnity className="text-black dark:text:white"/>,
   };
 
   return (

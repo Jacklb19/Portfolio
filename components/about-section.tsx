@@ -82,7 +82,7 @@ export function AboutSection({
 
           <div className="group rounded-2xl sm:rounded-3xl bg-card border border-border p-6 sm:p-8 transition-all hover:border-primary/50 hover:shadow-xl hover:shadow-primary/5">
             <div className="flex items-center gap-3 mb-4">
-              <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-accent" />
+              <Code2 className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
               <h3 className="text-lg sm:text-xl font-semibold">
                 {content.interests.title}
               </h3>
