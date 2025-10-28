@@ -117,17 +117,10 @@ export function ExperienceSection({ content }: ExperienceSectionProps) {
 
           <div className="lg:col-span-2">
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed mb-4">
-              A lo largo de mi trayectoria profesional, he tenido la oportunidad
-              de trabajar en proyectos diversos y desafiantes que han
-              fortalecido mis habilidades técnicas y mi capacidad para resolver
-              problemas complejos.
+              {content.intro.paragraph1}
             </p>
             <p className="text-base sm:text-lg text-muted-foreground leading-relaxed">
-              Desde el desarrollo full-stack hasta la implementación de
-              soluciones innovadoras, cada experiencia ha contribuido a mi
-              crecimiento como desarrollador. A continuación, te presento un
-              recorrido por los proyectos y roles que han definido mi carrera
-              profesional.
+              {content.intro.paragraph2}
             </p>
           </div>
 

@@ -63,14 +63,18 @@ export const contentEs: Dictionary = {
           name: "ELENA RODRIGUEZ",
           title: "Tech Lead @ StartupHub",
           content:
-            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que se convertirá en un excelente ingeniero de software.",
+            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que que se convertirá en un excelente ingeniero de software.",
           image: "/images/testimonial-3.jpg",
         },
       ],
     },
   },
   experience: {
-    title: "Experiencia",
+      title: "Experiencia",
+      intro: {
+        paragraph1: "A lo largo de mi trayectoria profesional, he tenido la oportunidad de trabajar en proyectos diversos y desafiantes que han fortalecido mis habilidades técnicas y mi capacidad para resolver problemas complejos.",
+        paragraph2: "Desde el desarrollo full-stack hasta la implementación de soluciones innovadoras, cada experiencia ha contribuido a mi crecimiento como desarrollador. A continuación, te presento un recorrido por los proyectos y roles que han definido mi carrera profesional."
+      },
     experiences: [
       {
         id: 1,
@@ -105,14 +109,14 @@ export const contentEs: Dictionary = {
         category: "Sistema",
         title: "Sistema de Gestión de Reclamos",
         period: "Mar 2024 - Jun 2024",
-        technologies: ["Node.js", "PostgreSQL", "Docker", "Express"],
+        technologies: ["SpringBoot", "NextJS", "MongoDB", "JWT", "Tailwind"],
         description: [
-          "Desarrollé un sistema full-stack de gestión de reclamos y quejas para un proyecto universitario.",
-          "Implementé APIs RESTful con Node.js y Express, manejando autenticación y roles de usuario.",
-          "Diseñé y normalicé la base de datos en PostgreSQL para un almacenamiento eficiente.",
-          "Contenericé la aplicación con Docker para despliegues consistentes entre entornos.",
+          "Desarrollé un sistema de gestión de reclamos full-stack con una arquitectura desacoplada, con un backend en Spring Boot y un frontend en Next.js.",
+          "Implementé una API REST segura con JWT para autenticación basada en roles (Cliente y Agente).",
+          "Utilicé MongoDB para la persistencia de datos y el patrón de diseño State para gestionar el ciclo de vida de los reclamos.",
+          "Construí una interfaz de usuario responsiva con Tailwind CSS, permitiendo a los clientes enviar reclamos y a los agentes gestionarlos mediante un flujo controlado."
         ],
-        image: "/placeholder.svg?height=400&width=600",
+        image: "/images/ClaimsSystem.png",
       },
     ],
   },
@@ -144,11 +148,11 @@ export const contentEs: Dictionary = {
         id: 2,
         name: "Gestión de Reclamos",
         description:
-          "ClaimHub es un sistema robusto de gestión de reclamos diseñado para simplificar la atención de quejas y el seguimiento eficiente de su resolución.",
+          "Un sistema completo de gestión de reclamos con arquitectura desacoplada, con un backend en Spring Boot (Java) y un frontend en Next.js (TypeScript). Utiliza JWT para seguridad basada en roles y el patrón State para controlar el flujo de los reclamos.",
         status: "online",
-        technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+        technologies: ["SpringBoot", "NextJS", "MongoDB", "JWT", "Tailwind"],
+        image: "/images/ClaimsSystem.png",
+        link: "https://claims-system.vercel.app/register",
       },
       {
         id: 3,
@@ -204,7 +208,6 @@ export const contentEs: Dictionary = {
       href: "/docs/CV_Burbano.pdf",
     },
   },
-
   },
   switcher: {
     label: "Idioma",

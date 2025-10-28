@@ -64,6 +64,10 @@ export type ExperienceItem = {
 
 export type ExperienceSection = {
   title: string;
+  intro: {
+    paragraph1: string;
+    paragraph2: string;
+  };
   experiences: ExperienceItem[];
 };
 

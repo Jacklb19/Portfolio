@@ -141,6 +141,8 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
             <a
               key={project.id}
               href={project.link}
+              target="_blank" 
+              rel="noopener noreferrer"
               className="group rounded-2xl sm:rounded-3xl bg-card border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
             >
               <div className="aspect-video overflow-hidden bg-secondary relative">

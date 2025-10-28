@@ -70,7 +70,11 @@ export const contentEn: Dictionary = {
     },
   },
   experience: {
-    title: "Experience",
+      title: "Experience",
+      intro: {
+        paragraph1: "Throughout my professional journey, I have had the opportunity to work on diverse and challenging projects that have strengthened my technical skills and ability to solve complex problems.",
+        paragraph2: "From full-stack development to implementing innovative solutions, each experience has contributed to my growth as a developer. Below, I present a journey through the projects and roles that have defined my professional career."
+      },
     experiences: [
       {
         id: 1,
@@ -105,14 +109,14 @@ export const contentEn: Dictionary = {
         category: "System",
         title: "Claims Management System",
         period: "Mar 2024 - Jun 2024",
-        technologies: ["Node.js", "PostgreSQL", "Docker", "Express"],
+        technologies: ["SpringBoot", "NextJS", "MongoDB", "JWT", "Tailwind"],
         description: [
-          "Developed a full-stack claims and complaints management system for a university project.",
-          "Implemented RESTful APIs with Node.js and Express, managing user authentication and roles.",
-          "Designed and normalized a PostgreSQL schema for efficient data handling.",
-          "Containerized the app with Docker for consistent deployment across environments.",
+          "Developed a full-stack claims management system with a decoupled architecture, featuring a Spring Boot backend and a Next.js frontend.",
+          "Implemented a secure REST API with JWT for role-based authentication (Client and Agent).",
+          "Used MongoDB for data persistence and the State design pattern to manage the claim lifecycle.",
+          "Built a responsive UI with Tailwind CSS, allowing clients to submit claims and agents to manage them through a controlled workflow."
         ],
-        image: "/placeholder.svg?height=400&width=600",
+        image: "/images/ClaimsSystem.png",
       },
     ],
   },
@@ -144,11 +148,11 @@ export const contentEn: Dictionary = {
         id: 2,
         name: "Claim Management",
         description:
-          "ClaimHub is a robust claims management system designed to simplify complaint handling, track resolution efficiently.",
+          "A complete claims management system with a decoupled architecture, featuring a Spring Boot (Java) backend and a Next.js (TypeScript) frontend. It uses JWT for role-based security and the State pattern to control the claim workflow.",
         status: "online",
-        technologies: ["Node.js", "Express", "PostgreSQL", "Docker"],
-        image: "/placeholder.svg?height=300&width=400",
-        link: "#",
+        technologies: ["SpringBoot", "NextJS", "MongoDB", "JWT", "Tailwind"],
+        image: "/images/ClaimsSystem.png",
+        link: "https://claims-system.vercel.app/register",
       },
       {
         id: 3,
