@@ -191,7 +191,7 @@ export const contentEn: Dictionary = {
   info: {
     location: { label: "LOCATION", value: "Colombia (UTC-5)" },
     availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
-    email: { label: "EMAIL", value: "joseburbano1995@gmail.com" },
+    email: { label: "EMAIL", value: "joseluisburbano19105@gmail.com" },
   },
   socials: {
     title: "CONNECT WITH ME",
