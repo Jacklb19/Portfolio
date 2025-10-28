@@ -30,7 +30,7 @@ const DEFAULT_PREFERENCES: Preferences = {
   fontSize: "medium",
   language: "en",
   animationsEnabled: true,
-  sidebarAutoExpand: false,
+  sidebarAutoExpand: true,
 }
 
 const STORAGE_KEY = "portfolio-preferences"

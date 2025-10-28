@@ -2,7 +2,16 @@
 
 import type React from "react";
 import { useState } from "react";
-import { MapPin, Phone, MailIcon, Github, Linkedin, Send } from "lucide-react";
+import {
+  MapPin,
+  MailIcon,
+  Github,
+  Linkedin,
+  Send,
+  Briefcase,
+  Download,
+  Copy,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -25,9 +34,27 @@ export function ContactSection({ content }: ContactSectionProps) {
     message: "",
   });
 
+  const [copied, setCopied] = useState(false);
+  const [copyOpen, setCopyOpen] = useState(false);
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Form submitted:", formData);
+  };
+
+  const handleCopyEmail = async () => {
+    try {
+      await navigator.clipboard.writeText(content.info.email.value);
+      setCopied(true);
+      setCopyOpen(true);
+      setTimeout(() => {
+        setCopied(false);
+        setCopyOpen(false);
+      }, 1200);
+    } catch {
+      setCopied(false);
+      setCopyOpen(false);
+    }
   };
 
   return (
@@ -114,7 +141,13 @@ export function ContactSection({ content }: ContactSectionProps) {
 
           {/* Contact Info */}
           <div className="space-y-4 sm:space-y-6">
-            <div className="rounded-2xl sm:rounded-3xl bg-card border border-border p-5 sm:p-6 transition-all hover:border-primary/50">
+            {/* Ubicación (clickable) */}
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Colombia"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block rounded-2xl sm:rounded-3xl bg-card border border-border p-5 sm:p-6 transition-all hover:border-primary/50 cursor-pointer"
+            >
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-primary/10 flex-shrink-0">
                   <MapPin className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
@@ -128,19 +161,19 @@ export function ContactSection({ content }: ContactSectionProps) {
                   </p>
                 </div>
               </div>
-            </div>
+            </a>
 
             <div className="rounded-2xl sm:rounded-3xl bg-card border border-border p-5 sm:p-6 transition-all hover:border-primary/50">
               <div className="flex items-center gap-3 sm:gap-4">
                 <div className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-primary/10 flex-shrink-0">
-                  <Phone className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+                  <Briefcase className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
                 </div>
                 <div>
                   <h3 className="font-semibold mb-0.5 sm:mb-1 text-sm sm:text-base">
-                    {content.info.phone.label}
+                    {content.info.availability.label}
                   </h3>
                   <p className="text-muted-foreground text-sm sm:text-base">
-                    {content.info.phone.value}
+                    {content.info.availability.value}
                   </p>
                 </div>
               </div>
@@ -155,9 +188,30 @@ export function ContactSection({ content }: ContactSectionProps) {
                   <h3 className="font-semibold mb-0.5 sm:mb-1 text-sm sm:text-base">
                     {content.info.email.label}
                   </h3>
-                  <p className="text-muted-foreground text-xs sm:text-sm break-all">
-                    {content.info.email.value}
-                  </p>
+                  <div className="flex items-center gap-2">
+                    <a
+                      href={`mailto:${content.info.email.value}`}
+                      className="text-muted-foreground text-xs sm:text-sm break-all underline-offset-2 hover:underline"
+                    >
+                      {content.info.email.value}
+                    </a>
+
+                    <Tooltip open={copyOpen} onOpenChange={setCopyOpen}>
+                      <TooltipTrigger asChild>
+                        <button
+                          type="button"
+                          onClick={handleCopyEmail}
+                          className="inline-flex items-center justify-center h-7 w-7 rounded-md border border-border text-muted-foreground hover:bg-primary hover:text-primary-foreground hover:border-primary transition-all"
+                          aria-label="Copiar correo"
+                        >
+                          <Copy className="h-3.5 w-3.5" />
+                        </button>
+                      </TooltipTrigger>
+                      <TooltipContent>
+                        <p>{copied ? "Copiado" : "Copiar"}</p>
+                      </TooltipContent>
+                    </Tooltip>
+                  </div>
                 </div>
               </div>
             </div>
@@ -167,31 +221,53 @@ export function ContactSection({ content }: ContactSectionProps) {
                 {content.socials.title}
               </h3>
               <TooltipProvider>
-                <div className="flex gap-3 sm:gap-4">
-                  {content.socials.items.map((social) => (
-                    <Tooltip key={social.label}>
+                <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+                  {content.socials.items
+                    .filter(
+                      (social) =>
+                        social.label === "GitHub" ||
+                        social.label.toLowerCase().includes("link")
+                    )
+                    .map((social) => (
+                      <Tooltip key={social.label}>
+                        <TooltipTrigger asChild>
+                          <a
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-card border border-border text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
+                            aria-label={social.label}
+                          >
+                            {social.label === "GitHub" ? (
+                              <Github className="h-4 w-4 sm:h-5 sm:w-5" />
+                            ) : (
+                              <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
+                            )}
+                          </a>
+                        </TooltipTrigger>
+                        <TooltipContent>
+                          <p>{social.label}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    ))}
+
+                  {content.socials.cta && (
+                    <Tooltip>
                       <TooltipTrigger asChild>
                         <a
-                          href={social.href}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          href={content.socials.cta.href}
+                          download
                           className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-lg sm:rounded-xl bg-card border border-border text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:border-primary hover:scale-110"
-                          aria-label={social.label}
+                          aria-label={content.socials.cta.label}
                         >
-                          {social.label === "GitHub" ? (
-                            <Github className="h-4 w-4 sm:h-5 sm:w-5" />
-                          ) : social.label.toLowerCase().includes("link") ? (
-                            <Linkedin className="h-4 w-4 sm:h-5 sm:w-5" />
-                          ) : (
-                            <MailIcon className="h-4 w-4 sm:h-5 sm:w-5" />
-                          )}
+                          <Download className="h-4 w-4 sm:h-5 sm:w-5" />
                         </a>
                       </TooltipTrigger>
                       <TooltipContent>
-                        <p>{social.label}</p>
+                        <p>{content.socials.cta.label}</p>
                       </TooltipContent>
                     </Tooltip>
-                  ))}
+                  )}
                 </div>
               </TooltipProvider>
             </div>

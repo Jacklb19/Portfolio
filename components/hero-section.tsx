@@ -72,10 +72,21 @@ export function HeroSection({ content }: HeroSectionProps) {
                         href={social.href}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center rounded-xl bg-secondary text-muted-foreground transition-all hover:bg-primary hover:text-primary-foreground hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
                         aria-label={social.label}
+                        className="
+              flex h-10 w-10 sm:h-12 sm:w-12 items-center justify-center
+              rounded-xl bg-secondary text-muted-foreground transition-all
+              hover:bg-primary hover:text-primary-foreground hover:scale-110
+              hover:shadow-md hover:shadow-primary/20
+              shadow-sm shadow-black/20 dark:shadow-none
+            "
                       >
-                        <social.icon className="h-4 w-4 sm:h-5 sm:w-5" />
+                        <social.icon
+                          className="
+                h-4 w-4 sm:h-5 sm:w-5
+                drop-shadow-md dark:drop-shadow-none
+              "
+                        />
                       </a>
                     </TooltipTrigger>
                     <TooltipContent>

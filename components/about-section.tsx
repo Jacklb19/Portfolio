@@ -1,9 +1,9 @@
 "use client";
 
-import { MapPin, Code2, Heart } from "lucide-react";
+import { MapPin, Code2, Heart, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
-import type { AboutSection as AboutSectionType } from "@/data/types";
+import type { AboutSection as AboutSectionType, ProjectItem } from "@/data/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { SiPostgresql, SiTailwindcss, SiMongodb } from "react-icons/si";
 import Image from "next/image";
@@ -11,11 +11,13 @@ import Image from "next/image";
 interface AboutSectionProps {
   content: AboutSectionType;
   onNavigateToProjects?: () => void;
+  projectsPreview?: ProjectItem[];
 }
 
 export function AboutSection({
   content,
   onNavigateToProjects,
+  projectsPreview,
 }: AboutSectionProps) {
   const techStack = [
     { name: "Docker", icon: <FaDocker className="text-blue-500" /> },
@@ -115,12 +117,60 @@ export function AboutSection({
         </div>
 
         <div className="rounded-2xl sm:rounded-3xl bg-gradient-to-br from-primary/10 to-accent/10 border border-primary/20 p-6 sm:p-8 mb-8 sm:mb-12">
-          <h3 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">
-            {content.projects.title}
-          </h3>
+          <div className="flex items-center gap-3 mb-3 sm:mb-4">
+            <Layers className="h-5 w-5 sm:h-6 sm:w-6 text-primary" />
+            <h3 className="text-xl sm:text-2xl font-semibold">
+              {content.projects.title}
+            </h3>
+          </div>
           <p className="text-sm sm:text-base text-muted-foreground mb-4 sm:mb-6">
             {content.projects.description}
           </p>
+
+          {projectsPreview && projectsPreview.length > 0 && (
+            <div className="relative mb-6 sm:mb-8 -mx-2">
+              <div className="flex gap-3 sm:gap-4 overflow-x-auto px-2 pb-2 scrollbar-hide snap-x snap-mandatory">
+                {projectsPreview.map((project) => (
+                  <div
+                    key={project.id}
+                    className="group flex-none w-32 sm:w-40 snap-start"
+                  >
+                    <div className="rounded-lg sm:rounded-xl overflow-hidden bg-card border border-border transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
+                      <div className="relative aspect-square bg-secondary">
+                        <Image
+                          src={project.image || "/placeholder.svg"}
+                          alt={project.name}
+                          fill
+                          className="object-cover"
+                          sizes="(max-width: 640px) 128px, 160px"
+                        />
+                      </div>
+                      
+                      <div className="p-3 sm:p-4">
+                        <h4 className="font-semibold text-xs sm:text-sm text-foreground mb-2 truncate">
+                          {project.name}
+                        </h4>
+                        
+                        <div className="flex items-center gap-2">
+                          <div
+                            className={`h-2 w-2 rounded-full ${
+                              project.status === "online"
+                                ? "bg-green-500"
+                                : "bg-muted-foreground/50"
+                            }`}
+                          />
+                          <span className="text-xs text-muted-foreground capitalize">
+                            {project.status}
+                          </span>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <Button
             onClick={handleNavigateToProjects}
             className="rounded-xl bg-primary hover:bg-primary/90 w-full sm:w-auto transition-all hover:scale-105"

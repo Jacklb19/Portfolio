@@ -112,7 +112,7 @@ export type ContactSection = {
   }
   info: {
     location: { label: string; value: string }
-    phone: { label: string; value: string }
+    availability: { label: string; value: string }
     email: { label: string; value: string }
   }
   socials: {
@@ -122,6 +122,7 @@ export type ContactSection = {
       href: string
       ariaLabel?: string
     }>
+    cta?: { label: string; href: string; download?: boolean }
   }
 }
 

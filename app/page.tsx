@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useMemo } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 import { Sidebar } from "@/components/sidebar";
 import { BottomNav } from "@/components/bottom-nav";
 import { HeroSection } from "@/components/hero-section";
@@ -10,11 +11,19 @@ import { Footer } from "@/components/footer";
 import { useDictionary } from "@/data/use-dictionary";
 import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
+import { usePreferences } from "@/lib/preferences-context";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
   const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
   const { dictionary, loading } = useDictionary();
+  const { preferences } = usePreferences();
+  const animationsOn = preferences.animationsEnabled;
+
+  const projectsPreview = useMemo(() => {
+    if (!dictionary?.projects?.projects) return [];
+    return dictionary.projects.projects.slice(0, 6);
+  }, [dictionary]);
 
   if (loading || !dictionary) {
     return (
@@ -37,6 +46,7 @@ export default function Home() {
           <AboutSection
             content={dictionary.about}
             onNavigateToProjects={handleNavigateToProjects}
+            projectsPreview={projectsPreview}
           />
         );
       case "experience":
@@ -66,7 +76,24 @@ export default function Home() {
           isSidebarExpanded ? "md:ml-64" : "md:ml-20"
         }`}
       >
-        <div className="flex-grow">{renderActiveSection()}</div>
+        {animationsOn ? (
+          <AnimatePresence mode="wait">
+            <motion.div
+              key={activeSection}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
+              className="flex-grow"
+            >
+              {renderActiveSection()}
+            </motion.div>
+          </AnimatePresence>
+        ) : (
+          <div key={activeSection} className="flex-grow">
+            {renderActiveSection()}
+          </div>
+        )}
 
         {shouldShowFooter && <Footer content={dictionary.footer} />}
       </main>

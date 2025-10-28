@@ -173,34 +173,37 @@ export const contentEn: Dictionary = {
     ],
   },
   contact: {
-    title: "CONTACT",
-    subtitle: "Let's work together",
-    form: {
-      labels: {
-        name: "NAME",
-        email: "EMAIL",
-        message: "MESSAGE",
-      },
-      placeholders: {
-        name: "Your full name",
-        email: "your.email@gmail.com",
-        message: "Tell me about your project...",
-      },
-      submit: "Send Message",
+  title: "CONTACT",
+  subtitle: "Let's work together",
+  form: {
+    labels: {
+      name: "NAME",
+      email: "EMAIL",
+      message: "MESSAGE",
     },
-    info: {
-      location: { label: "LOCATION", value: "Colombia" },
-      phone: { label: "PHONE", value: "+57 3224263201" },
-      email: { label: "EMAIL", value: "joseburbano1995@gmail.com" },
+    placeholders: {
+      name: "Your full name",
+      email: "your.email@gmail.com",
+      message: "Tell me about your project...",
     },
-    socials: {
-      title: "CONNECT WITH ME",
-      items: [
-        { label: "GitHub", href: "https://github.com/Jacklb19" },
-        { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
-        { label: "Email", href: "mailto:joseburbano1995@gmail.com" },
-      ],
+    submit: "Send Message",
+  },
+  info: {
+    location: { label: "LOCATION", value: "Colombia (UTC-5)" },
+    availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
+    email: { label: "EMAIL", value: "joseburbano1995@gmail.com" },
+  },
+  socials: {
+    title: "CONNECT WITH ME",
+    items: [
+      { label: "GitHub", href: "https://github.com/Jacklb19" },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+    ],
+    cta: {
+      label: "Download CV",
+      href: "/docs/CV_Burbano.pdf",
     },
+  },
   },
   switcher: {
     label: "Language",

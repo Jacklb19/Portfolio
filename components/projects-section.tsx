@@ -62,11 +62,14 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
               {content.title}
             </h2>
 
-            {/* Botón de filtrado */}
             <div className="relative">
               <button
                 onClick={() => setIsFilterOpen(!isFilterOpen)}
-                className="rounded-full bg-secondary px-3 py-1.5 sm:px-4 sm:py-2 flex items-center gap-2 hover:bg-secondary/80 transition-colors"
+                className="
+      rounded-full bg-secondary px-3 py-1.5 sm:px-4 sm:py-2
+      flex items-center gap-2 transition-colors hover:bg-secondary/80
+      shadow-sm shadow-black/20 hover:shadow-md dark:shadow-none
+    "
               >
                 <span className="text-xs sm:text-sm text-muted-foreground">
                   {content.filter.name}:{" "}
@@ -76,9 +79,10 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
                   }
                 </span>
                 <ChevronDown
-                  className={`h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground transition-transform ${
-                    isFilterOpen ? "rotate-180" : ""
-                  }`}
+                  className={`h-3 w-3 sm:h-4 sm:w-4 text-muted-foreground transition-transform
+        ${
+          isFilterOpen ? "rotate-180" : ""
+        } drop-shadow-md dark:drop-shadow-none`}
                 />
               </button>
 
@@ -88,7 +92,12 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
                     className="fixed inset-0 z-10"
                     onClick={() => setIsFilterOpen(false)}
                   />
-                  <div className="absolute right-0 mt-2 w-40 sm:w-48 rounded-lg bg-card border border-border shadow-lg z-20 overflow-hidden">
+                  <div
+                    className="
+          absolute right-0 mt-2 w-40 sm:w-48 rounded-lg bg-card border border-border
+          shadow-lg dark:shadow-none z-20 overflow-hidden
+        "
+                  >
                     {filterOptions.map((option) => (
                       <button
                         key={option.value}
