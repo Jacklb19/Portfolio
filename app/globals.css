@@ -122,10 +122,11 @@
   * {
     @apply border-border outline-ring/50;
   }
+  html {
+    font-size: var(--base-font-size);
+  }
   body {
     @apply bg-background text-foreground;
-    /* Apply base font size from CSS variable */
-    font-size: var(--base-font-size);
   }
 }
 
