@@ -12,6 +12,7 @@ import { useDictionary } from "@/data/use-dictionary";
 import { ProjectsSection } from "@/components/projects-section";
 import { ContactSection } from "@/components/contact-section";
 import { usePreferences } from "@/lib/preferences-context";
+import Chatbot from "@/components/chatbot-section"; 
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -109,6 +110,8 @@ export default function Home() {
         activeSection={activeSection}
         onSectionChange={setActiveSection}
       />
+
+      <Chatbot />
     </div>
   );
 }

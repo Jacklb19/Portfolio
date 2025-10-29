@@ -48,7 +48,7 @@ export const contentEn: Dictionary = {
           title: "Senior Developer @ TechCorp",
           content:
             "Jose is a highly motivated aspiring software engineer with a natural curiosity and passion for learning. He stands out for his ability to quickly grasp new concepts and apply them in real projects. His dedication to clean code and scalable architecture is impressive for someone early in their development journey.",
-          image: "/images/testimonial-1.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 2,
@@ -56,7 +56,7 @@ export const contentEn: Dictionary = {
           title: "Product Manager @ InnovateLab",
           content:
             "Working with Jose has been inspiring. His passion for programming goes beyond just writing code — he genuinely cares about understanding the problem and delivering thoughtful solutions. His creativity and commitment to every project make him a valuable team member.",
-          image: "/images/testimonial-2.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 3,
@@ -64,7 +64,7 @@ export const contentEn: Dictionary = {
           title: "Tech Lead @ StartupHub",
           content:
             "Jose demonstrates exceptional problem-solving skills and a strong foundation in software engineering principles. His enthusiasm for learning new technologies and his dedication to best practices make him stand out. I have no doubt he will become an excellent software engineer.",
-          image: "/images/testimonial-3.jpg",
+          image: "/placeholder.svg",
         },
       ],
     },
@@ -178,7 +178,7 @@ export const contentEn: Dictionary = {
         link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-      id: 2,
+      id: 4,
       name: "Last Stand: Outbreak",
       description:
         "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
@@ -230,5 +230,32 @@ export const contentEn: Dictionary = {
     label: "Language",
     es: "Spanish",
     en: "English",
+  },
+
+      chatbot: {
+    greeting: "Hi! 👋 I'm your virtual assistant. Ask me about Jose's projects, experience, or skills.",
+    placeholder: "Type your question...",
+    systemPrompt: `You are an assistant for Jose Burbano's professional portfolio.
+
+[INSTRUCTIONS]
+- Only answer questions about the provided portfolio information
+- If asked about something unrelated to Jose or his portfolio, redirect politely
+- Be concise but informative (maximum 3-4 lines)
+- Use a professional yet friendly tone
+- ALWAYS respond in English
+- Mention specific projects when relevant
+- If they mention a technology, relate it to projects that use it
+
+[BEHAVIOR]
+- For project questions: briefly describe the project and technologies used
+- For experience questions: mention key roles and achievements
+- For skills questions: list the most relevant ones and give examples
+- For generic questions: offer a summary and suggest specific areas
+
+[IMPORTANT]
+- DO NOT make up information not in the context
+- If you don't have the information, say "I don't have that information in the portfolio"`,
+    errorMessage: "Sorry, there was an error. Please try again.",
+    loadingText: "Typing..."
   },
 };

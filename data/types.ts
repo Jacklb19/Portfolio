@@ -129,7 +129,13 @@ export type ContactSection = {
     cta?: { label: string; href: string; download?: boolean }
   }
 }
-
+export type ChatbotSection = {
+  greeting: string;
+  placeholder: string;
+  systemPrompt: string;
+  errorMessage: string;
+  loadingText: string;
+};
 
 export type Dictionary = {
   hero: HeroSection;
@@ -139,4 +145,5 @@ export type Dictionary = {
   contact: ContactSection;
   footer: Footer;
   switcher: { label: string; es: string; en: string };
+  chatbot: ChatbotSection;
 };
