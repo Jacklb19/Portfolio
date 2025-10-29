@@ -8,7 +8,7 @@ const groq = new Groq({
   apiKey: process.env.GROQ_API_KEY!
 });
 
-// Memoria de conversaciones (se reinicia con cada deploy, pero es suficiente)
+// Memoria de conversaciones
 const conversations = new Map<string, Array<{role: string, content: string}>>();
 
 export async function POST(request: NextRequest) {
@@ -25,7 +25,7 @@ export async function POST(request: NextRequest) {
     const history = conversations.get(sessionId)!;
     
     // Construir mensajes con el prompt del idioma correcto
-    const messages = [
+    const messages: Groq.Chat.Completions.ChatCompletionMessageParam[] = [ // 👈 TIPO CORRECTO
       {
         role: "system",
         content: `${dict.chatbot.systemPrompt}
@@ -33,13 +33,16 @@ export async function POST(request: NextRequest) {
 [INFORMACIÓN DEL PORTAFOLIO]
 ${JSON.stringify(portfolioContext, null, 2)}`
       },
-      ...history,
+      ...history.map(msg => ({
+        role: msg.role as "user" | "assistant",
+        content: msg.content
+      })),
       { role: "user", content: message }
     ];
     
     // Llamar a Groq
     const chatCompletion = await groq.chat.completions.create({
-      messages: messages as any,
+      messages: messages,
       model: "llama-3.3-70b-versatile",
       temperature: 0.6,
       max_tokens: 500,
