@@ -194,7 +194,7 @@ export const contentEn: Dictionary = {
     ],
   },
   contact: {
-  title: "CONTACT",
+  title: "Contact",
   subtitle: "Let's work together",
   form: {
     labels: {

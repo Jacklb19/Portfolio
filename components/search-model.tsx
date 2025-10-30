@@ -44,35 +44,51 @@ interface SearchResult {
   priority?: number; // NUEVO: Para ordenar resultados
 }
 
-// CORREGIDO: Orden igual al sidebar + íconos correctos
-const getNavigationItems = (dictionary: any): NavigationItem[] => [
+const getNavigationItems = (
+  dictionary: any,
+  language: string
+): NavigationItem[] => [
   {
     id: "home",
-    label: dictionary?.hero?.subtitle || "Home", // CAMBIO: Usar subtitle en lugar de highlight
+    label: language === "es" ? "Inicio" : "Home",
     icon: Home,
     keywords: ["home", "explore", "main", "inicio"],
   },
   {
     id: "about",
-    label: dictionary?.about?.title || "About",
+    label:
+      dictionary?.about?.title || (language === "es" ? "Sobre mí" : "About"),
     icon: User,
     keywords: ["about", "bio", "me", "sobre", "acerca"],
   },
   {
     id: "experience",
-    label: dictionary?.experience?.title || "Experience",
+    label:
+      dictionary?.experience?.title ||
+      (language === "es" ? "Experiencia" : "Experience"),
     icon: Briefcase,
-    keywords: ["experience", "work", "jobs", "career", "experiencia", "trabajo"],
+    keywords: [
+      "experience",
+      "work",
+      "jobs",
+      "career",
+      "experiencia",
+      "trabajo",
+    ],
   },
   {
     id: "projects",
-    label: dictionary?.projects?.title || "Projects",
+    label:
+      dictionary?.projects?.title ||
+      (language === "es" ? "Proyectos" : "Projects"),
     icon: FolderOpen,
     keywords: ["projects", "portfolio", "work", "proyectos"],
   },
   {
     id: "contact",
-    label: dictionary?.contact?.title || "Contact",
+    label:
+      dictionary?.contact?.title ||
+      (language === "es" ? "Contacto" : "Contact"),
     icon: Mail,
     keywords: ["contact", "email", "reach", "contacto"],
   },
@@ -91,8 +107,8 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
   const { preferences } = usePreferences();
 
   const navigationItems = useMemo(
-    () => getNavigationItems(dictionary),
-    [dictionary]
+    () => getNavigationItems(dictionary, preferences.language),
+    [dictionary, preferences.language]
   );
 
   useEffect(() => {
@@ -339,38 +355,66 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
 
       // 7. Testimonials (prioridad 65)
       if (dictionary?.about?.testimonials?.testimonials) {
-        dictionary.about.testimonials.testimonials.forEach((testimonial: any) => {
-          const matchInName = testimonial.name
-            .toLowerCase()
-            .includes(lowerQuery);
-          const matchInTitle = testimonial.title
-            .toLowerCase()
-            .includes(lowerQuery);
-          const matchInContent = testimonial.content
-            .toLowerCase()
-            .includes(lowerQuery);
+        dictionary.about.testimonials.testimonials.forEach(
+          (testimonial: any) => {
+            const matchInName = testimonial.name
+              .toLowerCase()
+              .includes(lowerQuery);
+            const matchInTitle = testimonial.title
+              .toLowerCase()
+              .includes(lowerQuery);
+            const matchInContent = testimonial.content
+              .toLowerCase()
+              .includes(lowerQuery);
 
-          if (matchInName || matchInTitle || matchInContent) {
-            searchResults.push({
-              id: `testimonial-${testimonial.id}`,
-              title: `${testimonial.name} - ${testimonial.title}`,
-              subtitle: testimonial.content.substring(0, 80) + "...",
-              category: dictionary.about.testimonials.title,
-              type: "content",
-              section: "about",
-              priority: 65,
-            });
+            if (matchInName || matchInTitle || matchInContent) {
+              searchResults.push({
+                id: `testimonial-${testimonial.id}`,
+                title: `${testimonial.name} - ${testimonial.title}`,
+                subtitle: testimonial.content.substring(0, 80) + "...",
+                category: dictionary.about.testimonials.title,
+                type: "content",
+                section: "about",
+                priority: 65,
+              });
+            }
           }
-        });
+        );
       }
 
       // 8. Technologies (prioridad 60)
       const techKeywords = [
-        "react", "next", "nextjs", "spring", "springboot", "mongodb",
-        "postgresql", "jwt", "tailwind", "typescript", "java", "python",
-        "node", "nodejs", "unity", "c#", "csharp", "javascript", "html",
-        "css", "api", "rest", "graphql", "docker", "aws", "git", "github",
-        "vite", "n8n", "automation", "whatsapp",
+        "react",
+        "next",
+        "nextjs",
+        "spring",
+        "springboot",
+        "mongodb",
+        "postgresql",
+        "jwt",
+        "tailwind",
+        "typescript",
+        "java",
+        "python",
+        "node",
+        "nodejs",
+        "unity",
+        "c#",
+        "csharp",
+        "javascript",
+        "html",
+        "css",
+        "api",
+        "rest",
+        "graphql",
+        "docker",
+        "aws",
+        "git",
+        "github",
+        "vite",
+        "n8n",
+        "automation",
+        "whatsapp",
       ];
 
       techKeywords.forEach((tech) => {
@@ -392,7 +436,9 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
       });
 
       // NUEVO: Ordenar por prioridad (mayor a menor)
-      const sortedResults = searchResults.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+      const sortedResults = searchResults.sort(
+        (a, b) => (b.priority || 0) - (a.priority || 0)
+      );
 
       // Eliminar duplicados
       const uniqueResults = Array.from(
@@ -602,57 +648,90 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                 )}
 
                 {/* CAMBIO: Mostrar resultados Y luego prompt de IA */}
-                {searchQuery && (results.length > 0 || showAIPrompt) && !aiResponse && (
-                  <div className="p-4 space-y-3">
-                    {/* Resultados regulares */}
-                    {results.length > 0 && (
-                      <>
-                        <div className="text-xs font-semibold text-muted-foreground mb-3 px-3">
-                          {results.length}{" "}
-                          {dictionary?.chatbot?.resultsFound || "results found"}
-                        </div>
-                        <div className="space-y-1">
-                          {results.map((result, index) => (
-                            <button
-                              key={result.id}
-                              onClick={() => handleSelect(result)}
-                              className={cn(
-                                "w-full flex flex-col items-start gap-1 px-3 py-3 rounded-xl transition-all text-left",
-                                index === selectedIndex
-                                  ? "bg-secondary text-foreground"
-                                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
-                              )}
-                            >
-                              <div className="flex items-center gap-2 w-full">
-                                <span className="text-sm font-medium">
-                                  {result.title}
-                                </span>
-                                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-auto">
-                                  {result.category}
-                                </span>
-                              </div>
-                              {result.subtitle && (
-                                <span className="text-xs text-muted-foreground line-clamp-1">
-                                  {result.subtitle}
-                                </span>
-                              )}
-                            </button>
-                          ))}
-                        </div>
-                      </>
-                    )}
+                {searchQuery &&
+                  (results.length > 0 || showAIPrompt) &&
+                  !aiResponse && (
+                    <div className="p-4 space-y-3">
+                      {/* Resultados regulares */}
+                      {results.length > 0 && (
+                        <>
+                          <div className="text-xs font-semibold text-muted-foreground mb-3 px-3">
+                            {results.length}{" "}
+                            {dictionary?.chatbot?.resultsFound ||
+                              "results found"}
+                          </div>
+                          <div className="space-y-1">
+                            {results.map((result, index) => (
+                              <button
+                                key={result.id}
+                                onClick={() => handleSelect(result)}
+                                className={cn(
+                                  "w-full flex flex-col items-start gap-1 px-3 py-3 rounded-xl transition-all text-left",
+                                  index === selectedIndex
+                                    ? "bg-secondary text-foreground"
+                                    : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                                )}
+                              >
+                                <div className="flex items-center gap-2 w-full">
+                                  <span className="text-sm font-medium">
+                                    {result.title}
+                                  </span>
+                                  <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-auto">
+                                    {result.category}
+                                  </span>
+                                </div>
+                                {result.subtitle && (
+                                  <span className="text-xs text-muted-foreground line-clamp-1">
+                                    {result.subtitle}
+                                  </span>
+                                )}
+                              </button>
+                            ))}
+                          </div>
+                        </>
+                      )}
 
-                    {/* CAMBIO: Prompt de IA SIEMPRE al final si hay resultados */}
-                    {results.length > 0 && (
-                      <>
-                        <div className="text-xs font-semibold text-muted-foreground mb-2 px-3 pt-2">
-                          {preferences.language === "es" ? "¿No encontraste lo que buscabas?" : "Didn't find what you're looking for?"}
-                        </div>
+                      {/* CAMBIO: Prompt de IA SIEMPRE al final si hay resultados */}
+                      {results.length > 0 && (
+                        <>
+                          <div className="text-xs font-semibold text-muted-foreground mb-2 px-3 pt-2">
+                            {preferences.language === "es"
+                              ? "¿No encontraste lo que buscabas?"
+                              : "Didn't find what you're looking for?"}
+                          </div>
+                          <button
+                            onClick={handleAIQuery}
+                            className={cn(
+                              "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
+                              selectedIndex === results.length
+                                ? "bg-primary/10 border-primary text-foreground"
+                                : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
+                            )}
+                          >
+                            <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5 text-primary" />
+                            <div className="flex-1 text-left">
+                              <div className="text-sm font-medium">
+                                {dictionary?.chatbot?.aiPrompt ||
+                                  "Can you tell me about"}{" "}
+                                <span className="font-bold">{searchQuery}</span>
+                                {preferences.language === "es" ? "?" : ""}
+                              </div>
+                              <div className="text-xs text-muted-foreground mt-1">
+                                {dictionary?.chatbot?.aiPromptSubtext ||
+                                  "Use AI to answer your questions (Beta)"}
+                              </div>
+                            </div>
+                          </button>
+                        </>
+                      )}
+
+                      {/* Prompt de IA solo (sin resultados) */}
+                      {showAIPrompt && results.length === 0 && (
                         <button
                           onClick={handleAIQuery}
                           className={cn(
                             "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
-                            selectedIndex === results.length
+                            selectedIndex === 0
                               ? "bg-primary/10 border-primary text-foreground"
                               : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
                           )}
@@ -671,37 +750,9 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                             </div>
                           </div>
                         </button>
-                      </>
-                    )}
-
-                    {/* Prompt de IA solo (sin resultados) */}
-                    {showAIPrompt && results.length === 0 && (
-                      <button
-                        onClick={handleAIQuery}
-                        className={cn(
-                          "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
-                          selectedIndex === 0
-                            ? "bg-primary/10 border-primary text-foreground"
-                            : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
-                        )}
-                      >
-                        <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5 text-primary" />
-                        <div className="flex-1 text-left">
-                          <div className="text-sm font-medium">
-                            {dictionary?.chatbot?.aiPrompt ||
-                              "Can you tell me about"}{" "}
-                            <span className="font-bold">{searchQuery}</span>
-                            {preferences.language === "es" ? "?" : ""}
-                          </div>
-                          <div className="text-xs text-muted-foreground mt-1">
-                            {dictionary?.chatbot?.aiPromptSubtext ||
-                              "Use AI to answer your questions (Beta)"}
-                          </div>
-                        </div>
-                      </button>
-                    )}
-                  </div>
-                )}
+                      )}
+                    </div>
+                  )}
 
                 {isLoadingAI && (
                   <div className="p-8 flex flex-col items-center justify-center gap-3">

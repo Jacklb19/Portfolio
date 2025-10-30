@@ -193,7 +193,7 @@ export const contentEs: Dictionary = {
     ],
   },
   contact: {
-  title: "CONTACTO",
+  title: "Contacto",
   subtitle: "Trabajemos juntos",
   form: {
     labels: {
