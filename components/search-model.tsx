@@ -20,6 +20,7 @@ import { cn } from "@/lib/utils";
 import ReactMarkdown from "react-markdown";
 import { useDictionary } from "@/data/use-dictionary";
 import { usePreferences } from "@/lib/preferences-context";
+import { Dictionary } from "@/data/types";
 
 interface SearchModalProps {
   isOpen: boolean;
@@ -45,7 +46,7 @@ interface SearchResult {
 }
 
 const getNavigationItems = (
-  dictionary: any,
+  dictionary: Dictionary | null,
   language: string
 ): NavigationItem[] => [
   {
@@ -155,7 +156,7 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
 
       // 2. Projects (prioridad 90)
       if (dictionary?.projects?.projects) {
-        dictionary.projects.projects.forEach((project: any) => {
+        dictionary.projects.projects.forEach((project) => {
           const matchInName = project.name.toLowerCase().includes(lowerQuery);
           const matchInDescription = project.description
             .toLowerCase()
@@ -180,7 +181,7 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
 
       // 3. Experience (prioridad 85)
       if (dictionary?.experience?.experiences) {
-        dictionary.experience.experiences.forEach((exp: any) => {
+        dictionary.experience.experiences.forEach((exp) => {
           const matchInTitle = exp.title.toLowerCase().includes(lowerQuery);
           const matchInCategory = exp.category
             .toLowerCase()
@@ -356,7 +357,7 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
       // 7. Testimonials (prioridad 65)
       if (dictionary?.about?.testimonials?.testimonials) {
         dictionary.about.testimonials.testimonials.forEach(
-          (testimonial: any) => {
+          (testimonial) => {
             const matchInName = testimonial.name
               .toLowerCase()
               .includes(lowerQuery);
