@@ -6,10 +6,10 @@ import { useState, useEffect, useMemo, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
-  Compass,
-  Briefcase,
-  Pencil,
+  Home,
   User,
+  Briefcase,
+  FolderOpen,
   Mail,
   Sparkles,
   Loader2,
@@ -39,45 +39,40 @@ interface SearchResult {
   title: string;
   subtitle?: string;
   category: string;
-  type: "navigation" | "content";
+  type: "navigation" | "content" | "ai";
   section?: string;
+  priority?: number; // NUEVO: Para ordenar resultados
 }
 
-const navigationItems: NavigationItem[] = [
+// CORREGIDO: Orden igual al sidebar + íconos correctos
+const getNavigationItems = (dictionary: any): NavigationItem[] => [
   {
     id: "home",
-    label: "Explore",
-    icon: Compass,
+    label: dictionary?.hero?.subtitle || "Home", // CAMBIO: Usar subtitle en lugar de highlight
+    icon: Home,
     keywords: ["home", "explore", "main", "inicio"],
   },
   {
-    id: "experience",
-    label: "Experience",
-    icon: Briefcase,
-    keywords: [
-      "experience",
-      "work",
-      "jobs",
-      "career",
-      "experiencia",
-      "trabajo",
-    ],
-  },
-  {
-    id: "projects",
-    label: "Projects",
-    icon: Pencil,
-    keywords: ["projects", "portfolio", "work", "proyectos"],
-  },
-  {
     id: "about",
-    label: "About",
+    label: dictionary?.about?.title || "About",
     icon: User,
     keywords: ["about", "bio", "me", "sobre", "acerca"],
   },
   {
+    id: "experience",
+    label: dictionary?.experience?.title || "Experience",
+    icon: Briefcase,
+    keywords: ["experience", "work", "jobs", "career", "experiencia", "trabajo"],
+  },
+  {
+    id: "projects",
+    label: dictionary?.projects?.title || "Projects",
+    icon: FolderOpen,
+    keywords: ["projects", "portfolio", "work", "proyectos"],
+  },
+  {
     id: "contact",
-    label: "Contact",
+    label: dictionary?.contact?.title || "Contact",
     icon: Mail,
     keywords: ["contact", "email", "reach", "contacto"],
   },
@@ -94,6 +89,11 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
   const resultsRef = useRef<HTMLDivElement>(null);
   const { dictionary } = useDictionary();
   const { preferences } = usePreferences();
+
+  const navigationItems = useMemo(
+    () => getNavigationItems(dictionary),
+    [dictionary]
+  );
 
   useEffect(() => {
     if (!isOpen) {
@@ -113,6 +113,7 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
       const lowerQuery = query.toLowerCase();
       const searchResults: SearchResult[] = [];
 
+      // 1. Navigation (prioridad 100)
       navigationItems.forEach((item) => {
         const matchScore = item.keywords.reduce((score, keyword) => {
           if (keyword.includes(lowerQuery)) return score + 2;
@@ -124,20 +125,26 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
           searchResults.push({
             id: item.id,
             title: item.label,
-            subtitle: `Navigate to ${item.label}`,
-            category: "Navigation",
+            subtitle:
+              preferences.language === "es"
+                ? `Navegar a ${item.label}`
+                : `Navigate to ${item.label}`,
+            category:
+              preferences.language === "es" ? "Navegación" : "Navigation",
             type: "navigation",
+            priority: 100,
           });
         }
       });
 
+      // 2. Projects (prioridad 90)
       if (dictionary?.projects?.projects) {
-        dictionary.projects.projects.forEach((project) => {
+        dictionary.projects.projects.forEach((project: any) => {
           const matchInName = project.name.toLowerCase().includes(lowerQuery);
           const matchInDescription = project.description
             .toLowerCase()
             .includes(lowerQuery);
-          const matchInTech = project.technologies.some((tech) =>
+          const matchInTech = project.technologies.some((tech: string) =>
             tech.toLowerCase().includes(lowerQuery)
           );
 
@@ -146,24 +153,26 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: `project-${project.id}`,
               title: project.name,
               subtitle: project.description.substring(0, 80) + "...",
-              category: "Projects",
+              category: dictionary.projects.title,
               type: "content",
               section: "projects",
+              priority: 90,
             });
           }
         });
       }
 
+      // 3. Experience (prioridad 85)
       if (dictionary?.experience?.experiences) {
-        dictionary.experience.experiences.forEach((exp) => {
+        dictionary.experience.experiences.forEach((exp: any) => {
           const matchInTitle = exp.title.toLowerCase().includes(lowerQuery);
           const matchInCategory = exp.category
             .toLowerCase()
             .includes(lowerQuery);
-          const matchInTech = exp.technologies.some((tech) =>
+          const matchInTech = exp.technologies.some((tech: string) =>
             tech.toLowerCase().includes(lowerQuery)
           );
-          const matchInDescription = exp.description.some((desc) =>
+          const matchInDescription = exp.description.some((desc: string) =>
             desc.toLowerCase().includes(lowerQuery)
           );
 
@@ -177,14 +186,16 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: `experience-${exp.id}`,
               title: exp.title,
               subtitle: `${exp.category} • ${exp.period}`,
-              category: "Experience",
+              category: dictionary.experience.title,
               type: "content",
               section: "experience",
+              priority: 85,
             });
           }
         });
       }
 
+      // 4. About (prioridad 80)
       if (dictionary?.about) {
         const aboutText = [
           dictionary.about.description,
@@ -202,9 +213,10 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: "about-hobbies",
               title: dictionary.about.hobbies.title,
               subtitle: dictionary.about.hobbies.text.substring(0, 80) + "...",
-              category: "About",
+              category: dictionary.about.title,
               type: "content",
               section: "about",
+              priority: 80,
             });
           }
           if (
@@ -215,24 +227,30 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               title: dictionary.about.interests.title,
               subtitle:
                 dictionary.about.interests.text.substring(0, 80) + "...",
-              category: "About",
+              category: dictionary.about.title,
               type: "content",
               section: "about",
+              priority: 80,
             });
           }
           if (dictionary.about.description.toLowerCase().includes(lowerQuery)) {
             searchResults.push({
               id: "about-description",
-              title: "About Jose Burbano",
+              title:
+                preferences.language === "es"
+                  ? "Sobre Jose Burbano"
+                  : "About Jose Burbano",
               subtitle: dictionary.about.description.substring(0, 80) + "...",
-              category: "About",
+              category: dictionary.about.title,
               type: "content",
               section: "about",
+              priority: 80,
             });
           }
         }
       }
 
+      // 5. Contact (prioridad 75)
       if (dictionary?.contact) {
         const contactKeywords = [
           dictionary.contact.info?.location?.value,
@@ -255,9 +273,10 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: "contact-location",
               title: dictionary.contact.info.location.label,
               subtitle: dictionary.contact.info.location.value,
-              category: "Contact",
+              category: dictionary.contact.title,
               type: "content",
               section: "contact",
+              priority: 75,
             });
           }
           if (
@@ -269,9 +288,10 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: "contact-availability",
               title: dictionary.contact.info.availability.label,
               subtitle: dictionary.contact.info.availability.value,
-              category: "Contact",
+              category: dictionary.contact.title,
               type: "content",
               section: "contact",
+              priority: 75,
             });
           }
           if (
@@ -283,13 +303,16 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: "contact-email",
               title: dictionary.contact.info.email.label,
               subtitle: dictionary.contact.info.email.value,
-              category: "Contact",
+              category: dictionary.contact.title,
               type: "content",
               section: "contact",
+              priority: 75,
             });
           }
         }
       }
+
+      // 6. Hero (prioridad 70)
       if (dictionary?.hero) {
         const heroText = [
           dictionary.hero.intro,
@@ -306,15 +329,17 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
             id: "hero-intro",
             title: dictionary.hero.subtitle,
             subtitle: `${dictionary.hero.intro} ${dictionary.hero.title.start} ${dictionary.hero.title.highlight} ${dictionary.hero.title.end}`,
-            category: "Profile",
+            category: preferences.language === "es" ? "Perfil" : "Profile",
             type: "content",
             section: "home",
+            priority: 70,
           });
         }
       }
 
+      // 7. Testimonials (prioridad 65)
       if (dictionary?.about?.testimonials?.testimonials) {
-        dictionary.about.testimonials.testimonials.forEach((testimonial) => {
+        dictionary.about.testimonials.testimonials.forEach((testimonial: any) => {
           const matchInName = testimonial.name
             .toLowerCase()
             .includes(lowerQuery);
@@ -330,46 +355,22 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               id: `testimonial-${testimonial.id}`,
               title: `${testimonial.name} - ${testimonial.title}`,
               subtitle: testimonial.content.substring(0, 80) + "...",
-              category: "Testimonials",
+              category: dictionary.about.testimonials.title,
               type: "content",
               section: "about",
+              priority: 65,
             });
           }
         });
       }
 
+      // 8. Technologies (prioridad 60)
       const techKeywords = [
-        "react",
-        "next",
-        "nextjs",
-        "spring",
-        "springboot",
-        "mongodb",
-        "postgresql",
-        "jwt",
-        "tailwind",
-        "typescript",
-        "java",
-        "python",
-        "node",
-        "nodejs",
-        "unity",
-        "c#",
-        "csharp",
-        "javascript",
-        "html",
-        "css",
-        "api",
-        "rest",
-        "graphql",
-        "docker",
-        "aws",
-        "git",
-        "github",
-        "vite",
-        "n8n",
-        "automation",
-        "whatsapp",
+        "react", "next", "nextjs", "spring", "springboot", "mongodb",
+        "postgresql", "jwt", "tailwind", "typescript", "java", "python",
+        "node", "nodejs", "unity", "c#", "csharp", "javascript", "html",
+        "css", "api", "rest", "graphql", "docker", "aws", "git", "github",
+        "vite", "n8n", "automation", "whatsapp",
       ];
 
       techKeywords.forEach((tech) => {
@@ -377,23 +378,32 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
           searchResults.push({
             id: `tech-${tech}`,
             title: tech.charAt(0).toUpperCase() + tech.slice(1),
-            subtitle: `Technology used in projects`,
-            category: "Technologies",
+            subtitle:
+              preferences.language === "es"
+                ? `Tecnología usada en proyectos`
+                : `Technology used in projects`,
+            category:
+              preferences.language === "es" ? "Tecnologías" : "Technologies",
             type: "content",
             section: "projects",
+            priority: 60,
           });
         }
       });
 
+      // NUEVO: Ordenar por prioridad (mayor a menor)
+      const sortedResults = searchResults.sort((a, b) => (b.priority || 0) - (a.priority || 0));
+
+      // Eliminar duplicados
       const uniqueResults = Array.from(
-        new Map(searchResults.map((item) => [item.id, item])).values()
+        new Map(sortedResults.map((item) => [item.id, item])).values()
       );
 
       setResults(uniqueResults);
       setShowAIPrompt(uniqueResults.length === 0);
       setSelectedIndex(0);
     };
-  }, [dictionary]);
+  }, [dictionary, navigationItems, preferences.language]);
 
   useEffect(() => {
     if (!searchQuery.trim()) {
@@ -427,8 +437,8 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
               content: searchQuery,
             },
           ],
-          language: preferences.language, 
-          portfolioContext: dictionary, 
+          language: preferences.language,
+          portfolioContext: dictionary,
         }),
       });
 
@@ -479,15 +489,16 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
       onClose();
     } else if (e.key === "ArrowDown") {
       e.preventDefault();
-      setSelectedIndex((prev) =>
-        prev < (showAIPrompt ? 0 : results.length - 1) ? prev + 1 : prev
-      );
+      // CAMBIO: Incluir el prompt de IA en la navegación
+      const maxIndex = showAIPrompt ? results.length : results.length - 1;
+      setSelectedIndex((prev) => (prev < maxIndex ? prev + 1 : prev));
     } else if (e.key === "ArrowUp") {
       e.preventDefault();
       setSelectedIndex((prev) => (prev > 0 ? prev - 1 : 0));
     } else if (e.key === "Enter") {
       e.preventDefault();
-      if (showAIPrompt && selectedIndex === 0) {
+      // CAMBIO: El prompt de IA es el último elemento
+      if (showAIPrompt && selectedIndex === results.length) {
         handleAIQuery();
       } else if (results[selectedIndex]) {
         handleSelect(results[selectedIndex]);
@@ -507,7 +518,6 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
     <AnimatePresence>
       {isOpen && (
         <>
-          {/* Backdrop */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
@@ -517,7 +527,6 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
             onClick={onClose}
           />
 
-          {/* Modal */}
           <motion.div
             initial={{ opacity: 0, scale: 0.98, y: -10 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -526,13 +535,12 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
             className="fixed left-1/2 top-[20%] -translate-x-1/2 w-full max-w-2xl z-[101] px-4"
           >
             <div className="bg-card border border-border rounded-2xl shadow-2xl overflow-hidden">
-              {/* Header */}
               <div className="flex items-center gap-3 p-4 border-b border-border">
                 <input
                   ref={inputRef}
                   type="text"
                   placeholder={
-                    dictionary?.chatbot?.placeholder || "Search or ask…"
+                    dictionary?.chatbot?.searchPlaceholder || "Search or ask…"
                   }
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
@@ -557,16 +565,16 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                 </button>
               </div>
 
-              {/* Content area */}
               <div
                 ref={resultsRef}
                 className="max-h-[60vh] overflow-y-auto scrollbar-hide"
               >
-                {/* Default view */}
                 {!searchQuery && (
                   <div className="p-4">
                     <div className="text-xs font-semibold text-muted-foreground mb-3 px-3">
-                      Navigation
+                      {preferences.language === "es"
+                        ? "Navegación"
+                        : "Navigation"}
                     </div>
                     <div className="space-y-1">
                       {navigationItems.map((item, index) => (
@@ -593,82 +601,108 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                   </div>
                 )}
 
-                {/* Search results */}
-                {searchQuery && results.length > 0 && !aiResponse && (
-                  <div className="p-4">
-                    <div className="text-xs font-semibold text-muted-foreground mb-3 px-3">
-                      {results.length} result{results.length !== 1 ? "s" : ""}{" "}
-                      found
-                    </div>
-                    <div className="space-y-1">
-                      {results.map((result, index) => (
+                {/* CAMBIO: Mostrar resultados Y luego prompt de IA */}
+                {searchQuery && (results.length > 0 || showAIPrompt) && !aiResponse && (
+                  <div className="p-4 space-y-3">
+                    {/* Resultados regulares */}
+                    {results.length > 0 && (
+                      <>
+                        <div className="text-xs font-semibold text-muted-foreground mb-3 px-3">
+                          {results.length}{" "}
+                          {dictionary?.chatbot?.resultsFound || "results found"}
+                        </div>
+                        <div className="space-y-1">
+                          {results.map((result, index) => (
+                            <button
+                              key={result.id}
+                              onClick={() => handleSelect(result)}
+                              className={cn(
+                                "w-full flex flex-col items-start gap-1 px-3 py-3 rounded-xl transition-all text-left",
+                                index === selectedIndex
+                                  ? "bg-secondary text-foreground"
+                                  : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                              )}
+                            >
+                              <div className="flex items-center gap-2 w-full">
+                                <span className="text-sm font-medium">
+                                  {result.title}
+                                </span>
+                                <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-auto">
+                                  {result.category}
+                                </span>
+                              </div>
+                              {result.subtitle && (
+                                <span className="text-xs text-muted-foreground line-clamp-1">
+                                  {result.subtitle}
+                                </span>
+                              )}
+                            </button>
+                          ))}
+                        </div>
+                      </>
+                    )}
+
+                    {/* CAMBIO: Prompt de IA SIEMPRE al final si hay resultados */}
+                    {results.length > 0 && (
+                      <>
+                        <div className="text-xs font-semibold text-muted-foreground mb-2 px-3 pt-2">
+                          {preferences.language === "es" ? "¿No encontraste lo que buscabas?" : "Didn't find what you're looking for?"}
+                        </div>
                         <button
-                          key={result.id}
-                          onClick={() => handleSelect(result)}
+                          onClick={handleAIQuery}
                           className={cn(
-                            "w-full flex flex-col items-start gap-1 px-3 py-3 rounded-xl transition-all text-left",
-                            index === selectedIndex
-                              ? "bg-secondary text-foreground"
-                              : "text-muted-foreground hover:bg-secondary/50 hover:text-foreground"
+                            "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
+                            selectedIndex === results.length
+                              ? "bg-primary/10 border-primary text-foreground"
+                              : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
                           )}
                         >
-                          <div className="flex items-center gap-2 w-full">
-                            <span className="text-sm font-medium">
-                              {result.title}
-                            </span>
-                            <span className="text-xs bg-primary/10 text-primary px-2 py-0.5 rounded-full ml-auto">
-                              {result.category}
-                            </span>
+                          <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5 text-primary" />
+                          <div className="flex-1 text-left">
+                            <div className="text-sm font-medium">
+                              {dictionary?.chatbot?.aiPrompt ||
+                                "Can you tell me about"}{" "}
+                              <span className="font-bold">{searchQuery}</span>
+                              {preferences.language === "es" ? "?" : ""}
+                            </div>
+                            <div className="text-xs text-muted-foreground mt-1">
+                              {dictionary?.chatbot?.aiPromptSubtext ||
+                                "Use AI to answer your questions (Beta)"}
+                            </div>
                           </div>
-                          {result.subtitle && (
-                            <span className="text-xs text-muted-foreground line-clamp-1">
-                              {result.subtitle}
-                            </span>
-                          )}
                         </button>
-                      ))}
-                    </div>
+                      </>
+                    )}
+
+                    {/* Prompt de IA solo (sin resultados) */}
+                    {showAIPrompt && results.length === 0 && (
+                      <button
+                        onClick={handleAIQuery}
+                        className={cn(
+                          "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
+                          selectedIndex === 0
+                            ? "bg-primary/10 border-primary text-foreground"
+                            : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
+                        )}
+                      >
+                        <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5 text-primary" />
+                        <div className="flex-1 text-left">
+                          <div className="text-sm font-medium">
+                            {dictionary?.chatbot?.aiPrompt ||
+                              "Can you tell me about"}{" "}
+                            <span className="font-bold">{searchQuery}</span>
+                            {preferences.language === "es" ? "?" : ""}
+                          </div>
+                          <div className="text-xs text-muted-foreground mt-1">
+                            {dictionary?.chatbot?.aiPromptSubtext ||
+                              "Use AI to answer your questions (Beta)"}
+                          </div>
+                        </div>
+                      </button>
+                    )}
                   </div>
                 )}
 
-                {/* AI Prompt */}
-                {showAIPrompt && !aiResponse && !isLoadingAI && (
-                  <div className="p-4">
-                    <button
-                      onClick={handleAIQuery}
-                      className={cn(
-                        "w-full flex items-start gap-3 px-4 py-4 rounded-xl transition-all border-2 border-dashed",
-                        selectedIndex === 0
-                          ? "bg-primary/10 border-primary text-foreground"
-                          : "border-border text-muted-foreground hover:bg-secondary/50 hover:border-primary/50"
-                      )}
-                    >
-                      <Sparkles className="h-5 w-5 flex-shrink-0 mt-0.5 text-primary" />
-                      <div className="flex-1 text-left">
-                        <div className="text-sm font-medium">
-                          {preferences.language === "es" ? (
-                            <>
-                              ¿Puedes contarme sobre{" "}
-                              <span className="font-bold">{searchQuery}</span>?
-                            </>
-                          ) : (
-                            <>
-                              Can you tell me about{" "}
-                              <span className="font-bold">{searchQuery}</span>?
-                            </>
-                          )}
-                        </div>
-                        <div className="text-xs text-muted-foreground mt-1">
-                          {preferences.language === "es"
-                            ? "Usa IA para responder tus preguntas (Beta)"
-                            : "Use AI to answer your questions (Beta)"}
-                        </div>
-                      </div>
-                    </button>
-                  </div>
-                )}
-
-                {/* Loading */}
                 {isLoadingAI && (
                   <div className="p-8 flex flex-col items-center justify-center gap-3">
                     <Loader2 className="h-8 w-8 animate-spin text-primary" />
@@ -678,7 +712,6 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                   </div>
                 )}
 
-                {/* AI Response */}
                 {aiResponse && (
                   <div className="p-6">
                     <div className="prose prose-sm dark:prose-invert max-w-none">
@@ -688,21 +721,20 @@ export function SearchModal({ isOpen, onClose, onNavigate }: SearchModalProps) {
                       onClick={clearSearch}
                       className="mt-4 px-4 py-2 bg-secondary hover:bg-secondary/80 text-foreground rounded-lg text-sm font-medium transition-colors"
                     >
-                      {preferences.language === "es"
-                        ? "Nueva búsqueda"
-                        : "New search"}
+                      {dictionary?.chatbot?.newSearch || "New search"}
                     </button>
                   </div>
                 )}
 
-                {/* Empty state */}
                 {searchQuery &&
                   results.length === 0 &&
                   !showAIPrompt &&
                   !aiResponse &&
                   !isLoadingAI && (
                     <div className="p-8 text-center text-muted-foreground">
-                      <p className="text-sm">No results found</p>
+                      <p className="text-sm">
+                        {dictionary?.chatbot?.noResults || "No results found"}
+                      </p>
                     </div>
                   )}
               </div>
