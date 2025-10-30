@@ -4,6 +4,7 @@ import { useState, useMemo, useEffect } from "react"
 import { AnimatePresence, motion } from "framer-motion"
 import { Sidebar } from "@/components/sidebar"
 import { BottomNav } from "@/components/bottom-nav"
+import { MobileHeader } from "@/components/mobil-header"
 import { HeroSection } from "@/components/hero-section"
 import { AboutSection } from "@/components/about-section"
 import { ExperienceSection } from "@/components/experience-section"
@@ -25,6 +26,7 @@ export default function Home() {
     return dictionary.projects.projects.slice(0, 6)
   }, [dictionary])
 
+  
   // Resetear pagina cada q se cambia 
   useEffect(() => {
     requestAnimationFrame(() => {
@@ -67,6 +69,8 @@ export default function Home() {
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
+      <MobileHeader onNavigate={setActiveSection} />
+
       <Sidebar
         activeSection={activeSection}
         onSectionChange={setActiveSection}

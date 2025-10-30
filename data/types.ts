@@ -135,6 +135,13 @@ export type ChatbotSection = {
   systemPrompt: string;
   errorMessage: string;
   loadingText: string;
+  searchPlaceholder: string;
+  newSearch: string;
+    aiPrompt: string;
+  aiPromptSubtext: string;
+  resultsFound: string;
+  noResults: string;
+  
 };
 
 export type Dictionary = {
