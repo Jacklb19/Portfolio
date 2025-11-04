@@ -1,10 +1,7 @@
-// auth.ts - en la raíz del proyecto
 import NextAuth from "next-auth"
 import GitHub from "next-auth/providers/github"
 import { PrismaAdapter } from "@auth/prisma-adapter"
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import { prisma } from "./prisma-client"
 
 export const { handlers, auth } = NextAuth({
   adapter: PrismaAdapter(prisma),

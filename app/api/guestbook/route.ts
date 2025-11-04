@@ -1,9 +1,6 @@
-// app/api/guestbook/route.ts
 import { auth } from "@/auth"
 import { NextResponse } from "next/server"
-import { PrismaClient } from "@prisma/client"
-
-const prisma = new PrismaClient()
+import { prisma } from "@/prisma-client"
 
 export async function GET() {
   try {
@@ -28,7 +25,10 @@ export async function GET() {
     return NextResponse.json(entries)
   } catch (error) {
     console.error("Error fetching entries:", error)
-    return NextResponse.json({ error: "Error fetching entries" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Error fetching entries", details: String(error) },
+      { status: 500 }
+    )
   }
 }
 
@@ -68,6 +68,9 @@ export async function POST(request: Request) {
     return NextResponse.json(entry)
   } catch (error) {
     console.error("Error creating entry:", error)
-    return NextResponse.json({ error: "Error creating entry" }, { status: 500 })
+    return NextResponse.json(
+      { error: "Error creating entry", details: String(error) },
+      { status: 500 }
+    )
   }
 }
