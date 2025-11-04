@@ -1,4 +1,3 @@
-// components/Guestbook.tsx
 'use client';
 
 import { useSession, signIn, signOut } from "next-auth/react"
@@ -122,7 +121,7 @@ export default function Guestbook() {
           </div>
         ) : (
           <button
-            onClick={() => signIn("github")}
+            onClick={() => signIn("github", { callbackUrl: "/guestbook" })}
             className="flex items-center gap-2 px-6 py-3 bg-gray-900 dark:bg-gray-100 text-white dark:text-gray-900 rounded-lg font-medium hover:shadow-lg transition-shadow"
           >
             <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">

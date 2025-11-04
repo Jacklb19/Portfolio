@@ -50,6 +50,28 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Message too long" }, { status: 400 })
     }
 
+    // ✨ COMENTADA: Verifica si ya tiene un mensaje esta semana
+    /*
+    const oneWeekAgo = new Date(Date.now() - 7 * 24 * 60 * 60 * 1000)
+    
+    const recentEntry = await prisma.guestbookEntry.findFirst({
+      where: {
+        userId: session.user.id,
+        createdAt: {
+          gte: oneWeekAgo,
+        },
+      },
+    })
+
+    if (recentEntry) {
+      return NextResponse.json(
+        { error: "Solo puedes escribir un mensaje por semana" },
+        { status: 429 }
+      )
+    }
+    */
+
+    // Si pasó todas las validaciones, crea la entrada
     const entry = await prisma.guestbookEntry.create({
       data: {
         userId: session.user.id,
