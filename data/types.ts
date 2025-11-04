@@ -1,102 +1,102 @@
 export type SocialLink = {
-  label: string;
-  href: string;
-};
+  label: string
+  href: string
+}
 
 export type HeroSection = {
-  intro: string;
+  intro: string
   title: {
-    start: string;
-    highlight: string;
-    end: string;
-  };
-  subtitle: string;
-  socials: SocialLink[];
-};
+    start: string
+    highlight: string
+    end: string
+  }
+  subtitle: string
+  socials: SocialLink[]
+}
 
 export type Testimonial = {
-  id: number;
-  name: string;
-  title: string;
-  content: string;
-  image: string;
-};
+  id: number
+  name: string
+  title: string
+  content: string
+  image: string
+}
 
 export type TestimonialsSection = {
-  title: string;
-  subtitle: string;
-  testimonials: Testimonial[];
-};
+  title: string
+  subtitle: string
+  testimonials: Testimonial[]
+}
 
 export type AboutSection = {
-  title: string;
-  description: string;
+  title: string
+  description: string
   hobbies: {
-    title: string;
-    text: string;
-  };
+    title: string
+    text: string
+  }
   interests: {
-    title: string;
-    text: string;
-  };
+    title: string
+    text: string
+  }
   stack: {
-    title: string;
-    description: string;
-    button: string;
-  };
+    title: string
+    description: string
+    button: string
+  }
   projects: {
-    title: string;
-    description: string;
-    button: string;
-  };
-  testimonials: TestimonialsSection;
-};
+    title: string
+    description: string
+    button: string
+  }
+  testimonials: TestimonialsSection
+}
 
 export type ExperienceItem = {
-  id: number;
-  category: string;
-  title: string;
-  period: string;
-  technologies: string[];
-  description: string[];
-  image: string;
-};
+  id: number
+  category: string
+  title: string
+  period: string
+  technologies: string[]
+  description: string[]
+  image: string
+}
 
 export type ExperienceSection = {
-  title: string;
+  title: string
   intro: {
-    paragraph1: string;
-    paragraph2: string;
-  };
-  experiences: ExperienceItem[];
-};
+    paragraph1: string
+    paragraph2: string
+  }
+  experiences: ExperienceItem[]
+}
 
-export type Footer ={
-  title: string;
-  made: string;
+export type Footer = {
+  title: string
+  made: string
   by: string
 }
 
 export type ProjectItem = {
-  id: number;
-  name: string;
-  description: string;
-  status: "online" | "offline";
-  technologies: string[];
-  image: string;
-  link: string;
-};
+  id: number
+  name: string
+  description: string
+  status: "online" | "offline"
+  technologies: string[]
+  image: string
+  link: string
+}
 
 export type ProjectsSection = {
-  title: string;
-  filter:{
-    name: string;
-    option: string;
-  };
-  description: string;
-  button: string;
-  projects: ProjectItem[];
-};
+  title: string
+  filter: {
+    name: string
+    option: string
+  }
+  description: string
+  button: string
+  projects: ProjectItem[]
+}
 
 export type ContactSection = {
   title: string
@@ -129,28 +129,91 @@ export type ContactSection = {
     cta?: { label: string; href: string; download?: boolean }
   }
 }
+
 export type ChatbotSection = {
-  greeting: string;
-  placeholder: string;
-  systemPrompt: string;
-  errorMessage: string;
-  loadingText: string;
-  searchPlaceholder: string;
-  newSearch: string;
-    aiPrompt: string;
-  aiPromptSubtext: string;
-  resultsFound: string;
-  noResults: string;
-  
-};
+  greeting: string
+  placeholder: string
+  systemPrompt: string
+  errorMessage: string
+  loadingText: string
+  searchPlaceholder: string
+  newSearch: string
+  aiPrompt: string
+  aiPromptSubtext: string
+  resultsFound: string
+  noResults: string
+}
+
+export type GuestbookEntry = {
+  id: string
+  name: string
+  message: string
+  date: string
+  avatar?: string
+  isPinned?: boolean
+}
+
+export type GuestbookForm = {
+  labels: {
+    name: string
+    message: string
+  }
+  placeholders: {
+    name: string
+    message: string
+  }
+  submit: string
+  maxLength: number
+  validations: {
+    nameRequired: string
+    messageRequired: string
+    messageTooLong: string
+  }
+}
+
+export type GuestbookSection = {
+  title: string
+  subtitle: string
+  intro: string
+  emptyState: string
+  entriesLabel: string
+  latestLabel: string
+  pinnedLabel: string
+  form: GuestbookForm
+  feedback: {
+    successTitle: string
+    successBody: string
+    errorTitle: string
+    errorBody: string
+  }
+  pagination: {
+    loadMore: string
+    loading: string
+    end: string
+  }
+  moderation?: {
+    pending: string
+    rejected: string
+  }
+  auth: {
+    signInTitle: string
+    signInDescription: string
+    signInButton: string
+    signedInWith: string
+    signOut: string
+  }
+  characterCount: string
+  dateLocale: string
+}
 
 export type Dictionary = {
-  hero: HeroSection;
-  about: AboutSection;
-  experience: ExperienceSection;
-  projects: ProjectsSection;
-  contact: ContactSection;
-  footer: Footer;
-  switcher: { label: string; es: string; en: string };
-  chatbot: ChatbotSection;
-};
+  hero: HeroSection
+  about: AboutSection
+  experience: ExperienceSection
+  projects: ProjectsSection
+  contact: ContactSection
+  footer: Footer
+  switcher: { label: string; es: string; en: string }
+  chatbot: ChatbotSection
+  guestbook: GuestbookSection
+}

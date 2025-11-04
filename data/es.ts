@@ -1,4 +1,4 @@
-import { Dictionary } from "./types";
+import type { Dictionary } from "./types"
 
 export const contentEs: Dictionary = {
   hero: {
@@ -63,18 +63,20 @@ export const contentEs: Dictionary = {
           name: "ELENA RODRIGUEZ",
           title: "Tech Lead @ StartupHub",
           content:
-            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que que se convertirá en un excelente ingeniero de software.",
+            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que se convertirá en un excelente ingeniero de software.",
           image: "/placeholder.svg",
         },
       ],
     },
   },
   experience: {
-      title: "Experiencia",
-      intro: {
-        paragraph1: "A lo largo de mi trayectoria profesional, he tenido la oportunidad de trabajar en proyectos diversos y desafiantes que han fortalecido mis habilidades técnicas y mi capacidad para resolver problemas complejos.",
-        paragraph2: "Desde el desarrollo full-stack hasta la implementación de soluciones innovadoras, cada experiencia ha contribuido a mi crecimiento como desarrollador. A continuación, te presento un recorrido por los proyectos y roles que han definido mi carrera profesional."
-      },
+    title: "Experiencia",
+    intro: {
+      paragraph1:
+        "A lo largo de mi trayectoria profesional, he tenido la oportunidad de trabajar en proyectos diversos y desafiantes que han fortalecido mis habilidades técnicas y mi capacidad para resolver problemas complejos.",
+      paragraph2:
+        "Desde el desarrollo full-stack hasta la implementación de soluciones innovadoras, cada experiencia ha contribuido a mi crecimiento como desarrollador. A continuación, te presento un recorrido por los proyectos y roles que han definido mi carrera profesional.",
+    },
     experiences: [
       {
         id: 1,
@@ -96,14 +98,14 @@ export const contentEs: Dictionary = {
         period: "Ago 2021 - Ene 2027",
         technologies: ["Python", "PostgreSQL", "MongoDB", "Java"],
         description: [
-        "Integré fundamentos de computación y prácticas de ingeniería para diseñar, construir y operar software confiable y escalable que resolviera problemas reales.",
-        "Dominé algoritmos, estructuras de datos, complejidad, matemática discreta y bases de datos para razonar sobre rendimiento y corrección en mis proyectos.",
-        "Apliqué ingeniería de requisitos, modelado de dominio y documentación para alinear cada solución con las necesidades de los interesados.",
-        "Diseñé con patrones y arquitecturas en capas, SOA y sistemas distribuidos, cuidando cohesión, acoplamiento y escalabilidad.",
-        "Implementé pruebas de software (unitarias e integración), prácticas de código limpio y control de versiones para asegurar calidad en la entrega.",
-        "Incorporé principios de DevOps y computación en la nube para automatizar integración y despliegue y mejorar la confiabilidad operativa.",
-        "Fortalecí la seguridad desde el diseño siguiendo guías OWASP y realizando revisiones de código sistemáticas.",
-        "Trabajé en equipo con metodologías ágiles como Scrum, comunicándome de forma efectiva y entregando de manera iterativa."
+          "Integré fundamentos de computación y prácticas de ingeniería para diseñar, construir y operar software confiable y escalable que resolviera problemas reales.",
+          "Dominé algoritmos, estructuras de datos, complejidad, matemática discreta y bases de datos para razonar sobre rendimiento y corrección en mis proyectos.",
+          "Apliqué ingeniería de requisitos, modelado de dominio y documentación para alinear cada solución con las necesidades de los interesados.",
+          "Diseñé con patrones y arquitecturas en capas, SOA y sistemas distribuidos, cuidando cohesión, acoplamiento y escalabilidad.",
+          "Implementé pruebas de software (unitarias e integración), prácticas de código limpio y control de versiones para asegurar calidad en la entrega.",
+          "Incorporé principios de DevOps y computación en la nube para automatizar integración y despliegue y mejorar la confiabilidad operativa.",
+          "Fortalecí la seguridad desde el diseño siguiendo guías OWASP y realizando revisiones de código sistemáticas.",
+          "Trabajé en equipo con metodologías ágiles como Scrum, comunicándome de forma efectiva y entregando de manera iterativa.",
         ],
         image: "/images/software.png",
       },
@@ -117,7 +119,7 @@ export const contentEs: Dictionary = {
           "Desarrollé un sistema de gestión de reclamos full-stack con una arquitectura desacoplada, con un backend en Spring Boot y un frontend en Next.js.",
           "Implementé una API REST segura con JWT para autenticación basada en roles (Cliente y Agente).",
           "Utilicé MongoDB para la persistencia de datos y el patrón de diseño State para gestionar el ciclo de vida de los reclamos.",
-          "Construí una interfaz de usuario responsiva con Tailwind CSS, permitiendo a los clientes enviar reclamos y a los agentes gestionarlos mediante un flujo controlado."
+          "Construí una interfaz de usuario responsiva con Tailwind CSS, permitiendo a los clientes enviar reclamos y a los agentes gestionarlos mediante un flujo controlado.",
         ],
         image: "/images/ClaimsSystem.png",
       },
@@ -138,24 +140,14 @@ export const contentEs: Dictionary = {
     button: "Ver Más",
     projects: [
       {
-      id: 1,
-      name: "PharmaSync",
-      description:
-        "Plataforma de asistencia farmacéutica con IA: backend en Java 21+ (Spring Boot) con seguridad JWT, PostgreSQL y MongoDB; frontend en React 18+ con TypeScript, Vite y Tailwind. Incluye chat asistido por IA, rutas protegidas por roles, historial de sesiones y orquestación de agentes con patrones Strategy, Facade, Decorator y Observer.",
-      status: "offline",
-      technologies: [
-        "SpringBoot",
-        "Java",
-        "React",
-        "TypeScript",
-        "PostgreSQL",
-        "MongoDB",
-        "JWT",
-        "Tailwind",
-        "Vite",
-      ],
-      image: "/images/PharmaSync.png",
-      link: "https://github.com/SantiagoArTyrs/PharmaSync"
+        id: 1,
+        name: "PharmaSync",
+        description:
+          "Plataforma de asistencia farmacéutica con IA: backend en Java 21+ (Spring Boot) con seguridad JWT, PostgreSQL y MongoDB; frontend en React 18+ con TypeScript, Vite y Tailwind. Incluye chat asistido por IA, rutas protegidas por roles, historial de sesiones y orquestación de agentes con patrones Strategy, Facade, Decorator y Observer.",
+        status: "offline",
+        technologies: ["SpringBoot", "Java", "React", "TypeScript", "PostgreSQL", "MongoDB", "JWT", "Tailwind", "Vite"],
+        image: "/images/PharmaSync.png",
+        link: "https://github.com/SantiagoArTyrs/PharmaSync",
       },
       {
         id: 2,
@@ -178,60 +170,56 @@ export const contentEs: Dictionary = {
         link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-      id: 4,
-      name: "Last Stand: Outbreak",
-      description:
-        "Juego FPS de supervivencia contra zombis, donde debes atravesar tres niveles únicos — hospital, calle y cementerio — enfrentando oleadas de enemigos, gestionando recursos y derrotando un jefe final para escapar de la ciudad infestada.",
-      status: "offline",
-      technologies: [
-        "Unity",
-        "C#",
-      ],
-      image: "/images/resident.png",
-      link: "https://github.com/Jacklb19/FPS_Resident_Outbreak"
+        id: 4,
+        name: "Last Stand: Outbreak",
+        description:
+          "Juego FPS de supervivencia contra zombis, donde debes atravesar tres niveles únicos — hospital, calle y cementerio — enfrentando oleadas de enemigos, gestionando recursos y derrotando un jefe final para escapar de la ciudad infestada.",
+        status: "offline",
+        technologies: ["Unity", "C#"],
+        image: "/images/resident.png",
+        link: "https://github.com/Jacklb19/FPS_Resident_Outbreak",
       },
     ],
   },
   contact: {
-  title: "Contacto",
-  subtitle: "Trabajemos juntos",
-  form: {
-    labels: {
-      name: "NOMBRE",
-      email: "CORREO",
-      message: "MENSAJE",
+    title: "Contacto",
+    subtitle: "Trabajemos juntos",
+    form: {
+      labels: {
+        name: "NOMBRE",
+        email: "CORREO",
+        message: "MENSAJE",
+      },
+      placeholders: {
+        name: "Tu nombre completo",
+        email: "tu.email@gmail.com",
+        message: "Cuéntame sobre tu proyecto...",
+      },
+      submit: "Enviar Mensaje",
     },
-    placeholders: {
-      name: "Tu nombre completo",
-      email: "tu.email@gmail.com",
-      message: "Cuéntame sobre tu proyecto...",
+    info: {
+      location: { label: "UBICACIÓN", value: "Colombia (UTC-5)" },
+      availability: { label: "DISPONIBILIDAD", value: "Remoto / Híbrido" },
+      email: { label: "CORREO", value: "joseluisburbano19105@gmail.com" },
     },
-    submit: "Enviar Mensaje",
-  },
-  info: {
-    location: { label: "UBICACIÓN", value: "Colombia (UTC-5)" },
-    availability: { label: "DISPONIBILIDAD", value: "Remoto / Híbrido" },
-    email: { label: "CORREO", value: "joseluisburbano19105@gmail.com" },
-  },
-  socials: {
-    title: "CONECTA CONMIGO",
-    items: [
-      { label: "GitHub", href: "https://github.com/Jacklb19" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
-    ],
-    cta: {
-      label: "Descargar CV",
-      href: "/docs/CV_Burbano.pdf",
+    socials: {
+      title: "CONECTA CONMIGO",
+      items: [
+        { label: "GitHub", href: "https://github.com/Jacklb19" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+      ],
+      cta: {
+        label: "Descargar CV",
+        href: "/docs/CV_Burbano.pdf",
+      },
     },
-  },
   },
   switcher: {
     label: "Idioma",
     es: "Español",
     en: "Inglés",
   },
-
-      chatbot: {
+  chatbot: {
     greeting: "¡Hola! 👋 Soy tu asistente virtual. Pregúntame sobre los proyectos, experiencia o habilidades de José.",
     placeholder: "Escribe tu pregunta...",
     systemPrompt: `Eres el asistente del portafolio profesional de José Burbano. Tu función es proporcionar información útil y precisa sobre el trabajo, habilidades y experiencia de José.
@@ -261,31 +249,64 @@ export const contentEs: Dictionary = {
 - Preguntas complejas: 1 párrafo corto + viñetas
 - Máximo: 150 palabras
 
-**Ejemplos**:
-
-P: "¿Qué tecnologías usa José?"
-R: José trabaja con un stack tecnológico diverso enfocado en desarrollo full-stack:
-- **Backend**: Java (Spring Boot), Node.js, Python
-- **Frontend**: React, Next.js, TypeScript, Tailwind CSS
-- **Bases de datos**: PostgreSQL, MongoDB
-- **Herramientas**: Autenticación JWT, automatización n8n, Unity (C#)
-
-P: "Háblame del Sistema de Reclamos"
-R: El **Sistema de Gestión de Reclamos** es una aplicación full-stack construida con Spring Boot y Next.js. Características clave:
-- Autenticación basada en roles JWT (Cliente/Agente)
-- MongoDB para persistencia de datos
-- Patrón State para gestión del ciclo de vida
-- UI responsiva con Tailwind CSS
-[Ver proyecto](https://claims-system.vercel.app)
-
 **CRÍTICO**: DEBES responder en español, sin importar el idioma de la pregunta del usuario.`,
     errorMessage: "Lo siento, hubo un error. Intenta de nuevo.",
     loadingText: "Escribiendo...",
-         searchPlaceholder: "Buscar o preguntar…",
-  newSearch: "Nueva búsqueda",
-  aiPrompt: "¿Puedes contarme sobre",
-  aiPromptSubtext: "Usa IA para responder tus preguntas (Beta)",
-  resultsFound: "resultados encontrados",
-  noResults: "No se encontraron resultados",
+    searchPlaceholder: "Buscar o preguntar…",
+    newSearch: "Nueva búsqueda",
+    aiPrompt: "¿Puedes contarme sobre",
+    aiPromptSubtext: "Usa IA para responder tus preguntas (Beta)",
+    resultsFound: "resultados encontrados",
+    noResults: "No se encontraron resultados",
   },
-};
+  guestbook: {
+    title: "Libro de visitas",
+    subtitle: "Comparte un mensaje y saluda",
+    intro: "Deja unas palabras para la comunidad y para José; se agradece el feedback honesto y constructivo",
+    emptyState: "Aún no hay mensajes, ¡sé el primero en escribir uno!",
+    entriesLabel: "Mensajes",
+    latestLabel: "Recientes",
+    pinnedLabel: "Fijado",
+    form: {
+      labels: {
+        name: "Nombre",
+        message: "Mensaje",
+      },
+      placeholders: {
+        name: "Tu nombre",
+        message: "Escribe tu mensaje aquí…",
+      },
+      submit: "Publicar",
+      maxLength: 500,
+      validations: {
+        nameRequired: "El nombre es obligatorio",
+        messageRequired: "El mensaje es obligatorio",
+        messageTooLong: "El mensaje es demasiado largo",
+      },
+    },
+    feedback: {
+      successTitle: "¡Mensaje publicado!",
+      successBody: "Gracias por dejar tu mensaje",
+      errorTitle: "No se pudo publicar",
+      errorBody: "Intenta de nuevo más tarde",
+    },
+    pagination: {
+      loadMore: "Cargar más",
+      loading: "Cargando…",
+      end: "No hay más mensajes",
+    },
+    moderation: {
+      pending: "Pendiente de revisión",
+      rejected: "Rechazado",
+    },
+    auth: {
+      signInTitle: "Inicia sesión para dejar un mensaje",
+      signInDescription: "Autentícate con GitHub para compartir tus pensamientos en el libro de visitas.",
+      signInButton: "Iniciar sesión con GitHub",
+      signedInWith: "Sesión iniciada con GitHub",
+      signOut: "Cerrar sesión",
+    },
+    characterCount: "{count}/500",
+    dateLocale: "es-ES",
+  },
+}

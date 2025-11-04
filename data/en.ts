@@ -1,4 +1,4 @@
-import { Dictionary } from "./types";
+import type { Dictionary } from "./types"
 
 export const contentEn: Dictionary = {
   hero: {
@@ -10,7 +10,7 @@ export const contentEn: Dictionary = {
     },
     subtitle: "Software Engineer",
     socials: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/"},
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
       { label: "GitHub", href: "https://github.com/Jacklb19" },
       { label: "Email", href: "mailto:joseluisburbano19105@gmail.com" },
       { label: "CV", href: "/docs/CV_Burbano.pdf" },
@@ -70,11 +70,13 @@ export const contentEn: Dictionary = {
     },
   },
   experience: {
-      title: "Experience",
-      intro: {
-        paragraph1: "Throughout my professional journey, I have had the opportunity to work on diverse and challenging projects that have strengthened my technical skills and ability to solve complex problems.",
-        paragraph2: "From full-stack development to implementing innovative solutions, each experience has contributed to my growth as a developer. Below, I present a journey through the projects and roles that have defined my professional career."
-      },
+    title: "Experience",
+    intro: {
+      paragraph1:
+        "Throughout my professional journey, I have had the opportunity to work on diverse and challenging projects that have strengthened my technical skills and ability to solve complex problems.",
+      paragraph2:
+        "From full-stack development to implementing innovative solutions, each experience has contributed to my growth as a developer. Below, I present a journey through the projects and roles that have defined my professional career.",
+    },
     experiences: [
       {
         id: 1,
@@ -103,7 +105,7 @@ export const contentEn: Dictionary = {
           "I implemented software testing (unit and integration), clean code practices, and version control to ensure delivery quality.",
           "I incorporated DevOps principles and cloud computing to automate integration and deployment and improve operational reliability.",
           "I embedded security from design by following OWASP guidelines and performing systematic code reviews.",
-          "I collaborated in teams with Agile/Scrum, communicating effectively and delivering iteratively."
+          "I collaborated in teams with Agile/Scrum, communicating effectively and delivering iteratively.",
         ],
         image: "/images/software.png",
       },
@@ -117,7 +119,7 @@ export const contentEn: Dictionary = {
           "Developed a full-stack claims management system with a decoupled architecture, featuring a Spring Boot backend and a Next.js frontend.",
           "Implemented a secure REST API with JWT for role-based authentication (Client and Agent).",
           "Used MongoDB for data persistence and the State design pattern to manage the claim lifecycle.",
-          "Built a responsive UI with Tailwind CSS, allowing clients to submit claims and agents to manage them through a controlled workflow."
+          "Built a responsive UI with Tailwind CSS, allowing clients to submit claims and agents to manage them through a controlled workflow.",
         ],
         image: "/images/ClaimsSystem.png",
       },
@@ -138,24 +140,14 @@ export const contentEn: Dictionary = {
     button: "View More",
     projects: [
       {
-      id: 1,
-      name: "PharmaSync",
-      description:
-        "AI-powered pharmaceutical assistance platform: Java 21+ Spring Boot backend with JWT security, PostgreSQL and MongoDB; React 18+ TypeScript frontend with Vite and Tailwind. Features AI-assisted chat, role-based protected routing, session history, and agent orchestration using Strategy, Facade, Decorator, and Observer patterns.",
-      status: "offline",
-      technologies: [
-        "SpringBoot",
-        "Java",
-        "React",
-        "TypeScript",
-        "PostgreSQL",
-        "MongoDB",
-        "JWT",
-        "Tailwind",
-        "Vite",
-      ],
-      image: "/images/PharmaSync.png",
-      link: "https://github.com/SantiagoArTyrs/PharmaSync"
+        id: 1,
+        name: "PharmaSync",
+        description:
+          "AI-powered pharmaceutical assistance platform: Java 21+ Spring Boot backend with JWT security, PostgreSQL and MongoDB; React 18+ TypeScript frontend with Vite and Tailwind. Features AI-assisted chat, role-based protected routing, session history, and agent orchestration using Strategy, Facade, Decorator, and Observer patterns.",
+        status: "offline",
+        technologies: ["SpringBoot", "Java", "React", "TypeScript", "PostgreSQL", "MongoDB", "JWT", "Tailwind", "Vite"],
+        image: "/images/PharmaSync.png",
+        link: "https://github.com/SantiagoArTyrs/PharmaSync",
       },
       {
         id: 2,
@@ -178,61 +170,56 @@ export const contentEn: Dictionary = {
         link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-      id: 4,
-      name: "Last Stand: Outbreak",
-      description:
-        "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
-      status: "offline",
-      technologies: [
-        "Unity",
-        "C#",
-
-      ],
-      image: "/images/resident.png",
-      link: "https://github.com/Jacklb19/FPS_Resident_Outbreak"
+        id: 4,
+        name: "Last Stand: Outbreak",
+        description:
+          "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
+        status: "offline",
+        technologies: ["Unity", "C#"],
+        image: "/images/resident.png",
+        link: "https://github.com/Jacklb19/FPS_Resident_Outbreak",
       },
     ],
   },
   contact: {
-  title: "Contact",
-  subtitle: "Let's work together",
-  form: {
-    labels: {
-      name: "NAME",
-      email: "EMAIL",
-      message: "MESSAGE",
+    title: "Contact",
+    subtitle: "Let's work together",
+    form: {
+      labels: {
+        name: "NAME",
+        email: "EMAIL",
+        message: "MESSAGE",
+      },
+      placeholders: {
+        name: "Your full name",
+        email: "your.email@gmail.com",
+        message: "Tell me about your project...",
+      },
+      submit: "Send Message",
     },
-    placeholders: {
-      name: "Your full name",
-      email: "your.email@gmail.com",
-      message: "Tell me about your project...",
+    info: {
+      location: { label: "LOCATION", value: "Colombia (UTC-5)" },
+      availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
+      email: { label: "EMAIL", value: "joseluisburbano19105@gmail.com" },
     },
-    submit: "Send Message",
-  },
-  info: {
-    location: { label: "LOCATION", value: "Colombia (UTC-5)" },
-    availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
-    email: { label: "EMAIL", value: "joseluisburbano19105@gmail.com" },
-  },
-  socials: {
-    title: "CONNECT WITH ME",
-    items: [
-      { label: "GitHub", href: "https://github.com/Jacklb19" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
-    ],
-    cta: {
-      label: "Download CV",
-      href: "/docs/CV_Burbano.pdf",
+    socials: {
+      title: "CONNECT WITH ME",
+      items: [
+        { label: "GitHub", href: "https://github.com/Jacklb19" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+      ],
+      cta: {
+        label: "Download CV",
+        href: "/docs/CV_Burbano.pdf",
+      },
     },
-  },
   },
   switcher: {
     label: "Language",
     es: "Spanish",
     en: "English",
   },
-
-      chatbot: {
+  chatbot: {
     greeting: "Hi! 👋 I'm your virtual assistant. Ask me about Jose's projects, experience, or skills.",
     placeholder: "Type your question...",
     systemPrompt: `You are Jose Burbano's professional portfolio assistant. Your role is to provide helpful, accurate information about Jose's work, skills, and experience.
@@ -262,32 +249,64 @@ export const contentEn: Dictionary = {
 - Complex questions: 1 short paragraph + bullet points
 - Maximum: 150 words
 
-**Examples**:
-
-Q: "What technologies does Jose use?"
-A: Jose works with a diverse tech stack focused on full-stack development:
-- **Backend**: Java (Spring Boot), Node.js, Python
-- **Frontend**: React, Next.js, TypeScript, Tailwind CSS
-- **Databases**: PostgreSQL, MongoDB
-- **Tools**: JWT authentication, n8n automation, Unity (C#)
-
-Q: "Tell me about the Claims System"
-A: The **Claims Management System** is a full-stack application built with Spring Boot and Next.js. Key features include:
-- JWT-based role authentication (Client/Agent)
-- MongoDB for data persistence
-- State pattern for claim lifecycle management
-- Responsive UI with Tailwind CSS
-[View project](https://claims-system.vercel.app)
-
 **CRITICAL**: You MUST respond in English, regardless of the user's question language.`,
-
     errorMessage: "Sorry, there was an error. Please try again.",
     loadingText: "Typing...",
-     searchPlaceholder: "Search or ask…", 
-  newSearch: "New search", 
-  aiPrompt: "Can you tell me about", 
-  aiPromptSubtext: "Use AI to answer your questions (Beta)", 
-  resultsFound: "results found", 
-  noResults: "No results found", 
+    searchPlaceholder: "Search or ask…",
+    newSearch: "New search",
+    aiPrompt: "Can you tell me about",
+    aiPromptSubtext: "Use AI to answer your questions (Beta)",
+    resultsFound: "results found",
+    noResults: "No results found",
   },
-};
+  guestbook: {
+    title: "Guestbook",
+    subtitle: "Share a message and say hi",
+    intro: "Leave a few words for the community and for Jose; honest, constructive feedback is welcome",
+    emptyState: "No messages yet — be the first to write one!",
+    entriesLabel: "Messages",
+    latestLabel: "Latest",
+    pinnedLabel: "Pinned",
+    form: {
+      labels: {
+        name: "Name",
+        message: "Message",
+      },
+      placeholders: {
+        name: "Your name",
+        message: "Write your message here…",
+      },
+      submit: "Post",
+      maxLength: 500,
+      validations: {
+        nameRequired: "Name is required",
+        messageRequired: "Message is required",
+        messageTooLong: "Message is too long",
+      },
+    },
+    feedback: {
+      successTitle: "Message posted!",
+      successBody: "Thanks for leaving a message",
+      errorTitle: "Could not post",
+      errorBody: "Please try again later",
+    },
+    pagination: {
+      loadMore: "Load more",
+      loading: "Loading…",
+      end: "No more messages",
+    },
+    moderation: {
+      pending: "Pending review",
+      rejected: "Rejected",
+    },
+    auth: {
+      signInTitle: "Sign in to leave a message",
+      signInDescription: "Authenticate with GitHub to share your thoughts in the guestbook.",
+      signInButton: "Sign in with GitHub",
+      signedInWith: "Signed in with GitHub",
+      signOut: "Sign out",
+    },
+    characterCount: "{count}/500",
+    dateLocale: "en-US",
+  },
+}
