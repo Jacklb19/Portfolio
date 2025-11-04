@@ -14,6 +14,7 @@ import {
   ChevronRight,
   ChevronLeft,
   Search,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsModal } from "@/components/settings-modal";
@@ -81,6 +82,7 @@ export function Sidebar({
     { icon: Briefcase, label: t("experience"), id: "experience" },
     { icon: FolderOpen, label: t("projects"), id: "projects" },
     { icon: Mail, label: t("contact"), id: "contact" },
+    { icon: BookOpen, label: t("Guestbook"), id: "guestbook" },
   ];
 
   const externalLinks = [
