@@ -82,7 +82,6 @@ export function Sidebar({
     { icon: Briefcase, label: t("experience"), id: "experience" },
     { icon: FolderOpen, label: t("projects"), id: "projects" },
     { icon: Mail, label: t("contact"), id: "contact" },
-    { icon: BookOpen, label: t("Guestbook"), id: "guestbook" },
   ];
 
   const externalLinks = [
@@ -177,7 +176,9 @@ export function Sidebar({
                 return button;
               })}
 
-              <div className="pt-4 border-t border-border mt-4">
+              {/* Don't Click and Guestbook Section */}
+              <div className="pt-4 border-t border-border mt-4 space-y-1">
+                {/* Don't Click Button */}
                 {(() => {
                   const dontClickButton = (
                     <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-destructive transition-all hover:bg-destructive/10 group">
@@ -205,8 +206,44 @@ export function Sidebar({
 
                   return dontClickButton;
                 })()}
+
+                {/* Guestbook Button */}
+                {(() => {
+                  const guestbookButton = (
+                    <button
+                      onClick={() => onSectionChange("guestbook")}
+                      className={cn(
+                        "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
+                        activeSection === "guestbook"
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                      )}
+                    >
+                      <BookOpen className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
+                      {isExpanded && (
+                        <span className="text-sm font-medium">
+                          {t("Guestbook")}
+                        </span>
+                      )}
+                    </button>
+                  );
+
+                  if (!isExpanded) {
+                    return (
+                      <Tooltip>
+                        <TooltipTrigger asChild>{guestbookButton}</TooltipTrigger>
+                        <TooltipContent side="right">
+                          <p>{t("Guestbook")}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  }
+
+                  return guestbookButton;
+                })()}
               </div>
 
+              {/* External Links Section */}
               <div className="pt-4 border-t border-border mt-4">
                 {externalLinks.map((item) => {
                   const link = (
