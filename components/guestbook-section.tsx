@@ -1,7 +1,6 @@
 "use client"
 
 import type React from "react"
-
 import { useSession, signIn, signOut } from "next-auth/react"
 import { useState, useEffect } from "react"
 import Image from "next/image"
@@ -28,7 +27,7 @@ export function GuestbookSection({ content }: GuestbookSectionProps) {
   const { data: session } = useSession()
   const [message, setMessage] = useState("")
   const [entries, setEntries] = useState<GuestbookEntry[]>([])
-  const [isLoading, setIsLoading] = useState(false)
+  const [isLoading, setIsLoading] = useState(true) // Cambiar a true
   const [isSubmitting, setIsSubmitting] = useState(false)
 
   const formatCharacterCount = (tpl: string, count: number, max: number) =>
@@ -171,7 +170,7 @@ export function GuestbookSection({ content }: GuestbookSectionProps) {
 
           {isLoading ? (
             <div className="rounded-2xl sm:rounded-3xl bg-card border border-border p-12 text-center">
-              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent"></div>
+              <div className="inline-block h-8 w-8 animate-spin rounded-full border-4 border-solid border-primary border-r-transparent" style={{ animationDuration: "0.6s" }}></div>
               <p className="text-muted-foreground mt-4">{content.pagination.loading}</p>
             </div>
           ) : entries.length === 0 ? (
