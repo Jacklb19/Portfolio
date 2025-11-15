@@ -301,8 +301,8 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     </div>
                   </div>
                 </div>
-
-                {/* Fun Section */}
+      {/*
+                {/* Fun Section 
                 <div>
                   <div className="flex items-center gap-2 sm:gap-3 mb-3 sm:mb-4">
                     <Sparkles className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
@@ -337,8 +337,9 @@ export function SettingsModal({ isOpen, onClose }: SettingsModalProps) {
                     </div>
                   </div>
                 </div>
+                */}
               </div>
-
+      
               {/* Footer */}
               <div className="sticky bottom-0 bg-card border-t border-border px-4 sm:px-6 lg:px-8 py-4 sm:py-6 flex justify-end gap-2 sm:gap-3">
                 <Button
