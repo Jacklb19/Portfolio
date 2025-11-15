@@ -1,4 +1,4 @@
-import { Dictionary } from "./types";
+import type { Dictionary } from "./types"
 
 export const contentEn: Dictionary = {
   hero: {
@@ -10,7 +10,7 @@ export const contentEn: Dictionary = {
     },
     subtitle: "Software Engineer",
     socials: [
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/"},
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
       { label: "GitHub", href: "https://github.com/Jacklb19" },
       { label: "Email", href: "mailto:joseluisburbano19105@gmail.com" },
       { label: "CV", href: "/docs/CV_Burbano.pdf" },
@@ -48,7 +48,7 @@ export const contentEn: Dictionary = {
           title: "Senior Developer @ TechCorp",
           content:
             "Jose is a highly motivated aspiring software engineer with a natural curiosity and passion for learning. He stands out for his ability to quickly grasp new concepts and apply them in real projects. His dedication to clean code and scalable architecture is impressive for someone early in their development journey.",
-          image: "/images/testimonial-1.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 2,
@@ -56,7 +56,7 @@ export const contentEn: Dictionary = {
           title: "Product Manager @ InnovateLab",
           content:
             "Working with Jose has been inspiring. His passion for programming goes beyond just writing code — he genuinely cares about understanding the problem and delivering thoughtful solutions. His creativity and commitment to every project make him a valuable team member.",
-          image: "/images/testimonial-2.jpg",
+          image: "/placeholder.svg",
         },
         {
           id: 3,
@@ -64,17 +64,19 @@ export const contentEn: Dictionary = {
           title: "Tech Lead @ StartupHub",
           content:
             "Jose demonstrates exceptional problem-solving skills and a strong foundation in software engineering principles. His enthusiasm for learning new technologies and his dedication to best practices make him stand out. I have no doubt he will become an excellent software engineer.",
-          image: "/images/testimonial-3.jpg",
+          image: "/placeholder.svg",
         },
       ],
     },
   },
   experience: {
-      title: "Experience",
-      intro: {
-        paragraph1: "Throughout my professional journey, I have had the opportunity to work on diverse and challenging projects that have strengthened my technical skills and ability to solve complex problems.",
-        paragraph2: "From full-stack development to implementing innovative solutions, each experience has contributed to my growth as a developer. Below, I present a journey through the projects and roles that have defined my professional career."
-      },
+    title: "Experience",
+    intro: {
+      paragraph1:
+        "Throughout my professional journey, I have had the opportunity to work on diverse and challenging projects that have strengthened my technical skills and ability to solve complex problems.",
+      paragraph2:
+        "From full-stack development to implementing innovative solutions, each experience has contributed to my growth as a developer. Below, I present a journey through the projects and roles that have defined my professional career.",
+    },
     experiences: [
       {
         id: 1,
@@ -103,7 +105,7 @@ export const contentEn: Dictionary = {
           "I implemented software testing (unit and integration), clean code practices, and version control to ensure delivery quality.",
           "I incorporated DevOps principles and cloud computing to automate integration and deployment and improve operational reliability.",
           "I embedded security from design by following OWASP guidelines and performing systematic code reviews.",
-          "I collaborated in teams with Agile/Scrum, communicating effectively and delivering iteratively."
+          "I collaborated in teams with Agile/Scrum, communicating effectively and delivering iteratively.",
         ],
         image: "/images/software.png",
       },
@@ -117,7 +119,7 @@ export const contentEn: Dictionary = {
           "Developed a full-stack claims management system with a decoupled architecture, featuring a Spring Boot backend and a Next.js frontend.",
           "Implemented a secure REST API with JWT for role-based authentication (Client and Agent).",
           "Used MongoDB for data persistence and the State design pattern to manage the claim lifecycle.",
-          "Built a responsive UI with Tailwind CSS, allowing clients to submit claims and agents to manage them through a controlled workflow."
+          "Built a responsive UI with Tailwind CSS, allowing clients to submit claims and agents to manage them through a controlled workflow.",
         ],
         image: "/images/ClaimsSystem.png",
       },
@@ -138,24 +140,14 @@ export const contentEn: Dictionary = {
     button: "View More",
     projects: [
       {
-      id: 1,
-      name: "PharmaSync",
-      description:
-        "AI-powered pharmaceutical assistance platform: Java 21+ Spring Boot backend with JWT security, PostgreSQL and MongoDB; React 18+ TypeScript frontend with Vite and Tailwind. Features AI-assisted chat, role-based protected routing, session history, and agent orchestration using Strategy, Facade, Decorator, and Observer patterns.",
-      status: "offline",
-      technologies: [
-        "SpringBoot",
-        "Java",
-        "React",
-        "TypeScript",
-        "PostgreSQL",
-        "MongoDB",
-        "JWT",
-        "Tailwind",
-        "Vite",
-      ],
-      image: "/images/PharmaSync.png",
-      link: "https://github.com/SantiagoArTyrs/PharmaSync"
+        id: 1,
+        name: "PharmaSync",
+        description:
+          "AI-powered pharmaceutical assistance platform: Java 21+ Spring Boot backend with JWT security, PostgreSQL and MongoDB; React 18+ TypeScript frontend with Vite and Tailwind. Features AI-assisted chat, role-based protected routing, session history, and agent orchestration using Strategy, Facade, Decorator, and Observer patterns.",
+        status: "offline",
+        technologies: ["SpringBoot", "Java", "React", "TypeScript", "PostgreSQL", "MongoDB", "JWT", "Tailwind", "Vite"],
+        image: "/images/PharmaSync.png",
+        link: "https://github.com/SantiagoArTyrs/PharmaSync",
       },
       {
         id: 2,
@@ -178,57 +170,143 @@ export const contentEn: Dictionary = {
         link: "https://github.com/Jacklb19/Mino-Music-Player.git",
       },
       {
-      id: 2,
-      name: "Last Stand: Outbreak",
-      description:
-        "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
-      status: "offline",
-      technologies: [
-        "Unity",
-        "C#",
-
-      ],
-      image: "/images/resident.png",
-      link: "https://github.com/Jacklb19/FPS_Resident_Outbreak"
+        id: 4,
+        name: "Last Stand: Outbreak",
+        description:
+          "Zombie survival FPS game, where you cross three unique zones — hospital, urban street, and cemetery — battling enemy waves, managing resources, and defeating a final boss to escape the infected city.",
+        status: "offline",
+        technologies: ["Unity", "C#"],
+        image: "/images/resident.png",
+        link: "https://github.com/Jacklb19/FPS_Resident_Outbreak",
       },
     ],
   },
   contact: {
-  title: "CONTACT",
-  subtitle: "Let's work together",
-  form: {
-    labels: {
-      name: "NAME",
-      email: "EMAIL",
-      message: "MESSAGE",
+    title: "Contact",
+    subtitle: "Let's work together",
+    form: {
+      labels: {
+        name: "NAME",
+        email: "EMAIL",
+        message: "MESSAGE",
+      },
+      placeholders: {
+        name: "Your full name",
+        email: "your.email@gmail.com",
+        message: "Tell me about your project...",
+      },
+      submit: "Send Message",
     },
-    placeholders: {
-      name: "Your full name",
-      email: "your.email@gmail.com",
-      message: "Tell me about your project...",
+    info: {
+      location: { label: "LOCATION", value: "Colombia (UTC-5)" },
+      availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
+      email: { label: "EMAIL", value: "joseluisburbano19105@gmail.com" },
     },
-    submit: "Send Message",
-  },
-  info: {
-    location: { label: "LOCATION", value: "Colombia (UTC-5)" },
-    availability: { label: "AVAILABILITY", value: "Remote / Hybrid" },
-    email: { label: "EMAIL", value: "joseluisburbano19105@gmail.com" },
-  },
-  socials: {
-    title: "CONNECT WITH ME",
-    items: [
-      { label: "GitHub", href: "https://github.com/Jacklb19" },
-      { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
-    ],
-    cta: {
-      label: "Download CV",
-      href: "/docs/CV_Burbano.pdf",
+    socials: {
+      title: "CONNECT WITH ME",
+      items: [
+        { label: "GitHub", href: "https://github.com/Jacklb19" },
+        { label: "LinkedIn", href: "https://www.linkedin.com/in/jose-luis-burbano-buchelly-a1313834a/" },
+      ],
+      cta: {
+        label: "Download CV",
+        href: "/docs/CV_Burbano.pdf",
+      },
     },
-  },
   },
   switcher: {
     label: "Language",
     es: "Spanish",
     en: "English",
   },
-};
+  chatbot: {
+    greeting: "Hi! 👋 I'm your virtual assistant. Ask me about Jose's projects, experience, or skills.",
+    placeholder: "Type your question...",
+    systemPrompt: `You are Jose Burbano's professional portfolio assistant. Your role is to provide helpful, accurate information about Jose's work, skills, and experience.
+
+## Response Guidelines
+
+**Structure**: 
+- Start with a direct answer to the question
+- Use bullet points for lists of 3+ items
+- Keep paragraphs short (2-3 sentences max)
+- Use markdown formatting: **bold** for emphasis, \`code\` for technologies
+
+**Tone**:
+- Professional yet approachable
+- Confident but not arrogant
+- Enthusiastic about technologies and projects
+
+**Content Rules**:
+- Only discuss information from the portfolio context
+- If asked about unavailable info, say: "I don't have that specific information in the portfolio, but I can tell you about [related topic]"
+- When mentioning technologies, link them to specific projects
+- For project questions, include: name, technologies used, key features
+- For experience questions, highlight: role, duration, main achievements
+
+**Response Length**:
+- Simple questions: 2-3 sentences
+- Complex questions: 1 short paragraph + bullet points
+- Maximum: 150 words
+
+**CRITICAL**: You MUST respond in English, regardless of the user's question language.`,
+    errorMessage: "Sorry, there was an error. Please try again.",
+    loadingText: "Typing...",
+    searchPlaceholder: "Search or ask…",
+    newSearch: "New search",
+    aiPrompt: "Can you tell me about",
+    aiPromptSubtext: "Use AI to answer your questions (Beta)",
+    resultsFound: "results found",
+    noResults: "No results found",
+  },
+  guestbook: {
+    title: "Guestbook",
+    subtitle: "Share a message and say hi",
+    intro: "Leave a few words for the community and for Jose; honest, constructive feedback is welcome",
+    emptyState: "No messages yet — be the first to write one!",
+    entriesLabel: "Messages",
+    latestLabel: "Latest",
+    pinnedLabel: "Pinned",
+    form: {
+      labels: {
+        name: "Name",
+        message: "Message",
+      },
+      placeholders: {
+        name: "Your name",
+        message: "Write your message here…",
+      },
+      submit: "Post",
+      maxLength: 500,
+      validations: {
+        nameRequired: "Name is required",
+        messageRequired: "Message is required",
+        messageTooLong: "Message is too long",
+      },
+    },
+    feedback: {
+      successTitle: "Message posted!",
+      successBody: "Thanks for leaving a message",
+      errorTitle: "Could not post",
+      errorBody: "Please try again later",
+    },
+    pagination: {
+      loadMore: "Load more",
+      loading: "Loading…",
+      end: "No more messages",
+    },
+    moderation: {
+      pending: "Pending review",
+      rejected: "Rejected",
+    },
+    auth: {
+      signInTitle: "Sign in to leave a message",
+      signInDescription: "Authenticate with GitHub to share your thoughts in the guestbook.",
+      signInButton: "Sign in with GitHub",
+      signedInWith: "Signed in with GitHub",
+      signOut: "Sign out",
+    },
+    characterCount: "{count}/500",
+    dateLocale: "en-US",
+  },
+}

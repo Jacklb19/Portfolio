@@ -1,53 +1,51 @@
-"use client";
+"use client"
 
-import { useState, useMemo, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
-import { Sidebar } from "@/components/sidebar";
-import { BottomNav } from "@/components/bottom-nav";
-import { HeroSection } from "@/components/hero-section";
-import { AboutSection } from "@/components/about-section";
-import { ExperienceSection } from "@/components/experience-section";
-import { Footer } from "@/components/footer";
-import { useDictionary } from "@/data/use-dictionary";
-import { ProjectsSection } from "@/components/projects-section";
-import { ContactSection } from "@/components/contact-section";
-import { usePreferences } from "@/lib/preferences-context";
+import { useState, useMemo, useEffect } from "react"
+import { AnimatePresence, motion } from "framer-motion"
+import { Sidebar } from "@/components/sidebar"
+import { BottomNav } from "@/components/bottom-nav"
+import { MobileHeader } from "@/components/mobil-header"
+import { HeroSection } from "@/components/hero-section"
+import { AboutSection } from "@/components/about-section"
+import { ExperienceSection } from "@/components/experience-section"
+import { Footer } from "@/components/footer"
+import { useDictionary } from "@/data/use-dictionary"
+import { ProjectsSection } from "@/components/projects-section"
+import { ContactSection } from "@/components/contact-section"
+import { usePreferences } from "@/lib/preferences-context"
+import { GuestbookSection } from "@/components/guestbook-section"
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("home");
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
-  const { dictionary, loading } = useDictionary();
-  const { preferences } = usePreferences();
-  const animationsOn = preferences.animationsEnabled;
+  const [activeSection, setActiveSection] = useState("home")
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false)
+  const { dictionary, loading } = useDictionary()
+  const { preferences } = usePreferences()
+  const animationsOn = preferences.animationsEnabled
 
   const projectsPreview = useMemo(() => {
-    if (!dictionary?.projects?.projects) return [];
-    return dictionary.projects.projects.slice(0, 6);
-  }, [dictionary]);
+    if (!dictionary?.projects?.projects) return []
+    return dictionary.projects.projects.slice(0, 6)
+  }, [dictionary])
 
-  /* Resetear pagina cada q se cambia 
+  // Resetear pagina cada q se cambia
   useEffect(() => {
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
-    });
-  }, [activeSection]);*/
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" })
+    })
+  }, [activeSection])
 
   if (loading || !dictionary) {
-    return (
-      <div className="flex items-center justify-center min-h-screen text-muted-foreground">
-        Cargando...
-      </div>
-    );
+    return <div className="flex items-center justify-center min-h-screen text-muted-foreground">Cargando...</div>
   }
 
   const handleNavigateToProjects = () => {
-    setActiveSection("projects");
-  };
+    setActiveSection("projects")
+  }
 
   const renderActiveSection = () => {
     switch (activeSection) {
       case "home":
-        return <HeroSection content={dictionary.hero} />;
+        return <HeroSection content={dictionary.hero} />
       case "about":
         return (
           <AboutSection
@@ -55,22 +53,26 @@ export default function Home() {
             onNavigateToProjects={handleNavigateToProjects}
             projectsPreview={projectsPreview}
           />
-        );
+        )
       case "experience":
-        return <ExperienceSection content={dictionary.experience} />;
+        return <ExperienceSection content={dictionary.experience} />
       case "projects":
-        return <ProjectsSection content={dictionary.projects} />;
+        return <ProjectsSection content={dictionary.projects} />
       case "contact":
-        return <ContactSection content={dictionary.contact} />;
+        return <ContactSection content={dictionary.contact} />
+      case "guestbook":
+        return <GuestbookSection content={dictionary.guestbook}/>
       default:
-        return <HeroSection content={dictionary.hero} />;
+        return <HeroSection content={dictionary.hero} />
     }
-  };
+  }
 
-  const shouldShowFooter = activeSection !== "home";
+  const shouldShowFooter = activeSection !== "home"
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
+      <MobileHeader onNavigate={setActiveSection} />
+
       <Sidebar
         activeSection={activeSection}
         onSectionChange={setActiveSection}
@@ -105,10 +107,7 @@ export default function Home() {
         {shouldShowFooter && <Footer content={dictionary.footer} />}
       </main>
 
-      <BottomNav
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
-      />
+      <BottomNav activeSection={activeSection} onSectionChange={setActiveSection} />
     </div>
-  );
+  )
 }

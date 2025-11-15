@@ -13,9 +13,12 @@ import {
   AlertTriangle,
   ChevronRight,
   ChevronLeft,
+  Search,
+  BookOpen,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsModal } from "@/components/settings-modal";
+import { SearchModal } from "@/components/search-model";
 import { usePreferences, useTranslation } from "@/lib/preferences-context";
 import {
   Tooltip,
@@ -38,6 +41,7 @@ export function Sidebar({
   onToggleExpand,
 }: SidebarProps) {
   const [showSettings, setShowSettings] = useState(false);
+  const [showSearch, setShowSearch] = useState(false);
   const { preferences } = usePreferences();
   const { t } = useTranslation();
 
@@ -48,20 +52,29 @@ export function Sidebar({
 
     if (!sidebarElement) return;
 
-    // Al pasar el mouse, expandir
     const handleMouseEnter = () => onToggleExpand(true);
-    // Al quitar el mouse, cerrar
     const handleMouseLeave = () => onToggleExpand(false);
 
     sidebarElement.addEventListener("mouseenter", handleMouseEnter);
     sidebarElement.addEventListener("mouseleave", handleMouseLeave);
 
-    // Limpieza al desmontar
     return () => {
       sidebarElement.removeEventListener("mouseenter", handleMouseEnter);
       sidebarElement.removeEventListener("mouseleave", handleMouseLeave);
     };
   }, [preferences.sidebarAutoExpand, onToggleExpand]);
+
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if ((e.ctrlKey || e.metaKey) && e.key === "l") {
+        e.preventDefault();
+        setShowSearch(true);
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
 
   const navItems = [
     { icon: Home, label: t("home"), id: "home" },
@@ -128,14 +141,15 @@ export function Sidebar({
               </div>
             </div>
 
-            <nav className="flex-1 space-y-1 p-4">
+            <nav className="flex-1 overflow-y-auto overflow-x-hidden space-y-1 p-4">
+              {/* Main navigation items */}
               {navItems.map((item) => {
                 const button = (
                   <button
                     key={item.id}
                     onClick={() => onSectionChange(item.id)}
                     className={cn(
-                      "flex w-full items-center gap-3 rounded-xl px-3.5  py-3 transition-all group",
+                      "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
                       activeSection === item.id
                         ? "bg-primary text-primary-foreground"
                         : "text-muted-foreground hover:bg-secondary hover:text-foreground"
@@ -148,7 +162,6 @@ export function Sidebar({
                   </button>
                 );
 
-                
                 if (!isExpanded) {
                   return (
                     <Tooltip key={item.id}>
@@ -163,6 +176,74 @@ export function Sidebar({
                 return button;
               })}
 
+              {/* Don't Click and Guestbook Section */}
+              <div className="pt-4 border-t border-border mt-4 space-y-1">
+                {/* Don't Click Button */}
+                {(() => {
+                  const dontClickButton = (
+                    <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-destructive transition-all hover:bg-destructive/10 group">
+                      <AlertTriangle className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
+                      {isExpanded && (
+                        <span className="text-sm font-medium">
+                          Don&apos;t Click
+                        </span>
+                      )}
+                    </button>
+                  );
+
+                  if (!isExpanded) {
+                    return (
+                      <Tooltip>
+                        <TooltipTrigger asChild>
+                          {dontClickButton}
+                        </TooltipTrigger>
+                        <TooltipContent side="right">
+                          <p>Don&apos;t Click</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  }
+
+                  return dontClickButton;
+                })()}
+
+                {/* Guestbook Button */}
+                {(() => {
+                  const guestbookButton = (
+                    <button
+                      onClick={() => onSectionChange("guestbook")}
+                      className={cn(
+                        "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
+                        activeSection === "guestbook"
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                      )}
+                    >
+                      <BookOpen className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
+                      {isExpanded && (
+                        <span className="text-sm font-medium">
+                          {t("Guestbook")}
+                        </span>
+                      )}
+                    </button>
+                  );
+
+                  if (!isExpanded) {
+                    return (
+                      <Tooltip>
+                        <TooltipTrigger asChild>{guestbookButton}</TooltipTrigger>
+                        <TooltipContent side="right">
+                          <p>{t("Guestbook")}</p>
+                        </TooltipContent>
+                      </Tooltip>
+                    );
+                  }
+
+                  return guestbookButton;
+                })()}
+              </div>
+
+              {/* External Links Section */}
               <div className="pt-4 border-t border-border mt-4">
                 {externalLinks.map((item) => {
                   const link = (
@@ -182,7 +263,6 @@ export function Sidebar({
                     </a>
                   );
 
-                  
                   if (!isExpanded) {
                     return (
                       <Tooltip key={item.label}>
@@ -200,6 +280,46 @@ export function Sidebar({
             </nav>
 
             <div className="border-t border-border p-4 space-y-1">
+              {(() => {
+                const searchButton = (
+                  <button
+                    className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-muted-foreground transition-all hover:bg-secondary hover:text-foreground group ring ring-gray-800"
+                    onClick={() => setShowSearch(true)}
+                  >
+                    <Search className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
+                    {isExpanded && (
+                      <>
+                        <span className="text-sm font-medium flex-1 text-left">
+                          {preferences.language === "es"
+                            ? "Busca o pide"
+                            : "Search or ask"}
+                        </span>
+                        <kbd className="hidden sm:inline-flex h-5 select-none items-center gap-1 rounded border border-border bg-muted px-1.5 font-mono text-[10px] font-medium text-muted-foreground">
+                          <span className="text-xs">Ctrl+</span>L
+                        </kbd>
+                      </>
+                    )}
+                  </button>
+                );
+
+                if (!isExpanded) {
+                  return (
+                    <Tooltip>
+                      <TooltipTrigger asChild>{searchButton}</TooltipTrigger>
+                      <TooltipContent side="right">
+                        <p>
+                          {preferences.language === "es"
+                            ? "Buscar (Ctrl+L)"
+                            : "Search (Ctrl+L)"}
+                        </p>
+                      </TooltipContent>
+                    </Tooltip>
+                  );
+                }
+
+                return searchButton;
+              })()}
+
               {(() => {
                 const settingsButton = (
                   <button
@@ -228,32 +348,6 @@ export function Sidebar({
 
                 return settingsButton;
               })()}
-
-              {(() => {
-                const dontClickButton = (
-                  <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-destructive transition-all hover:bg-destructive/10 group">
-                    <AlertTriangle className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
-                    {isExpanded && (
-                      <span className="text-sm font-medium">
-                        Don&apos;t Click
-                      </span>
-                    )}
-                  </button>
-                );
-
-                if (!isExpanded) {
-                  return (
-                    <Tooltip>
-                      <TooltipTrigger asChild>{dontClickButton}</TooltipTrigger>
-                      <TooltipContent side="right">
-                        <p>Don&apos;t Click</p>
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                }
-
-                return dontClickButton;
-              })()}
             </div>
           </div>
         </aside>
@@ -262,6 +356,12 @@ export function Sidebar({
       <SettingsModal
         isOpen={showSettings}
         onClose={() => setShowSettings(false)}
+      />
+
+      <SearchModal
+        isOpen={showSearch}
+        onClose={() => setShowSearch(false)}
+        onNavigate={onSectionChange}
       />
     </>
   );
