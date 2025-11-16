@@ -34,12 +34,34 @@ export function ContactSection({ content }: ContactSectionProps) {
     message: "",
   });
 
+  const [status, setStatus] = useState<
+    "idle" | "loading" | "success" | "error"
+  >("idle");
+
   const [copied, setCopied] = useState(false);
   const [copyOpen, setCopyOpen] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
+    setStatus("loading");
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      if (!res.ok) {
+        throw new Error("Error al enviar");
+      }
+
+      setStatus("success");
+      setFormData({ name: "", email: "", message: "" });
+    } catch (err) {
+      console.error(err);
+      setStatus("error");
+    }
   };
 
   const handleCopyEmail = async () => {
@@ -92,6 +114,7 @@ export function ContactSection({ content }: ContactSectionProps) {
                     setFormData({ ...formData, name: e.target.value })
                   }
                   className="rounded-xl bg-secondary border-border"
+                  required
                 />
               </div>
 
@@ -111,6 +134,7 @@ export function ContactSection({ content }: ContactSectionProps) {
                     setFormData({ ...formData, email: e.target.value })
                   }
                   className="rounded-xl bg-secondary border-border"
+                  required
                 />
               </div>
 
@@ -129,13 +153,30 @@ export function ContactSection({ content }: ContactSectionProps) {
                     setFormData({ ...formData, message: e.target.value })
                   }
                   className="rounded-xl bg-secondary border-border min-h-[120px] sm:min-h-[150px]"
+                  required
                 />
               </div>
 
-              <Button type="submit" className="w-full rounded-xl" size="lg">
+              <Button
+                type="submit"
+                className="w-full rounded-xl"
+                size="lg"
+                disabled={status === "loading"}
+              >
                 <Send className="mr-2 h-4 w-4" />
-                {content.form.submit}
+                {status === "loading" ? "Enviando..." : content.form.submit}
               </Button>
+
+              {status === "success" && (
+                <p className="text-sm text-green-500">
+                  ¡Mensaje enviado correctamente!
+                </p>
+              )}
+              {status === "error" && (
+                <p className="text-sm text-red-500">
+                  Hubo un error al enviar, inténtalo de nuevo.
+                </p>
+              )}
             </form>
           </div>
 

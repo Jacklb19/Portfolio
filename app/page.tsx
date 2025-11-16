@@ -14,6 +14,7 @@ import { ProjectsSection } from "@/components/projects-section"
 import { ContactSection } from "@/components/contact-section"
 import { usePreferences } from "@/lib/preferences-context"
 import { GuestbookSection } from "@/components/guestbook-section"
+import { BowGameSection } from "@/components/bowgame-section"
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home")

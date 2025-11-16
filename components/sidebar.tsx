@@ -177,15 +177,25 @@ export function Sidebar({
               })}
 
               {/* Don't Click and Guestbook Section */}
+
+              
               <div className="pt-4 border-t border-border mt-4 space-y-1">
-                {/* Don't Click Button */}
+                {/*
                 {(() => {
                   const dontClickButton = (
-                    <button className="flex w-full items-center gap-3 rounded-xl px-3.5 py-3 text-destructive transition-all hover:bg-destructive/10 group">
+                    <button
+                      onClick={() => onSectionChange("bowgame")}
+                      className={cn(
+                        "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
+                        activeSection === "guestbook"
+                          ? "bg-primary text-primary-foreground"
+                          : "text-muted-foreground hover:bg-secondary hover:text-foreground"
+                      )}
+                    >
                       <AlertTriangle className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
                       {isExpanded && (
                         <span className="text-sm font-medium">
-                          Don&apos;t Click
+                          {t("Bowgame")}
                         </span>
                       )}
                     </button>
@@ -206,7 +216,7 @@ export function Sidebar({
 
                   return dontClickButton;
                 })()}
-
+              */}
                 {/* Guestbook Button */}
                 {(() => {
                   const guestbookButton = (
