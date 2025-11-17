@@ -15,6 +15,7 @@ import {
   ChevronLeft,
   Search,
   BookOpen,
+  Gamepad2,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsModal } from "@/components/settings-modal";
@@ -177,46 +178,39 @@ export function Sidebar({
               })}
 
               {/* Don't Click and Guestbook Section */}
-
-              
               <div className="pt-4 border-t border-border mt-4 space-y-1">
-                {/*
                 {(() => {
-                  const dontClickButton = (
+                  const triviaButton = (
                     <button
-                      onClick={() => onSectionChange("bowgame")}
+                      onClick={() => onSectionChange("trivia")}
                       className={cn(
                         "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
-                        activeSection === "guestbook"
+                        activeSection === "bowgame"
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                       )}
                     >
-                      <AlertTriangle className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
+                      <Gamepad2 className="h-5 w-5 flex-shrink-0 transition-transform group-hover:scale-110" />
                       {isExpanded && (
                         <span className="text-sm font-medium">
-                          {t("Bowgame")}
+                          {t("Trivia")}
                         </span>
                       )}
                     </button>
                   );
-
                   if (!isExpanded) {
                     return (
                       <Tooltip>
-                        <TooltipTrigger asChild>
-                          {dontClickButton}
-                        </TooltipTrigger>
+                        <TooltipTrigger asChild>{triviaButton}</TooltipTrigger>
                         <TooltipContent side="right">
-                          <p>Don&apos;t Click</p>
+                          <p>Trivia</p>
                         </TooltipContent>
                       </Tooltip>
                     );
                   }
-
-                  return dontClickButton;
+                  return triviaButton;
                 })()}
-              */}
+
                 {/* Guestbook Button */}
                 {(() => {
                   const guestbookButton = (
@@ -241,7 +235,9 @@ export function Sidebar({
                   if (!isExpanded) {
                     return (
                       <Tooltip>
-                        <TooltipTrigger asChild>{guestbookButton}</TooltipTrigger>
+                        <TooltipTrigger asChild>
+                          {guestbookButton}
+                        </TooltipTrigger>
                         <TooltipContent side="right">
                           <p>{t("Guestbook")}</p>
                         </TooltipContent>

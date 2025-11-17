@@ -15,6 +15,7 @@ import { ContactSection } from "@/components/contact-section";
 import { usePreferences } from "@/lib/preferences-context";
 import { GuestbookSection } from "@/components/guestbook-section";
 import { ProjectDetailView } from "@/components/project-detail-view";
+import { TriviaSection } from "@/components/trivia-section";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -96,6 +97,8 @@ export default function Home() {
         );
       case "contact":
         return <ContactSection content={dictionary.contact} />;
+      case "trivia":
+        return <TriviaSection />
       case "guestbook":
         return <GuestbookSection content={dictionary.guestbook} />;
       default:
