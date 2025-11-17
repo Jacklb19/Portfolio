@@ -3,7 +3,10 @@
 import { MapPin, Code2, Heart, Layers } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { TestimonialsCarousel } from "@/components/testimonials-carousel";
-import type { AboutSection as AboutSectionType, ProjectItem } from "@/data/types";
+import type {
+  AboutSection as AboutSectionType,
+  ProjectItem,
+} from "@/data/types";
 import { FaDocker, FaNodeJs, FaReact } from "react-icons/fa";
 import { SiPostgresql, SiTailwindcss, SiMongodb } from "react-icons/si";
 import Image from "next/image";
@@ -11,6 +14,7 @@ import Image from "next/image";
 interface AboutSectionProps {
   content: AboutSectionType;
   onNavigateToProjects?: () => void;
+  onProjectClick?: (slug: string) => void;
   projectsPreview?: ProjectItem[];
 }
 
@@ -18,6 +22,7 @@ export function AboutSection({
   content,
   onNavigateToProjects,
   projectsPreview,
+  onProjectClick,
 }: AboutSectionProps) {
   const techStack = [
     { name: "Docker", icon: <FaDocker className="text-blue-500" /> },
@@ -131,9 +136,10 @@ export function AboutSection({
             <div className="relative mb-6 sm:mb-8 -mx-2">
               <div className="flex gap-3 sm:gap-4 overflow-x-auto px-2 pb-2 scrollbar-hide snap-x snap-mandatory">
                 {projectsPreview.map((project) => (
-                  <div
+                  <button
                     key={project.id}
-                    className="group flex-none w-32 sm:w-40 snap-start"
+                    className="group flex-none w-32 sm:w-40 snap-start text-left"
+                    onClick={() => onProjectClick?.(project.slug)}
                   >
                     <div className="rounded-lg sm:rounded-xl overflow-hidden bg-card border border-border transition-all hover:border-primary/50 hover:shadow-lg hover:shadow-primary/10 hover:-translate-y-1">
                       <div className="relative aspect-square bg-secondary">
@@ -145,12 +151,10 @@ export function AboutSection({
                           sizes="(max-width: 640px) 128px, 160px"
                         />
                       </div>
-                      
                       <div className="p-3 sm:p-4">
                         <h4 className="font-semibold text-xs sm:text-sm text-foreground mb-2 truncate">
                           {project.name}
                         </h4>
-                        
                         <div className="flex items-center gap-2">
                           <div
                             className={`h-2 w-2 rounded-full ${
@@ -165,7 +169,7 @@ export function AboutSection({
                         </div>
                       </div>
                     </div>
-                  </div>
+                  </button>
                 ))}
               </div>
             </div>

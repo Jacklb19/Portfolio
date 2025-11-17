@@ -77,6 +77,34 @@ export type Footer = {
   by: string
 }
 
+export type ProjectSolution = {
+  title: string
+  description: string
+}
+
+export type ProjectDetail = {
+  id: number
+  name: string
+  description: string
+  status: "online" | "offline"
+  technologies: string[]
+  image: string
+  slug: string
+  
+  date: string
+  category: string
+  
+  overview: string
+  features: string[]
+  outcome: string
+  background: string
+  challenges: string[]
+  solutions: ProjectSolution[]
+  
+  demoUrl?: string
+  repoUrl: string
+}
+
 export type ProjectItem = {
   id: number
   name: string
@@ -84,7 +112,7 @@ export type ProjectItem = {
   status: "online" | "offline"
   technologies: string[]
   image: string
-  link: string
+  slug: string
 }
 
 export type ProjectsSection = {
@@ -96,6 +124,7 @@ export type ProjectsSection = {
   description: string
   button: string
   projects: ProjectItem[]
+  projectDetails: ProjectDetail[]
 }
 
 export type ContactSection = {

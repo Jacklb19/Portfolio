@@ -3,7 +3,15 @@ import Image from "next/image";
 import { JSX, useState } from "react";
 import { ExternalLink, ChevronDown } from "lucide-react";
 import { ProjectsSection as ProjectSectionType } from "@/data/types";
-import { FaDocker, FaNodeJs, FaReact, FaPython, FaJava, FaLock, FaUnity } from "react-icons/fa";
+import {
+  FaDocker,
+  FaNodeJs,
+  FaReact,
+  FaPython,
+  FaJava,
+  FaLock,
+  FaUnity,
+} from "react-icons/fa";
 import {
   SiPostgresql,
   SiTailwindcss,
@@ -16,9 +24,13 @@ import {
 
 interface ProjectSectionProps {
   content: ProjectSectionType;
+  onProjectClick?: (slug: string) => void;
 }
 
-export function ProjectsSection({ content }: ProjectSectionProps) {
+export function ProjectsSection({
+  content,
+  onProjectClick,
+}: ProjectSectionProps) {
   const [selectedFilter, setSelectedFilter] = useState<
     "all" | "online" | "offline"
   >("all");
@@ -49,7 +61,7 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
     Express: <SiExpress className="text-gray-500" />,
     SpringBoot: <SiSpringboot className="text-green-700" />,
     JWT: <FaLock className="text-black dark:text:white" />,
-    Unity: <FaUnity className="text-black dark:text:white"/>,
+    Unity: <FaUnity className="text-black dark:text:white" />,
   };
 
   return (
@@ -139,62 +151,71 @@ export function ProjectsSection({ content }: ProjectSectionProps) {
         </div>
 
         <div className="grid sm:grid-cols-2 gap-6 sm:gap-8">
-          {filteredProjects.map((project) => (
-            <a
-              key={project.id}
-              href={project.link}
-              target="_blank" 
-              rel="noopener noreferrer"
-              className="group rounded-2xl sm:rounded-3xl bg-card border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2"
-            >
-              <div className="aspect-video overflow-hidden bg-secondary relative">
-                <Image
-                  src={project.image || "/placeholder.svg"}
-                  alt={project.name}
-                  fill
-                  className="object-cover transition-transform group-hover:scale-110"
-                  sizes="(max-width: 768px) 100vw, 50vw"
-                />
-              </div>
+          {filteredProjects.map((project) => {
+            const visibleTechs = project.technologies.slice(0, 10);
+            const extraCount =
+              project.technologies.length - visibleTechs.length;
 
-              <div className="p-4 sm:p-6">
-                <div className="flex items-start justify-between mb-2 sm:mb-3">
-                  <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-primary transition-colors">
-                    {project.name}
-                  </h3>
-                  <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
+            return (
+              <button
+                key={project.id}
+                onClick={() => onProjectClick?.(project.slug)}
+                className="group rounded-2xl sm:rounded-3xl bg-card border border-border overflow-hidden transition-all hover:border-primary/50 hover:shadow-2xl hover:shadow-primary/10 hover:-translate-y-2 text-left w-full flex flex-col h-full"
+              >
+                {/* Forzar altura de imagen uniforme */}
+                <div className="relative w-full aspect-video min-h-[220px] overflow-hidden bg-secondary flex-shrink-0">
+                  <Image
+                    src={project.image || "/placeholder.svg"}
+                    alt={project.name}
+                    fill
+                    className="object-cover transition-transform group-hover:scale-110"
+                    sizes="(max-width: 800px) 100vw, 50vw"
+                  />
                 </div>
 
-                <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
-                  {project.description}
-                </p>
-
-                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
-                  <div className="flex flex-wrap gap-1.5 sm:gap-2">
-                    {project.technologies.map((tech) => (
-                      <span
-                        key={tech}
-                        className="flex items-center gap-1 rounded-md sm:rounded-lg bg-secondary px-2 py-0.5 sm:px-2 sm:py-1 text-xs font-medium"
-                      >
-                        {techIcons[tech] || null}
-                        {tech}
-                      </span>
-                    ))}
+                <div className="p-4 sm:p-6 flex flex-col flex-1">
+                  <div className="flex items-start justify-between mb-2 sm:mb-3">
+                    <h3 className="text-lg sm:text-xl lg:text-2xl font-bold group-hover:text-primary transition-colors">
+                      {project.name}
+                    </h3>
+                    <ExternalLink className="h-4 w-4 sm:h-5 sm:w-5 text-muted-foreground group-hover:text-primary transition-colors flex-shrink-0" />
                   </div>
 
-                  <span
-                    className={`rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 text-xs font-semibold flex-shrink-0 ${
-                      project.status === "online"
-                        ? "bg-green-500/10 text-green-500"
-                        : "bg-muted text-muted-foreground"
-                    }`}
-                  >
-                    {project.status}
-                  </span>
+                  <p className="text-muted-foreground text-xs sm:text-sm leading-relaxed mb-3 sm:mb-4">
+                    {project.description}
+                  </p>
+
+                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0 mt-auto">
+                    <div className="flex flex-wrap gap-1.5 sm:gap-2">
+                      {visibleTechs.map((tech) => (
+                        <span
+                          key={tech}
+                          className="flex items-center gap-1 rounded-md sm:rounded-lg bg-secondary px-2 py-0.5 sm:px-2 sm:py-1 text-xs font-medium"
+                        >
+                          {techIcons[tech] || null}
+                          {tech}
+                        </span>
+                      ))}
+                      {extraCount > 0 && (
+                        <span className="rounded bg-muted px-2 text-xs font-medium">
+                          +{extraCount}
+                        </span>
+                      )}
+                    </div>
+                    <span
+                      className={`rounded-full px-2.5 py-0.5 sm:px-3 sm:py-1 text-xs font-semibold flex-shrink-0 ${
+                        project.status === "online"
+                          ? "bg-green-500/10 text-green-500"
+                          : "bg-muted text-muted-foreground"
+                      }`}
+                    >
+                      {project.status}
+                    </span>
+                  </div>
                 </div>
-              </div>
-            </a>
-          ))}
+              </button>
+            );
+          })}
         </div>
       </div>
     </section>

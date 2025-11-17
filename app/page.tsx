@@ -1,82 +1,120 @@
-"use client"
+"use client";
 
-import { useState, useMemo, useEffect } from "react"
-import { AnimatePresence, motion } from "framer-motion"
-import { Sidebar } from "@/components/sidebar"
-import { BottomNav } from "@/components/bottom-nav"
-import { MobileHeader } from "@/components/mobil-header"
-import { HeroSection } from "@/components/hero-section"
-import { AboutSection } from "@/components/about-section"
-import { ExperienceSection } from "@/components/experience-section"
-import { Footer } from "@/components/footer"
-import { useDictionary } from "@/data/use-dictionary"
-import { ProjectsSection } from "@/components/projects-section"
-import { ContactSection } from "@/components/contact-section"
-import { usePreferences } from "@/lib/preferences-context"
-import { GuestbookSection } from "@/components/guestbook-section"
-import { BowGameSection } from "@/components/bowgame-section"
+import { useState, useMemo, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
+import { Sidebar } from "@/components/sidebar";
+import { BottomNav } from "@/components/bottom-nav";
+import { MobileHeader } from "@/components/mobil-header";
+import { HeroSection } from "@/components/hero-section";
+import { AboutSection } from "@/components/about-section";
+import { ExperienceSection } from "@/components/experience-section";
+import { Footer } from "@/components/footer";
+import { useDictionary } from "@/data/use-dictionary";
+import { ProjectsSection } from "@/components/projects-section";
+import { ContactSection } from "@/components/contact-section";
+import { usePreferences } from "@/lib/preferences-context";
+import { GuestbookSection } from "@/components/guestbook-section";
+import { ProjectDetailView } from "@/components/project-detail-view";
 
 export default function Home() {
-  const [activeSection, setActiveSection] = useState("home")
-  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false)
-  const { dictionary, loading } = useDictionary()
-  const { preferences } = usePreferences()
-  const animationsOn = preferences.animationsEnabled
+  const [activeSection, setActiveSection] = useState("home");
+  const [selectedProject, setSelectedProject] = useState<string | null>(null);
+  const [isSidebarExpanded, setIsSidebarExpanded] = useState(false);
+  const { dictionary, loading } = useDictionary();
+  const { preferences } = usePreferences();
+  const animationsOn = preferences.animationsEnabled;
 
   const projectsPreview = useMemo(() => {
-    if (!dictionary?.projects?.projects) return []
-    return dictionary.projects.projects.slice(0, 6)
-  }, [dictionary])
+    if (!dictionary?.projects?.projects) return [];
+    return dictionary.projects.projects.slice(0, 6);
+  }, [dictionary]);
 
-  // Resetear pagina cada q se cambia
+  // Resetear página cada vez que cambia la sección
   useEffect(() => {
     requestAnimationFrame(() => {
-      window.scrollTo({ top: 0, left: 0, behavior: "auto" })
-    })
-  }, [activeSection])
-
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+    });
+  }, [activeSection, selectedProject]); 
   if (loading || !dictionary) {
-    return <div className="flex items-center justify-center min-h-screen text-muted-foreground">Cargando...</div>
+    return (
+      <div className="flex items-center justify-center min-h-screen text-muted-foreground">
+        Cargando...
+      </div>
+    );
   }
 
   const handleNavigateToProjects = () => {
-    setActiveSection("projects")
-  }
+    setActiveSection("projects");
+    setSelectedProject(null);
+  };
+
+  const handleProjectClick = (slug: string) => {
+    setSelectedProject(slug);
+    setActiveSection("project-detail"); 
+  };
+
+  const handleBackToProjects = () => {
+    setSelectedProject(null);
+    setActiveSection("projects");
+  };
 
   const renderActiveSection = () => {
+    // Si hay un proyecto seleccionado, mostrar su detalle
+    if (selectedProject) {
+      return (
+        <ProjectDetailView
+          slug={selectedProject}
+          onBack={handleBackToProjects}
+          onNavigateSection={(section) => {
+            setSelectedProject(null);
+            setActiveSection(section);
+          }}
+        />
+      );
+    }
+
     switch (activeSection) {
       case "home":
-        return <HeroSection content={dictionary.hero} />
+        return <HeroSection content={dictionary.hero} />;
       case "about":
         return (
           <AboutSection
             content={dictionary.about}
             onNavigateToProjects={handleNavigateToProjects}
             projectsPreview={projectsPreview}
+            onProjectClick={handleProjectClick}
           />
-        )
+        );
       case "experience":
-        return <ExperienceSection content={dictionary.experience} />
+        return <ExperienceSection content={dictionary.experience} />;
       case "projects":
-        return <ProjectsSection content={dictionary.projects} />
+        return (
+          <ProjectsSection
+            content={dictionary.projects}
+            onProjectClick={handleProjectClick} 
+          />
+        );
       case "contact":
-        return <ContactSection content={dictionary.contact} />
+        return <ContactSection content={dictionary.contact} />;
       case "guestbook":
-        return <GuestbookSection content={dictionary.guestbook}/>
+        return <GuestbookSection content={dictionary.guestbook} />;
       default:
-        return <HeroSection content={dictionary.hero} />
+        return <HeroSection content={dictionary.hero} />;
     }
-  }
+  };
 
-  const shouldShowFooter = activeSection !== "home"
+  const shouldShowFooter = activeSection !== "home";
 
   return (
     <div className="flex min-h-screen flex-col md:flex-row">
       <MobileHeader onNavigate={setActiveSection} />
 
       <Sidebar
-        activeSection={activeSection}
-        onSectionChange={setActiveSection}
+        activeSection={selectedProject ? "projects" : activeSection}
+        onSectionChange={(section) => {
+          setActiveSection(section);
+          setSelectedProject(null);
+        }}
         isExpanded={isSidebarExpanded}
         onToggleExpand={setIsSidebarExpanded}
       />
@@ -89,7 +127,7 @@ export default function Home() {
         {animationsOn ? (
           <AnimatePresence mode="wait">
             <motion.div
-              key={activeSection}
+              key={selectedProject || activeSection}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -20 }}
@@ -100,7 +138,7 @@ export default function Home() {
             </motion.div>
           </AnimatePresence>
         ) : (
-          <div key={activeSection} className="flex-grow">
+          <div key={selectedProject || activeSection} className="flex-grow">
             {renderActiveSection()}
           </div>
         )}
@@ -108,7 +146,10 @@ export default function Home() {
         {shouldShowFooter && <Footer content={dictionary.footer} />}
       </main>
 
-      <BottomNav activeSection={activeSection} onSectionChange={setActiveSection} />
+      <BottomNav
+        activeSection={activeSection}
+        onSectionChange={setActiveSection}
+      />
     </div>
-  )
+  );
 }
