@@ -124,15 +124,17 @@
   }
   html {
     font-size: var(--base-font-size);
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none; /* Previene el bounce en trackpad */
   }
   body {
     @apply bg-background text-foreground;
+    overscroll-behavior-y: none;
+    overscroll-behavior-x: none; /* Previene el bounce en trackpad */
   }
 }
 
-* {
-  scroll-behavior: smooth;
-}
+
 
 /* Fixed background to use proper dark mode colors */
 body {

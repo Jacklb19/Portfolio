@@ -30,7 +30,6 @@ export default function Home() {
     return dictionary.projects.projects.slice(0, 6);
   }, [dictionary]);
 
-  // Resetear página cada vez que cambia la sección
   useEffect(() => {
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
@@ -60,7 +59,6 @@ export default function Home() {
   };
 
   const renderActiveSection = () => {
-    // Si hay un proyecto seleccionado, mostrar su detalle
     if (selectedProject) {
       return (
         <ProjectDetailView
@@ -97,10 +95,10 @@ export default function Home() {
         );
       case "contact":
         return <ContactSection content={dictionary.contact} />;
-      case "trivia":
-        return <TriviaSection />
       case "guestbook":
         return <GuestbookSection content={dictionary.guestbook} />;
+      case "trivia":
+        return <TriviaSection />;
       default:
         return <HeroSection content={dictionary.hero} />;
     }
@@ -123,9 +121,12 @@ export default function Home() {
       />
 
       <main
-        className={`flex-1 flex flex-col transition-all duration-300 pb-20 md:pb-0 md:ml-20 overflow-x-hidden ${
+        className={`flex-1 flex flex-col transition-all duration-300 pb-20 md:pb-0 md:ml-20  ${
           isSidebarExpanded ? "md:ml-64" : "md:ml-20"
         }`}
+        style={{ containerType: 'inline-size',
+          minWidth: 0,
+         }}
       >
         {animationsOn ? (
           <AnimatePresence mode="wait">
