@@ -44,27 +44,27 @@ export const contentEn: Dictionary = {
       testimonials: [
         {
           id: 1,
-          name: "SARAH CHEN",
-          title: "Senior Developer @ TechCorp",
+          name: "Sara Ojeda",
+          title: "UCC Student",
           content:
             "Jose is a highly motivated aspiring software engineer with a natural curiosity and passion for learning. He stands out for his ability to quickly grasp new concepts and apply them in real projects. His dedication to clean code and scalable architecture is impressive for someone early in their development journey.",
-          image: "/placeholder.svg",
+          image: "/images/testimonal1.png",
         },
         {
           id: 2,
-          name: "MARCUS JOHNSON",
-          title: "Product Manager @ InnovateLab",
+          name: "Steven Ortega",
+          title: "UCC Student",
           content:
             "Working with Jose has been inspiring. His passion for programming goes beyond just writing code — he genuinely cares about understanding the problem and delivering thoughtful solutions. His creativity and commitment to every project make him a valuable team member.",
-          image: "/placeholder.svg",
+          image: "/images/testimonal2.png",
         },
         {
           id: 3,
-          name: "ELENA RODRIGUEZ",
-          title: "Tech Lead @ StartupHub",
+          name: "Jhonatan Mideros",
+          title: "University Professor",
           content:
-            "Jose demonstrates exceptional problem-solving skills and a strong foundation in software engineering principles. His enthusiasm for learning new technologies and his dedication to best practices make him stand out. I have no doubt he will become an excellent software engineer.",
-          image: "/placeholder.svg",
+            "Jose made a ... portfolio.",
+          image: "/images/testimonal3.png",
         },
       ],
     },

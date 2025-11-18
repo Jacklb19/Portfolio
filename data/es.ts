@@ -44,27 +44,27 @@ export const contentEs: Dictionary = {
       testimonials: [
         {
           id: 1,
-          name: "SARAH CHEN",
-          title: "Desarrolladora Senior @ TechCorp",
+          name: "Sara Ojeda",
+          title: "Estudiante UCC",
           content:
             "Jose es un aspirante a ingeniero de software altamente motivado con una curiosidad natural y pasión por el aprendizaje. Destaca por su capacidad para comprender rápidamente nuevos conceptos y aplicarlos en proyectos reales. Su dedicación al código limpio y la arquitectura escalable es impresionante para alguien en las primeras etapas de su trayectoria.",
-          image: "/placeholder.svg",
+          image: "/images/testimonal1.png",
         },
         {
           id: 2,
-          name: "MARCUS JOHNSON",
-          title: "Product Manager @ InnovateLab",
+          name: "Steven Ortega",
+          title: "Estudiante UCC",
           content:
             "Trabajar con Jose ha sido inspirador. Su pasión por la programación va más allá de solo escribir código: realmente le importa entender el problema y entregar soluciones reflexivas. Su creatividad y compromiso con cada proyecto lo convierten en un valioso miembro del equipo.",
-          image: "/placeholder.svg",
+          image: "/images/testimonal2.png",
         },
         {
           id: 3,
-          name: "ELENA RODRIGUEZ",
-          title: "Tech Lead @ StartupHub",
+          name: "Jhonatan Mideros",
+          title: "University Professor",
           content:
-            "Jose demuestra habilidades excepcionales para resolver problemas y una base sólida en principios de ingeniería de software. Su entusiasmo por aprender nuevas tecnologías y su dedicación a las mejores prácticas lo hacen destacar. No tengo dudas de que se convertirá en un excelente ingeniero de software.",
-          image: "/placeholder.svg",
+            "Jose realizó un portafolio...",
+          image: "/images/testimonal3.png",
         },
       ],
     },
