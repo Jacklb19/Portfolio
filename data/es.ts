@@ -47,7 +47,7 @@ export const contentEs: Dictionary = {
           name: "Sara Ojeda",
           title: "Estudiante UCC",
           content:
-            "Jose es un aspirante a ingeniero de software altamente motivado con una curiosidad natural y pasión por el aprendizaje. Destaca por su capacidad para comprender rápidamente nuevos conceptos y aplicarlos en proyectos reales. Su dedicación al código limpio y la arquitectura escalable es impresionante para alguien en las primeras etapas de su trayectoria.",
+            "Jose es un compañero de universidad con una verdadera pasión por la ingeniería de software. Desde que lo conocí, me impresionó su curiosidad constante y su capacidad para entender rápidamente cómo funcionan las cosas. En los proyectos que hemos trabajado juntos, se nota que realmente le importa la forma en la que los desarrolla y pensar en buenas soluciones. Es el tipo de compañero en quien confías para resolver problemas difíciles sin tener que estar encima de él. Definitivamente va a ser un buen ingeniero.",
           image: "/images/testimonal1.png",
         },
         {
@@ -65,6 +65,14 @@ export const contentEs: Dictionary = {
           content:
             "Jose realizó un portafolio...",
           image: "/images/testimonal3.png",
+        },
+                        {
+          id: 4,
+          name: "Santiago Arevalo",
+          title: "Estudiante UCC",
+          content:
+            "Jose es una persona que que se destaca por su responsabilidad y dedicación excepcional.",
+          image: "/images/testimonal4.png",
         },
       ],
     },

@@ -66,6 +66,14 @@ export const contentEn: Dictionary = {
             "Jose made a ... portfolio.",
           image: "/images/testimonal3.png",
         },
+                {
+          id: 4,
+          name: "Santiago Arevalo",
+          title: "UCC Estudent",
+          content:
+            "José is an outstanding professional distinguished by his exceptional sense of responsibility and dedication.",
+          image: "/images/testimonal4.png",
+        },
       ],
     },
   },
