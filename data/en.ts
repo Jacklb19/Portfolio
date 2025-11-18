@@ -47,7 +47,7 @@ export const contentEn: Dictionary = {
           name: "Sara Ojeda",
           title: "UCC Student",
           content:
-            "Jose is a university classmate with a genuine passion for software engineering. Since I met him, I’ve been impressed by his constant curiosity and his ability to quickly understand how things work. In the projects we’ve worked on together, it’s clear that he truly cares about how he develops them and about coming up with good solutions. He’s the kind of teammate you trust to solve difficult problems without needing to supervise him closely. He is definitely going to be a good engineer.",
+            "Jose is a university classmate with a genuine passion for software engineering. Since I met him, I’ve been impressed by his constant curiosity and his ability to quickly understand how things work. In the projects we’ve worked on together, it’s clear that he truly cares about how he develops them and about coming up with good solutions. ",
           image: "/images/testimonal1.png",
         },
         {
@@ -71,7 +71,7 @@ export const contentEn: Dictionary = {
           name: "Santiago Arevalo",
           title: "UCC Estudent",
           content:
-            "José is an outstanding professional distinguished by his exceptional sense of responsibility and dedication.",
+            "He’s the kind of teammate you trust to solve difficult problems without needing to supervise him closely. He is definitely going to be a good engineer.",
           image: "/images/testimonal4.png",
         },
       ],

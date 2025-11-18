@@ -47,7 +47,7 @@ export const contentEs: Dictionary = {
           name: "Sara Ojeda",
           title: "Estudiante UCC",
           content:
-            "Jose es un compañero de universidad con una verdadera pasión por la ingeniería de software. Desde que lo conocí, me impresionó su curiosidad constante y su capacidad para entender rápidamente cómo funcionan las cosas. En los proyectos que hemos trabajado juntos, se nota que realmente le importa la forma en la que los desarrolla y pensar en buenas soluciones. Es el tipo de compañero en quien confías para resolver problemas difíciles sin tener que estar encima de él. Definitivamente va a ser un buen ingeniero.",
+            "Jose es un compañero de universidad con una verdadera pasión por la ingeniería de software. Desde que lo conocí, me impresionó su curiosidad constante y su capacidad para entender rápidamente cómo funcionan las cosas. En los proyectos que hemos trabajado juntos, se nota que realmente le importa la forma en la que los desarrolla y pensar en buenas soluciones. ",
           image: "/images/testimonal1.png",
         },
         {
@@ -71,7 +71,7 @@ export const contentEs: Dictionary = {
           name: "Santiago Arevalo",
           title: "Estudiante UCC",
           content:
-            "Jose es una persona que que se destaca por su responsabilidad y dedicación excepcional.",
+            "Es el tipo de compañero en quien confías para resolver problemas difíciles sin tener que estar encima de él. Definitivamente va a ser un buen ingeniero.",
           image: "/images/testimonal4.png",
         },
       ],
