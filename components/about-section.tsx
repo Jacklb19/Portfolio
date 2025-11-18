@@ -43,10 +43,17 @@ export function AboutSection({
     <section className="min-h-screen px-4 sm:px-6 lg:px-8 py-12 sm:py-16 lg:py-20">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-6 sm:mb-8">
-          <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
-          <span className="text-sm sm:text-base text-muted-foreground">
-            Colombia
-          </span>
+          <a
+            href="https://www.google.com/maps/search/?api=1&query=Colombia"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex items-center gap-3 mb-6 sm:mb-8 cursor-pointer hover:opacity-90 transition-colors"
+          >
+            <MapPin className="h-4 w-4 sm:h-5 sm:w-5 text-primary" />
+            <span className="text-sm sm:text-base text-muted-foreground">
+              Colombia
+            </span>
+          </a>
         </div>
 
         <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-8 lg:gap-12 mb-8 sm:mb-12">
@@ -133,8 +140,8 @@ export function AboutSection({
           </p>
 
           {projectsPreview && projectsPreview.length > 0 && (
-            <div className="relative mb-6 sm:mb-8 -mx-2">
-              <div className="flex gap-3 sm:gap-4 overflow-x-auto px-2 pb-2 scrollbar-hide snap-x snap-mandatory">
+            <div className="relative mb-6 sm:mb-8">
+              <div className="flex gap-3 sm:gap-4 overflow-x-auto pb-2 scrollbar-hide snap-x snap-mandatory">
                 {projectsPreview.map((project) => (
                   <button
                     key={project.id}

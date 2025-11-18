@@ -123,7 +123,7 @@ export default function Home() {
       />
 
       <main
-        className={`flex-1 flex flex-col transition-all duration-300 pb-20 md:pb-0 md:ml-20 ${
+        className={`flex-1 flex flex-col transition-all duration-300 pb-20 md:pb-0 md:ml-20 overflow-x-hidden ${
           isSidebarExpanded ? "md:ml-64" : "md:ml-20"
         }`}
       >

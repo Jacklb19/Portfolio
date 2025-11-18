@@ -78,8 +78,8 @@ export function TestimonialsCarousel({
           >
             {testimonials.map((testimonial) => (
               <div key={testimonial.id} className="w-full flex-shrink-0">
-                <div className="rounded-2xl md:rounded-2xl lg:rounded-3xl bg-card border border-border p-6 md:p-7 lg:p-8 px-10 md:px-12 lg:px-14 xl:px-16 min-h-[160px] md:min-h-[180px] lg:min-h-[220px] transition-all duration-300">
-                  <div className="flex flex-col lg:flex-row gap-6 md:gap-7 lg:gap-10 xl:gap-12 items-center lg:items-start transition-all duration-300">
+                <div className="rounded-2xl md:rounded-2xl lg:rounded-3xl bg-card border border-border p-5 sm:p-6 md:p-7 lg:p-8 min-h-[160px] md:min-h-[180px] lg:min-h-[220px] transition-all duration-300">
+                  <div className="flex flex-col lg:flex-row gap-4 sm:gap-6 md:gap-7 lg:gap-10 items-center lg:items-start transition-all duration-300">
                     <div className="flex-shrink-0 transition-all duration-300">
                       <div className="relative h-16 w-16 md:h-18 md:w-18 lg:h-20 lg:w-20 xl:h-24 xl:w-24 rounded-full overflow-hidden border-2 border-primary/20 ring-2 ring-primary/10 transition-all duration-300">
                         <Image
