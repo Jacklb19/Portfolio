@@ -16,6 +16,7 @@ import { usePreferences } from "@/lib/preferences-context";
 import { GuestbookSection } from "@/components/guestbook-section";
 import { ProjectDetailView } from "@/components/project-detail-view";
 import { TriviaSection } from "@/components/trivia-section";
+import { LearningSection } from "@/components/learning-section";
 
 export default function Home() {
   const [activeSection, setActiveSection] = useState("home");
@@ -34,7 +35,7 @@ export default function Home() {
     requestAnimationFrame(() => {
       window.scrollTo({ top: 0, left: 0, behavior: "auto" });
     });
-  }, [activeSection, selectedProject]); 
+  }, [activeSection, selectedProject]);
   if (loading || !dictionary) {
     return (
       <div className="flex items-center justify-center min-h-screen text-muted-foreground">
@@ -50,7 +51,7 @@ export default function Home() {
 
   const handleProjectClick = (slug: string) => {
     setSelectedProject(slug);
-    setActiveSection("project-detail"); 
+    setActiveSection("project-detail");
   };
 
   const handleBackToProjects = () => {
@@ -90,9 +91,11 @@ export default function Home() {
         return (
           <ProjectsSection
             content={dictionary.projects}
-            onProjectClick={handleProjectClick} 
+            onProjectClick={handleProjectClick}
           />
         );
+      case "learning":
+        return <LearningSection content={dictionary.learning} />;
       case "contact":
         return <ContactSection content={dictionary.contact} />;
       case "guestbook":
@@ -124,9 +127,7 @@ export default function Home() {
         className={`flex-1 flex flex-col transition-all duration-300 pb-20 md:pb-0 md:ml-20  ${
           isSidebarExpanded ? "md:ml-64" : "md:ml-20"
         }`}
-        style={{ containerType: 'inline-size',
-          minWidth: 0,
-         }}
+        style={{ containerType: "inline-size", minWidth: 0 }}
       >
         {animationsOn ? (
           <AnimatePresence mode="wait">

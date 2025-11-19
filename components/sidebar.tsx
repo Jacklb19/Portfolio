@@ -16,6 +16,7 @@ import {
   Search,
   BookOpen,
   Gamepad2,
+  GraduationCap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { SettingsModal } from "@/components/settings-modal";
@@ -82,6 +83,7 @@ export function Sidebar({
     { icon: User, label: t("about"), id: "about" },
     { icon: Briefcase, label: t("experience"), id: "experience" },
     { icon: FolderOpen, label: t("projects"), id: "projects" },
+    { icon: GraduationCap, label: t("learning"), id: "learning" },
     { icon: Mail, label: t("contact"), id: "contact" },
   ];
 

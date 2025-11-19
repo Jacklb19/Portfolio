@@ -13,6 +13,7 @@ import {
   Gamepad2,
   BookOpen,
   Search,
+  GraduationCap,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { useTranslation, usePreferences } from "@/lib/preferences-context";
@@ -45,6 +46,12 @@ export function BottomNav({ activeSection, onSectionChange }: BottomNavProps) {
       icon: FolderOpen,
       label: t("projects"),
       id: "projects",
+      type: "section" as const,
+    },
+        {
+      icon: GraduationCap,
+      label: t("learning"),
+      id: "learning",
       type: "section" as const,
     },
     { icon: Mail, label: t("contact"), id: "contact", type: "section" as const },

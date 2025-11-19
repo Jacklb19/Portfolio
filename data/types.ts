@@ -235,6 +235,78 @@ export type GuestbookSection = {
   dateLocale: string
 }
 
+export type Certification = {
+  id: number
+  name: string
+  area: string
+  platform: string
+  date: string
+  status: "completed" | "in-progress"
+  technologies: string[]
+  credentialUrl?: string
+}
+
+export type Course = {
+  id: number
+  title: string
+  platform: string
+  category: string
+  description: string
+  outcome?: string
+  year: string
+}
+
+export type Language = {
+  id: number
+  name: string
+  level: string
+  levelCode: string
+  description: string
+  credentialUrl?: string
+}
+
+export type FocusArea = {
+  id: number
+  title: string
+  description: string
+  status: "active" | "planned"
+}
+
+export type LearningSection = {
+  title: string
+  subtitle: string
+  intro: {
+    paragraph1: string
+    paragraph2: string
+  }
+  certifications: {
+    title: string
+    subtitle: string
+    items: Certification[]
+  }
+  courses: {
+    title: string
+    subtitle: string
+    categories: {
+      frontend: { title: string; items: Course[] }
+      backend: { title: string; items: Course[] }
+      devops: { title: string; items: Course[] }
+      fundamentals: { title: string; items: Course[] }
+    }
+  }
+  languages: {
+    title: string
+    subtitle: string
+    items: Language[]
+  }
+  currentFocus: {
+    title: string
+    subtitle: string
+    items: FocusArea[]
+  }
+  
+}
+
 export type Dictionary = {
   hero: HeroSection
   about: AboutSection
@@ -245,4 +317,5 @@ export type Dictionary = {
   switcher: { label: string; es: string; en: string }
   chatbot: ChatbotSection
   guestbook: GuestbookSection
+  learning: LearningSection 
 }

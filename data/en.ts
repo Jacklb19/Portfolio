@@ -608,4 +608,208 @@ projects: {
     characterCount: "{count}/500",
     dateLocale: "en-US",
   },
+  learning: {
+    title: "Learning & Certifications",
+    subtitle: "Continuous education and professional development",
+    intro: {
+      paragraph1:
+        "As a software engineer, I strongly believe in continuous learning and constant improvement. I regularly invest time in courses, certifications, and self-study to stay up-to-date with the latest technologies and industry best practices.",
+      paragraph2:
+        "My learning approach combines formal education, hands-on projects, and exploration of new tools. This section summarizes my professional development journey, from technical certifications to current focus areas.",
+    },
+    certifications: {
+      title: "Certifications",
+      subtitle: "Technical skills validation",
+      items: [
+        {
+          id: 1,
+          name: "Bootcamp Basic Level Programming",
+          area: "Basic Programming",
+          platform: "TIC",
+          date: "2024",
+          status: "completed",
+          technologies: ["Java", "Python" , "PostgreSQL", "TypeScript","Git"],
+          credentialUrl: "/docs/Bootcamp.pdf",
+        },
+        {
+          id: 2,
+          name: "Javascript Programming",
+          area: "Frontend",
+          platform: "Platzi",
+          date: "2023",
+          status: "completed",
+          technologies: ["JavaScript"],
+          credentialUrl: "/docs/JavaScript.pdf",
+        },
+        {
+          id: 3,
+          name: "Engineering Seminar",
+          area: "Software",
+          platform: "UCC",
+          date: "2023",
+          status: "completed",
+          technologies: ["Programming"],
+          credentialUrl: "/docs/Seminario.pdf",
+        },
+      ],
+    },
+    courses: {
+      title: "Courses & Training",
+      subtitle: "Structured learning and projects",
+      categories: {
+        frontend: {
+          title: "Frontend Development",
+          items: [
+            {
+              id: 1,
+              title: "Next.js: The React Framework",
+              platform: "Training",
+              category: "Frontend",
+              description:
+                "Server-Side Rendering, Static Site Generation, and modern architecture with Next.js.",
+              outcome: "Built this portfolio using Next.js with App Router and TypeScript.",
+              year: "2025",
+            },
+          ],
+        },
+        backend: {
+          title: "Backend Development",
+          items: [
+            {
+              id: 4,
+              title: "Java Spring Boot",
+              platform: "Universidad Cooperativa de Colombia",
+              category: "Backend",
+              description:
+                "Enterprise Java framework, dependency injection, and layered architecture.",
+              outcome: "Claims management system and PharmaSync with Spring Boot.",
+              year: "2024",
+            },
+            {
+              id: 5,
+              title: "Microservices and Distributed Architecture",
+              platform: "Training",
+              category: "Backend",
+              description:
+                "Microservices design, inter-service communication, and architecture patterns.",
+              year: "2024",
+            },
+          ],
+        },
+        devops: {
+          title: "DevOps & Cloud",
+          items: [
+            {
+              id: 7,
+              title: "Docker and Containers",
+              platform: "Training",
+              category: "DevOps",
+              description:
+                "Application containerization, Docker Compose, and basic orchestration.",
+              year: "2024",
+            },
+            {
+              id: 8,
+              title: "Advanced Git and GitHub",
+              platform: "Training",
+              category: "DevOps",
+              description:
+                "Version control, collaborative workflows, and GitHub Actions.",
+              year: "2024",
+            },
+          ],
+        },
+        fundamentals: {
+          title: "CS Fundamentals",
+          items: [
+            {
+              id: 9,
+              title: "Data Structures and Algorithms",
+              platform: "Universidad Cooperativa de Colombia",
+              category: "Fundamentals",
+              description:
+                "Complexity analysis, sorting and searching algorithms, and advanced data structures.",
+              outcome: "Solid foundation for solving complex algorithmic problems.",
+              year: "2024",
+            },
+            {
+              id: 10,
+              title: "Software Architecture",
+              platform: "Universidad Cooperativa de Colombia",
+              category: "Fundamentals",
+              description:
+                "Design patterns, SOLID, layered architecture, and scalable systems.",
+              year: "2024",
+            },
+            {
+              id: 11,
+              title: "Relational Databases",
+              platform: "Universidad Cooperativa de Colombia",
+              category: "Fundamentals",
+              description:
+                "Relational modeling, normalization, advanced SQL queries, and optimization.",
+              year: "2024",
+            },
+          ],
+        },
+      },
+    },
+    languages: {
+      title: "Languages",
+      subtitle: "Language proficiency",
+      items: [
+        {
+          id: 1,
+          name: "Spanish",
+          level: "Native",
+          levelCode: "C2",
+          description: "Mother tongue with complete mastery.",
+        },
+        {
+          id: 2,
+          name: "English",
+          level: "Upper Intermediate",
+          levelCode: "B2",
+          description:
+            "Reading technical documentation, understanding educational videos, and professional written communication.",
+          credentialUrl: "/docs/ingles.pdf",
+        },
+      ],
+    },
+    currentFocus: {
+      title: "Current Learning Focus",
+      subtitle: "Active study areas",
+      items: [
+        {
+          id: 1,
+          title: "System Design and Scalable Architecture",
+          description:
+            "Diving deep into distributed systems design, scalability patterns, and high-performance architectures.",
+          status: "active",
+        },
+        {
+          id: 2,
+          title: "Testing and Software Quality",
+          description:
+            "Improving skills in unit, integration, and E2E testing with Jest, Vitest, and Playwright.",
+          status: "active",
+        },
+        {
+          id: 3,
+          title: "DevOps and CI/CD",
+          description:
+            "Exploring automated pipelines, infrastructure as code, and deployment strategies.",
+          status: "active",
+        },
+        {
+          id: 4,
+          title: "Game Development with Unity",
+          description:
+            "Learning game architecture, gamedev-specific design patterns, and performance optimization.",
+          status: "planned",
+        },
+      ]
+    },
+  },
 }
+

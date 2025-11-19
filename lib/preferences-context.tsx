@@ -170,6 +170,7 @@ export const useTranslation = () => {
       about: "About Me",
       experience: "Experience",
       projects: "Projects",
+      learning: "Learning",
       contact: "Contact",
       settings: "Settings",
       theme: "Theme",
@@ -189,6 +190,7 @@ export const useTranslation = () => {
       small: "Small",
       medium: "Medium",
       large: "Large",
+      Guestbook: "Guestbook",
     },
     es: {
       profession: "Ingeniero de Software",
@@ -196,6 +198,7 @@ export const useTranslation = () => {
       about: "Sobre mí",
       experience: "Experiencia",
       projects: "Proyectos",
+      learning: "Aprendizaje",
       contact: "Contacto",
       settings: "Configuración",
       theme: "Tema",
@@ -215,6 +218,7 @@ export const useTranslation = () => {
       small: "Pequeño",
       medium: "Mediano",
       large: "Grande",
+      Guestbook: "Libro de visitas",
     },
   }
 
