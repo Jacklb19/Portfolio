@@ -187,7 +187,7 @@ export function Sidebar({
                       onClick={() => onSectionChange("trivia")}
                       className={cn(
                         "flex w-full items-center gap-3 rounded-xl px-3.5 py-3 transition-all group",
-                        activeSection === "bowgame"
+                        activeSection === "trivia"
                           ? "bg-primary text-primary-foreground"
                           : "text-muted-foreground hover:bg-secondary hover:text-foreground"
                       )}
