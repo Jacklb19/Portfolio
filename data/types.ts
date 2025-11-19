@@ -279,6 +279,15 @@ export type LearningSection = {
     paragraph1: string
     paragraph2: string
   }
+  statusLabels: {
+    completed: string
+    inProgress: string
+    active: string
+    planned: string
+  }
+    labels: {
+    viewCredential: string
+  }
   certifications: {
     title: string
     subtitle: string
@@ -304,8 +313,8 @@ export type LearningSection = {
     subtitle: string
     items: FocusArea[]
   }
-  
 }
+
 
 export type Dictionary = {
   hero: HeroSection

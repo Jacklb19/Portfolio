@@ -170,12 +170,12 @@ export function LearningSection({ content }: LearningSectionProps) {
                         {cert.status === "completed" ? (
                           <>
                             <CheckCircle2 className="h-3 w-3" />
-                            <span className="hidden sm:inline">Completed</span>
+                            <span className="hidden sm:inline">{content.statusLabels.completed}</span>
                           </>
                         ) : (
                           <>
                             <Clock className="h-3 w-3" />
-                            <span className="hidden sm:inline">In Progress</span>
+                            <span className="hidden sm:inline">{content.statusLabels.inProgress}</span>
                           </>
                         )}
                       </div>
@@ -200,7 +200,7 @@ export function LearningSection({ content }: LearningSectionProps) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary hover:underline"
                       >
-                        View Credential
+                        {content.labels.viewCredential}
                         <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
                       </a>
                     )}
@@ -306,7 +306,7 @@ export function LearningSection({ content }: LearningSectionProps) {
                         rel="noopener noreferrer"
                         className="inline-flex items-center gap-2 text-xs sm:text-sm text-primary hover:underline"
                       >
-                        View Credential
+                        {content.labels.viewCredential}
                         <ExternalLink className="h-3 w-3 sm:h-4 sm:w-4" />
                       </a>
                     )}
@@ -356,7 +356,7 @@ export function LearningSection({ content }: LearningSectionProps) {
                                 : "bg-blue-500/10 text-blue-500"
                             }`}
                           >
-                            {item.status === "active" ? "Active" : "Planned"}
+                              {item.status === "active" ? content.statusLabels.active : content.statusLabels.planned}
                           </span>
                         </div>
                         <p className="text-sm sm:text-base text-muted-foreground leading-relaxed">

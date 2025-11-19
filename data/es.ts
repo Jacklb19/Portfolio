@@ -608,207 +608,216 @@ projects: {
     characterCount: "{count}/500",
     dateLocale: "es-ES",
   },
- learning: {
-    title: "Aprendizaje y Certificaciones",
-    subtitle: "Educación continua y desarrollo profesional",
-    intro: {
-      paragraph1:
-        "Como ingeniero de software, creo firmemente en el aprendizaje continuo y la mejora constante. Invierto tiempo regularmente en cursos, certificaciones y estudio autónomo para mantenerme actualizado con las últimas tecnologías y mejores prácticas de la industria.",
-      paragraph2:
-        "Mi enfoque de aprendizaje combina educación formal, proyectos prácticos y exploración de nuevas herramientas. Esta sección resume mi trayectoria de desarrollo profesional, desde certificaciones técnicas hasta áreas de enfoque actual.",
-    },
-    certifications: {
-      title: "Certificaciones",
-      subtitle: "Validación técnica de habilidades",
-      items: [
-        {
-          id: 1,
-          name: "Bootcamp de Programación Basica",
-          area: "Programación Basica",
-          platform: "TIC",
-          date: "2024",
-          status: "completed",
-          technologies: ["Java", "Python" , "PostgreSQL", "TypeScript","Git"],
-          credentialUrl: "/docs/Bootcamp.pdf",
-        },
-        {
-          id: 2,
-          name: "Programación en Javascript",
-          area: "Frontend",
-          platform: "Platzi",
-          date: "2023",
-          status: "completed",
-          technologies: ["JavaScript"],
-          credentialUrl: "/docs/JavaScript.pdf",
-        },
-        {
-          id: 3,
-          name: "Seminario en Ingenería",
-          area: "Software",
-          platform: "UCC",
-          date: "2023",
-          status: "completed",
-          technologies: ["Programación"],
-          credentialUrl: "/docs/Seminario.pdf",
-        },
-      ],
-    },
-    courses: {
-      title: "Cursos y Formación",
-      subtitle: "Aprendizaje estructurado y proyectos",
-      categories: {
-        frontend: {
-          title: "Frontend Development",
-          items: [
-            {
-              id: 1,
-              title: "Next.js: El Framework de React",
-              platform: "Formación",
-              category: "Frontend",
-              description:
-                "Server-Side Rendering, Static Site Generation y arquitectura moderna con Next.js 14+.",
-              outcome: "Construí este portafolio usando Next.js con App Router y TypeScript.",
-              year: "2025",
-            },
-          ],
-        },
-        backend: {
-          title: "Backend Development",
-          items: [
-            {
-              id: 4,
-              title: "Java Spring Boot",
-              platform: "Universidad Cooperativa de Colombia",
-              category: "Backend",
-              description:
-                "Framework empresarial para Java, inyección de dependencias y arquitectura en capas.",
-              outcome: "Sistema de gestión de reclamos y PharmaSync con Spring Boot.",
-              year: "2024",
-            },
-            {
-              id: 5,
-              title: "Microservicios y Arquitectura Distribuida",
-              platform: "Formación",
-              category: "Backend",
-              description:
-                "Diseño de microservicios, comunicación entre servicios y patrones de arquitectura.",
-              year: "2024",
-            },
-          ],
-        },
-        devops: {
-          title: "DevOps & Cloud",
-          items: [
-            {
-              id: 7,
-              title: "Docker y Contenedores",
-              platform: "Formación",
-              category: "DevOps",
-              description:
-                "Containerización de aplicaciones, Docker Compose y orquestación básica.",
-              year: "2024",
-            },
-            {
-              id: 8,
-              title: "Git y GitHub Avanzado",
-              platform: "Formación",
-              category: "DevOps",
-              description:
-                "Control de versiones, flujos de trabajo colaborativos y GitHub Actions.",
-              year: "2024",
-            },
-          ],
-        },
-        fundamentals: {
-          title: "Fundamentos de CS",
-          items: [
-            {
-              id: 9,
-              title: "Estructuras de Datos y Algoritmos",
-              platform: "Universidad Cooperativa de Colombia",
-              category: "Fundamentals",
-              description:
-                "Análisis de complejidad, algoritmos de ordenamiento, búsqueda y estructuras de datos avanzadas.",
-              outcome: "Base sólida para resolver problemas algorítmicos complejos.",
-              year: "2024",
-            },
-            {
-              id: 10,
-              title: "Arquitectura de Software",
-              platform: "Universidad Cooperativa de Colombia",
-              category: "Fundamentals",
-              description:
-                "Patrones de diseño, SOLID, arquitectura en capas y sistemas escalables.",
-              year: "2024",
-            },
-            {
-              id: 11,
-              title: "Bases de Datos Relacionales",
-              platform: "Universidad Cooperativa de Colombia",
-              category: "Fundamentals",
-              description:
-                "Modelado relacional, normalización, consultas SQL avanzadas y optimización.",
-              year: "2024",
-            },
-          ],
-        },
+learning: {
+  title: "Aprendizaje y Certificaciones",
+  subtitle: "Educación continua y desarrollo profesional",
+  intro: {
+    paragraph1:
+      "Como ingeniero de software, creo firmemente en el aprendizaje continuo y la mejora constante. Invierto tiempo regularmente en cursos, certificaciones y estudio autónomo para mantenerme actualizado con las últimas tecnologías y mejores prácticas de la industria.",
+    paragraph2:
+      "Mi enfoque de aprendizaje combina educación formal, proyectos prácticos y exploración de nuevas herramientas. Esta sección resume mi trayectoria de desarrollo profesional, desde certificaciones técnicas hasta áreas de enfoque actual.",
+  },
+  statusLabels: {
+    completed: "Completado",
+    inProgress: "En Progreso",
+    active: "Activo",
+    planned: "Planeado",
+  },
+    labels: {
+    viewCredential: "Ver Credencial",
+  },
+  certifications: {
+    title: "Certificaciones",
+    subtitle: "Validación técnica de habilidades",
+    items: [
+      {
+        id: 1,
+        name: "Bootcamp de Programación Basica",
+        area: "Programación Basica",
+        platform: "TIC",
+        date: "2024",
+        status: "completed",
+        technologies: ["Java", "Python", "PostgreSQL", "TypeScript", "Git"],
+        credentialUrl: "/docs/Bootcamp.pdf",
+      },
+      {
+        id: 2,
+        name: "Programación en Javascript",
+        area: "Frontend",
+        platform: "Platzi",
+        date: "2023",
+        status: "completed",
+        technologies: ["JavaScript"],
+        credentialUrl: "/docs/JavaScript.pdf",
+      },
+      {
+        id: 3,
+        name: "Seminario en Ingenería",
+        area: "Software",
+        platform: "UCC",
+        date: "2023",
+        status: "completed",
+        technologies: ["Programación"],
+        credentialUrl: "/docs/Seminario.pdf",
+      },
+    ],
+  },
+  courses: {
+    title: "Cursos y Formación",
+    subtitle: "Aprendizaje estructurado y proyectos",
+    categories: {
+      frontend: {
+        title: "Frontend Development",
+        items: [
+          {
+            id: 1,
+            title: "Next.js: El Framework de React",
+            platform: "Formación",
+            category: "Frontend",
+            description:
+              "Server-Side Rendering, Static Site Generation y arquitectura moderna con Next.js 14+.",
+            outcome: "Construí este portafolio usando Next.js con App Router y TypeScript.",
+            year: "2025",
+          },
+        ],
+      },
+      backend: {
+        title: "Backend Development",
+        items: [
+          {
+            id: 4,
+            title: "Java Spring Boot",
+            platform: "Universidad Cooperativa de Colombia",
+            category: "Backend",
+            description:
+              "Framework empresarial para Java, inyección de dependencias y arquitectura en capas.",
+            outcome: "Sistema de gestión de reclamos y PharmaSync con Spring Boot.",
+            year: "2024",
+          },
+          {
+            id: 5,
+            title: "Microservicios y Arquitectura Distribuida",
+            platform: "Formación",
+            category: "Backend",
+            description:
+              "Diseño de microservicios, comunicación entre servicios y patrones de arquitectura.",
+            year: "2024",
+          },
+        ],
+      },
+      devops: {
+        title: "DevOps & Cloud",
+        items: [
+          {
+            id: 7,
+            title: "Docker y Contenedores",
+            platform: "Formación",
+            category: "DevOps",
+            description:
+              "Containerización de aplicaciones, Docker Compose y orquestación básica.",
+            year: "2024",
+          },
+          {
+            id: 8,
+            title: "Git y GitHub Avanzado",
+            platform: "Formación",
+            category: "DevOps",
+            description:
+              "Control de versiones, flujos de trabajo colaborativos y GitHub Actions.",
+            year: "2024",
+          },
+        ],
+      },
+      fundamentals: {
+        title: "Fundamentos de CS",
+        items: [
+          {
+            id: 9,
+            title: "Estructuras de Datos y Algoritmos",
+            platform: "Universidad Cooperativa de Colombia",
+            category: "Fundamentals",
+            description:
+              "Análisis de complejidad, algoritmos de ordenamiento, búsqueda y estructuras de datos avanzadas.",
+            outcome: "Base sólida para resolver problemas algorítmicos complejos.",
+            year: "2024",
+          },
+          {
+            id: 10,
+            title: "Arquitectura de Software",
+            platform: "Universidad Cooperativa de Colombia",
+            category: "Fundamentals",
+            description:
+              "Patrones de diseño, SOLID, arquitectura en capas y sistemas escalables.",
+            year: "2024",
+          },
+          {
+            id: 11,
+            title: "Bases de Datos Relacionales",
+            platform: "Universidad Cooperativa de Colombia",
+            category: "Fundamentals",
+            description:
+              "Modelado relacional, normalización, consultas SQL avanzadas y optimización.",
+            year: "2024",
+          },
+        ],
       },
     },
-    languages: {
-      title: "Idiomas",
-      subtitle: "Competencia lingüística",
-      items: [
-        {
-          id: 1,
-          name: "Español",
-          level: "Nativo",
-          levelCode: "C2",
-          description: "Lengua materna con dominio completo.",
-        },
-        {
-          id: 2,
-          name: "Inglés",
-          level: "Intermedio Alto",
-          levelCode: "B2",
-          description:
-            "Lectura de documentación técnica, comprensión de videos educativos y comunicación escrita profesional.",
-          credentialUrl: "/docs/ingles.pdf",
-        },
-      ],
-    },
-    currentFocus: {
-      title: "Enfoque Actual de Aprendizaje",
-      subtitle: "Áreas de estudio activo",
-      items: [
-        {
-          id: 1,
-          title: "System Design y Arquitectura Escalable",
-          description:
-            "Profundizando en diseño de sistemas distribuidos, patrones de escalabilidad y arquitecturas de alto rendimiento.",
-          status: "active",
-        },
-        {
-          id: 2,
-          title: "Testing y Calidad de Software",
-          description:
-            "Mejorando habilidades en testing unitario, de integración y E2E con Jest, Vitest y Playwright.",
-          status: "active",
-        },
-        {
-          id: 3,
-          title: "DevOps y CI/CD",
-          description:
-            "Explorando pipelines automatizados, infraestructura como código y deployment strategies.",
-          status: "active",
-        },
-        {
-          id: 4,
-          title: "Desarrollo de Juegos con Unity",
-          description:
-            "Aprendiendo arquitectura de juegos, patrones de diseño específicos de gamedev y optimización de rendimiento.",
-          status: "planned",
-        },
-      ],
-    },
   },
+  languages: {
+    title: "Idiomas",
+    subtitle: "Competencia lingüística",
+    items: [
+      {
+        id: 1,
+        name: "Español",
+        level: "Nativo",
+        levelCode: "C2",
+        description: "Lengua materna con dominio completo.",
+      },
+      {
+        id: 2,
+        name: "Inglés",
+        level: "Intermedio Alto",
+        levelCode: "B2",
+        description:
+          "Lectura de documentación técnica, comprensión de videos educativos y comunicación escrita profesional.",
+        credentialUrl: "/docs/ingles.pdf",
+      },
+    ],
+  },
+  currentFocus: {
+    title: "Enfoque Actual de Aprendizaje",
+    subtitle: "Áreas de estudio activo",
+    items: [
+      {
+        id: 1,
+        title: "System Design y Arquitectura Escalable",
+        description:
+          "Profundizando en diseño de sistemas distribuidos, patrones de escalabilidad y arquitecturas de alto rendimiento.",
+        status: "active",
+      },
+      {
+        id: 2,
+        title: "Testing y Calidad de Software",
+        description:
+          "Mejorando habilidades en testing unitario, de integración y E2E con Jest, Vitest y Playwright.",
+        status: "active",
+      },
+      {
+        id: 3,
+        title: "DevOps y CI/CD",
+        description:
+          "Explorando pipelines automatizados, infraestructura como código y deployment strategies.",
+        status: "active",
+      },
+      {
+        id: 4,
+        title: "Desarrollo de Juegos con Unity",
+        description:
+          "Aprendiendo arquitectura de juegos, patrones de diseño específicos de gamedev y optimización de rendimiento.",
+        status: "planned",
+      },
+    ],
+  },
+},
 }
